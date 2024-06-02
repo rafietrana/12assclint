@@ -5,8 +5,11 @@ import { MdLocationPin, MdOutlineMessage } from "react-icons/md";
 
 import logoImg from "../../src/assets/logofinal.svg";
 import { Link } from "react-router-dom";
+import useAuth from "./../Hooks/useAuth";
 
 const Navbar = () => {
+  const { user } = useAuth();
+  console.log("user is from navbar", user);
   const menuNev = (
     <>
       <li>
@@ -139,11 +142,25 @@ const Navbar = () => {
                 SING UP
               </button>
             </Link>
-            <Link to={"/login"}>
-            <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                Login
-              </button>
-            </Link>
+            {user ? (
+              <>
+                {" "}
+                <Link to={"/login"}>
+                  <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                    Login
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <>
+                {" "}
+                <Link to={"/logout"}>
+                  <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                    Logout
+                  </button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
