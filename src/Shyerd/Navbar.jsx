@@ -21,8 +21,8 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link className="font-DM uppercase font-medium text-[17px] text-sm">
-          about us
+        <Link to={'deshboard'} className="font-DM uppercase font-medium text-[17px] text-sm">
+          Deshboard
         </Link>
       </li>
       <li>
