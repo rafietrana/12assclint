@@ -1,6 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 
 const Deshboard = () => {
+  const admin = true;
   return (
     <div>
       <div className="bg-gray-100 font-sans leading-normal tracking-normal min-h-screen">
@@ -33,9 +34,23 @@ const Deshboard = () => {
           {/* Sidebar */}
           <div className="bg-[#D7E5F5] w-full md:w-64 md:min-h-screen text-black font-Outfit text-[16px] font-[500]">
             <div className="p-4">
-              <h2 className="text-2xl font-bold">Menu</h2>
+              <h2 className="text-2xl font-bold">{admin ? 'Admin' : 'User'} Menu</h2>
               <ul className="mt-4">
-              <li className="py-2 px-4 hover:bg-white hover:text-black rounded">
+                {admin ? <>
+                  <li className="py-2 px-4 hover:bg-white hover:text-black rounded">
+                  <Link to={"/"}>Home</Link>
+                </li>
+                <li className="py-2 px-4 hover:bg-white hover:text-black rounded">
+                  <Link to={"userprofile"}>Admin Profile</Link>
+                </li>
+                <li className="py-2 px-4 hover:bg-white hover:text-black rounded">
+                  <Link to={"userappoinment"}>Admin Appoinment</Link>
+                </li>
+                <li className="py-2 px-4 hover:bg-white hover:text-black rounded">
+                  <Link to={"testresult"}>Test Result</Link>
+                </li>
+                </> : <>
+                <li className="py-2 px-4 hover:bg-white hover:text-black rounded">
                   <Link to={"/"}>Home</Link>
                 </li>
                 <li className="py-2 px-4 hover:bg-white hover:text-black rounded">
@@ -47,6 +62,8 @@ const Deshboard = () => {
                 <li className="py-2 px-4 hover:bg-white hover:text-black rounded">
                   <Link to={"testresult"}>Test Result</Link>
                 </li>
+                </>}
+
               </ul>
             </div>
           </div>
