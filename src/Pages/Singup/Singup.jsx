@@ -3,6 +3,7 @@ import singupImg from "../../assets/singup.jpg";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
@@ -10,8 +11,8 @@ const Singup = () => {
   const [district, setDistrict] = useState([]);
   const [upzilas, setUpzillas] = useState([]);
 
-  const { user } = useContext(AuthContext);
-  console.log("alhamdulillah user is mashallah", user);
+  const { singUpUser } = useContext(AuthContext);
+  console.log("alhamdulillah user is mashallah", singUpUser);
   useEffect(() => {
     fetch("../../../public/District.json")
       .then((res) => res.json())
@@ -23,7 +24,6 @@ const Singup = () => {
       .then((res) => res.json())
       .then((data) => setUpzillas(data));
   }, []);
-  console.log("alhamdulillah upozillas is ", upzilas);
 
   const handleSingupBtn = async (e) => {
     e.preventDefault();
@@ -50,18 +50,34 @@ const Singup = () => {
     console.log(" alhamdulillah  image     response is ", res.data.success);
     console.log("alhamdulillah upload image is ", res.data.data?.display_url);
 
-    const signupInfo = {
-      name,
-      email,
-      password,
-      confirmPassword,
-      bloodGroup,
-      district,
-      upozilla,
-      image: res.data.data?.display_url,
-    };
+    if (res.data.success) {
+      const signupInfo = {
+        name,
+        email,
+        password,
+        confirmPassword,
+        bloodGroup,
+        district,
+        upozilla,
+        image: res.data.data?.display_url,
+      };
+      console.log("alhamdulillah singup information is ", signupInfo);
 
-    console.log("alhamdulillah singup information is ", signupInfo);
+      if (password !== confirmPassword) {
+        return toast.error("password not matched");
+      }
+      singUpUser(email, password)
+        .then((result) => {
+          console.log(result.user);
+          toast.success("alhamdulillah sucessfully singup ");
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error("i find error please check now");
+        });
+    } else {
+      console.log("image not updated");
+    }
   };
 
   return (
@@ -86,6 +102,7 @@ const Singup = () => {
                     type="text"
                     name="name"
                     className="border rounded-lg p-4 w-full  outline-none  "
+                    required
                   />
                 </div>
                 <div>
@@ -97,6 +114,7 @@ const Singup = () => {
                     type="text"
                     name="email"
                     className="border rounded-lg p-4 w-full  outline-none "
+                    required
                   />
                 </div>
 
@@ -109,6 +127,7 @@ const Singup = () => {
                     type="text"
                     name="password"
                     className="border rounded-lg p-4 w-full outline-none "
+                    required
                   />
                 </div>
                 <div>
@@ -120,6 +139,7 @@ const Singup = () => {
                     name="confirmPassword"
                     type="text"
                     className="border rounded-lg p-4 w-full  outline-none"
+                    required
                   />
                 </div>
                 <div>
@@ -127,12 +147,14 @@ const Singup = () => {
                     type="file"
                     name="photo"
                     className="file-input file-input-bordered border-gray-200 w-full file-input-ghost  mt-4 "
+                    required
                   />
                 </div>
                 <div>
                   <select
                     name="bloodGroup"
                     className="border outline-none py-2 rounded-lg p-3  w-full  "
+                    required
                   >
                     <option disabled selected>
                       Blood Group
@@ -150,6 +172,7 @@ const Singup = () => {
                   <select
                     name="district"
                     className="border outline-none py-2 rounded-lg p-3  w-full  "
+                    required
                   >
                     <option disabled selected>
                       Select Your District
@@ -166,6 +189,7 @@ const Singup = () => {
                   <select
                     name="upozilla"
                     className="border outline-none py-2 rounded-lg p-3  w-full  "
+                    required
                   >
                     <option disabled selected>
                       Select Your Upzilla
