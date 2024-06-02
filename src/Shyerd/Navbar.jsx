@@ -5,11 +5,14 @@ import { MdLocationPin, MdOutlineMessage } from "react-icons/md";
 
 import logoImg from "../../src/assets/logofinal.svg";
 import { Link } from "react-router-dom";
-import useAuth from "./../Hooks/useAuth";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useAuth();
-  console.log("user is from navbar", user);
+  const { user, logout } = useContext(AuthContext);
+  console.log("alhamdulillah user from nabvar component", user);
+  console.log("alhamdulillah logout is ", logout);
+
   const menuNev = (
     <>
       <li>
@@ -44,6 +47,17 @@ const Navbar = () => {
       </li>
     </>
   );
+
+  const handleLogoutBtn = () => {
+    console.log("alhamdulillah your logout button is now working mashalllah");
+    logout()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .then((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div>
       {/* top navBar */}
@@ -144,19 +158,19 @@ const Navbar = () => {
             </Link>
             {user ? (
               <>
-                {" "}
-                <Link to={"/login"}>
-                  <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                    Login
-                  </button>
-                </Link>
+                <button
+                  onClick={handleLogoutBtn}
+                  className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+                >
+                  Logout
+                </button>
               </>
             ) : (
               <>
-                {" "}
-                <Link to={"/logout"}>
+
+                <Link to={"/login"}>
                   <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                    Logout
+                    
                   </button>
                 </Link>
               </>

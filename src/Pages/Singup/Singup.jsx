@@ -47,7 +47,7 @@ const Singup = () => {
     }
 
     const formData = new FormData();
-    console.log('alhamdulillah form data is', formData);
+    console.log("alhamdulillah form data is", formData);
     formData.append("image", photo);
 
     try {
@@ -71,13 +71,12 @@ const Singup = () => {
           upozilla,
           image: res.data.data.display_url,
         };
-        console.log('alhamdulillah singup information is', singupInfo);
+        console.log("alhamdulillah singup information is", singupInfo);
 
-        const  result = await singUpUser(email, password);
+        const result = await singUpUser(email, password);
         await updateUserProfile(name, res.data.data.display_url);
         toast.success("Successfully signed up");
-        console.log( result.user);
-
+        console.log(result.user);
       } else {
         toast.error("Image upload failed no Probelem Please Try");
       }
@@ -132,7 +131,7 @@ const Singup = () => {
                   </label>
                   <br />
                   <input
-                    type="password"
+                    type="text"
                     name="password"
                     className="border rounded-lg p-4 w-full outline-none"
                     required
@@ -144,7 +143,7 @@ const Singup = () => {
                   </label>
                   <br />
                   <input
-                    type="password"
+                    type="text"
                     name="confirmPassword"
                     className="border rounded-lg p-4 w-full outline-none"
                     required
@@ -164,7 +163,7 @@ const Singup = () => {
                     className="border outline-none py-2 rounded-lg p-3 w-full"
                     required
                   >
-                    <option disabled selected>
+                    <option value="" disabled>
                       Blood Group
                     </option>
                     <option value="A+">A+</option>
@@ -181,7 +180,7 @@ const Singup = () => {
                     className="border outline-none py-2 rounded-lg p-3 w-full"
                     required
                   >
-                    <option disabled selected>
+                    <option value="" disabled>
                       Select Your District
                     </option>
                     {district.map((dataDistrict) => (
@@ -197,7 +196,7 @@ const Singup = () => {
                     className="border outline-none py-2 rounded-lg p-3 w-full"
                     required
                   >
-                    <option disabled selected>
+                    <option value="" disabled>
                       Select Your Upzilla
                     </option>
                     {upzilas.map((dataUpozilla) => (
@@ -212,9 +211,19 @@ const Singup = () => {
                 type="submit"
                 className="bg-gradient-to-b w-full my-5 from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mr-6"
                 disabled={loading}
-
               >
-                {loading ? <div className=" flex justify-center items-center gap-2"><p className="animate-spin"><ImSpinner9 /> </p><p className="font-Outfit font-[500] text-[16px]">Please w8 just moment...</p></div> : "SIGN UP"}
+                {loading ? (
+                  <div className=" flex justify-center items-center gap-2">
+                    <p className="animate-spin">
+                      <ImSpinner9 />{" "}
+                    </p>
+                    <p className="font-Outfit font-[500] text-[16px]">
+                      Please w8 Image is Uploading...
+                    </p>
+                  </div>
+                ) : (
+                  "SIGN UP"
+                )}
               </button>
             </form>
             <div className="flex justify-center items-center">
