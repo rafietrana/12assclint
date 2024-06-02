@@ -8,6 +8,11 @@ import Deshboard from "./../Deshboard/Deshboard";
 import UserProfile from "../Deshboard/UserDeshboardPages/UserProfile";
 import UserAppoinments from "../Deshboard/UserDeshboardPages/UserAppoinments";
 import UserTestResult from "../Deshboard/UserDeshboardPages/UserTestResult";
+import AllUser from "../Deshboard/AdminDeshboardPages/AllUser";
+import AddTest from "../Deshboard/AdminDeshboardPages/AddTest";
+import AllTest from "../Deshboard/AdminDeshboardPages/AllTest";
+import Reservation from "../Deshboard/AdminDeshboardPages/Reservation";
+import AddBanner from "../Deshboard/AdminDeshboardPages/AddBanner";
 
 const router = createBrowserRouter([
   {
@@ -32,19 +37,39 @@ const router = createBrowserRouter([
     path: "deshboard",
     element: <Deshboard></Deshboard>,
     children: [
-    {
-      path: 'userprofile',
-      element: <UserProfile></UserProfile>
-    },
-    {
-      path: 'userappoinment',
-      element: <UserAppoinments></UserAppoinments>
-    },
-    {
-      path: 'testresult',
-      element: <UserTestResult></UserTestResult>
-    }
-    ]
+      {
+        path: "userprofile",
+        element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "userappoinment",
+        element: <UserAppoinments></UserAppoinments>,
+      },
+      {
+        path: "testresult",
+        element: <UserTestResult></UserTestResult>,
+      },
+      {
+        path: "alluser",
+        element: <AllUser></AllUser>,
+      },
+      {
+        path: "addtest",
+        element: <AddTest></AddTest>,
+      },
+      {
+        path: "alltest",
+        element: <AllTest></AllTest>,
+      },
+      {
+        path: "reservation",
+        element: <Reservation></Reservation>,
+      },
+      {
+        path: "addbanner",
+        element: <AddBanner></AddBanner>,
+      },
+    ],
   },
 ]);
 
