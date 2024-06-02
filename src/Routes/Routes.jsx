@@ -13,6 +13,7 @@ import AddTest from "../Deshboard/AdminDeshboardPages/AddTest";
 import AllTest from "../Deshboard/AdminDeshboardPages/AllTest";
 import Reservation from "../Deshboard/AdminDeshboardPages/Reservation";
 import AddBanner from "../Deshboard/AdminDeshboardPages/AddBanner";
+import AllBanner from './../Deshboard/AdminDeshboardPages/AllBanner';
 
 const router = createBrowserRouter([
   {
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
         element: <AddTest></AddTest>,
       },
       {
-        path: "alltest",
+      path: "alltest",
         element: <AllTest></AllTest>,
       },
       {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "addbanner",
         element: <AddBanner></AddBanner>,
+      },
+      {
+        path: "allbanner",
+        element: <AllBanner></AllBanner>,
       },
     ],
   },

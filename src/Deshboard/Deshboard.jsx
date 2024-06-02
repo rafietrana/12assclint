@@ -4,7 +4,7 @@ import { PiFlagBannerFoldFill, PiTestTubeFill } from "react-icons/pi";
 import { Link, Outlet } from "react-router-dom";
 
 const Deshboard = () => {
-  const admin = false;
+  const admin = true;
   return (
     <div>
       <div className="bg-gray-100 font-sans leading-normal tracking-normal min-h-screen">
@@ -98,6 +98,17 @@ const Deshboard = () => {
                           <PiFlagBannerFoldFill />
                         </span>
                         <span>Add Banner</span>
+                      </Link>
+                    </li>
+                    <li className="py-2 px-4 font-DM font-[600] hover:bg-white hover:text-black rounded">
+                      <Link
+                        to={"addbanner"}
+                        className="flex  items-center gap-3"
+                      >
+                        <span>
+                          <PiFlagBannerFoldFill />
+                        </span>
+                        <span>All Banner</span>
                       </Link>
                     </li>
                   </>
