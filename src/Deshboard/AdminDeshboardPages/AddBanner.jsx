@@ -20,12 +20,10 @@ const AddBanner = () => {
     const couponrate = form.couponrate.value;
 
     // console.log("banner information is", bannerInfo);
-  
 
     const formData = new FormData();
 
     formData.append("image", bannerimg);
- 
 
     try {
       const res = await axios.post(
@@ -46,15 +44,23 @@ const AddBanner = () => {
           description,
           couponcode,
           couponrate,
+          isActive: "false",
         };
         console.log("alhamdulillah singup information is", bannerInfo);
-        toast.success('alhamdulillah sucessfully added all data')
-      }
-      else{
-        console.log('i found error');
+
+        axios
+          .post("http://localhost:5000/setbanner", bannerInfo)
+          .then((res) => {
+            console.log("alhamdulillah response is ", res.data);
+            if (res.data.insertedId) {
+              toast.success("alhamdulillah sucessfully added all data");
+            }
+          });
+      } else {
+        console.log("i found error");
       }
     } catch (error) {
-      console.error('error is',error);
+      console.error("error is", error);
       toast.error("found error when starting upload image");
     } finally {
       setImageLoading(false);
@@ -138,10 +144,10 @@ const AddBanner = () => {
                 disabled={imageLoading}
                 className="bg-gradient-to-b my-5 from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  "
               >
-                       {imageLoading ? (
+                {imageLoading ? (
                   <div className=" flex justify-center items-center gap-2">
                     <p className="animate-spin">
-                      <ImSpinner9/>{" "}
+                      <ImSpinner9 />{" "}
                     </p>
                     <p className="font-Outfit font-[500] text-[16px]">
                       Please w8 Image is Uploading...
