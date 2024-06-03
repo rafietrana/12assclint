@@ -13,25 +13,18 @@ const AllBanner = () => {
 
   console.log("alhamdulillah bannerData is", allBannerData);
 
+  const handleActiveBtn = (bannerData) => {
+    console.log("alhamdulillah is active is id is", bannerData._id);
 
+    axios
+      .put(`http://localhost:5000/updateisactive/${bannerData._id}`)
+      .then((res) => {
+        console.log("alhamdulillah this is", res.status);
 
-
-
-
-const handleActiveBtn = (bannerData) =>{
-        console.log('alhamdulillah is active is id is', bannerData._id);
-
-      axios.put(`http://localhost:5000/updateisactive/${bannerData._id}`)
-      .then(res =>{
-        console.log('alhamdulillah this is',res.status);
-      
-        toast.success('alhamdulillah')
-        refetch()
-        
-      })
-
-
-}
+        toast.success("alhamdulillah");
+        refetch();
+      });
+  };
   return (
     <div className="fle  flex-col w-full">
       <div>
@@ -52,9 +45,9 @@ const handleActiveBtn = (bannerData) =>{
               </tr>
             </thead>
             <tbody>
-              {allBannerData.map((dataAllBanner) => (
+              {allBannerData.map((dataAllBanner, idx) => (
                 <tr key={dataAllBanner._id}>
-                  <th>1</th>
+                  <th>{idx +1}</th>
                   <td>
                     <div className="avatar">
                       <div className="w-24 rounded">
@@ -71,16 +64,16 @@ const handleActiveBtn = (bannerData) =>{
                   <td>{dataAllBanner?.couponrate}</td>
                   <td>
                     {!dataAllBanner?.isActive ? (
-                      <button onClick={()=>handleActiveBtn(dataAllBanner)} className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
+                      <button
+                        onClick={() => handleActiveBtn(dataAllBanner)}
+                        className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  "
+                      >
                         Active Now
                       </button>
                     ) : (
-                      <button
-            
-                      className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
-                    >
-                      Activated
-                    </button>
+                      <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                        Activated
+                      </button>
                     )}
                   </td>
                 </tr>

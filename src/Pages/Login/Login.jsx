@@ -1,3 +1,4 @@
+ 
 import { Link } from "react-router-dom";
 import loginImg from "../../assets/lgoin.jpg";
 import useAuth from "../../Hooks/useAuth";
@@ -5,6 +6,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser } = useAuth();
+
   console.log("alhamdulillah login user is ", loginUser);
   const handleLoginBtn = (e) => {
     e.preventDefault();
@@ -12,15 +14,15 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-          loginUser(email, password)
-          .then(result =>{
-               console.log(result.user);
-               toast.success('alhamdulillah sucessfully logedin')
-          })
-          .catch(error =>{
-            console.error(error)
-            toast.error('please Try Agin ')
-          })
+    loginUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("alhamdulillah sucessfully logedin");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("please Try Agin ");
+      });
   };
 
   return (
