@@ -44,7 +44,7 @@ const AddBanner = () => {
           description,
           couponcode,
           couponrate,
-          isActive: "false",
+          isActive:  parseInt("false"),
         };
         console.log("alhamdulillah singup information is", bannerInfo);
 
