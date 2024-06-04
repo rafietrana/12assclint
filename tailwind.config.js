@@ -5,7 +5,7 @@ export default {
     extend: {},
     fontFamily: {
       DM: ["DM Sans", "sans-serif"],
-      Outfit: ["Outfit Sans", "sans-serif"],
+      Outfit: ["Outfit", "sans-serif"],
     },
   },
   plugins: [require("daisyui")],

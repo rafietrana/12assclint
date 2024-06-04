@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+// import { useState } from "react";
 import { toast } from "react-toastify";
 
 const AddTest = () => {
-  const [selectedDate, setSelectedDate] = useState("");
-  const currentDate = new Date().toISOString().split("T")[0];
-  console.log("alhamdulillah selected date is", selectedDate);
+  // const [selectedDate, setSelectedDate] = useState("");
+  // const currentDate = new Date().toISOString().split("T")[0];
+  // console.log("alhamdulillah selected date is", selectedDate);
   const handleAddTestBtn = (e) => {
     e.preventDefault();
     console.log(
@@ -19,13 +19,17 @@ const AddTest = () => {
     const bannerimg = form.bannerimg.value;
     const slotsnumber = form.slotsnumber.value;
     const date = form.date.value;
+
+    const fullIsoDate = new Date(date).toISOString();
+    console.log("alhamdulillah full date formate is", fullIsoDate);
+    console.log("date is", date);
     const addTestData = {
       testname,
       testdetails,
       testprice,
       bannerimg,
       slotsnumber,
-      date,
+      date: fullIsoDate,
     };
 
     console.log("alhamdulillah add test data is ", addTestData);
@@ -113,10 +117,7 @@ const AddTest = () => {
                   <input
                     name="date"
                     type="date"
-                    value={selectedDate}
-                    min={currentDate}
                     className="w-full px-3 py-2 rounded-lg border outline-none "
-                    onChange={(e) => setSelectedDate(e.target.value)}
                     required
                   />
                 </div>

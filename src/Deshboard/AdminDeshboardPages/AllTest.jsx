@@ -54,7 +54,6 @@ const AllTest = () => {
               <th></th>
               <th>Test Image</th>
               <th>Test Name</th>
-
               <th>Test Price</th>
               <th>Slots Number</th>
               <th>Update</th>

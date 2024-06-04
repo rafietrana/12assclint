@@ -26,8 +26,8 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link className="font-DM uppercase font-medium text-[17px] text-sm">
-          services
+        <Link to={'/alltestpage'} className="font-DM uppercase font-medium text-[17px] text-sm">
+           All Test
         </Link>
       </li>
       <li>
