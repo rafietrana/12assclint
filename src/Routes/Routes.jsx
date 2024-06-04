@@ -14,6 +14,7 @@ import AllTest from "../Deshboard/AdminDeshboardPages/AllTest";
 import Reservation from "../Deshboard/AdminDeshboardPages/Reservation";
 import AddBanner from "../Deshboard/AdminDeshboardPages/AddBanner";
 import AllBanner from './../Deshboard/AdminDeshboardPages/AllBanner';
+import TestUpdate from "../Deshboard/AdminDeshboardPages/TestUpdate";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,11 @@ const router = createBrowserRouter([
         path: "allbanner",
         element: <AllBanner></AllBanner>,
       },
+      {
+        path: 'testupdate/:id',
+        element: <TestUpdate></TestUpdate>,
+    
+      }
     ],
   },
 ]);
