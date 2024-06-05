@@ -20,8 +20,8 @@ const fetchActiveBanner = async () => {
 };
 
 const PaymentModal = ({ isOpen, closeModal, paymentPrce }) => {
-  const [finalPaymentPrice, setFinalPaymentPrice] = useState(null);
   const { price } = paymentPrce;
+  const [finalPaymentPrice, setFinalPaymentPrice] = useState(parseFloat(price));
 
   const { data: getTrueBanner = {} } = useQuery({
     queryKey: ["getTrueBanner"],
@@ -108,7 +108,9 @@ const PaymentModal = ({ isOpen, closeModal, paymentPrce }) => {
                     </form>
                     <div>
                       <Elements stripe={stripePromise}>
-                        <CheckoutForm></CheckoutForm>
+                        <CheckoutForm
+                        finalPaymentPrice={finalPaymentPrice}
+                        ></CheckoutForm>
                       </Elements>
                     </div>
                   </div>
