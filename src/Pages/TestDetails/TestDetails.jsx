@@ -2,20 +2,27 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import PaymentModal from "../../Modal/PaymentModal.jsx";
+import { useState } from "react";
 
 const TestDetails = () => {
   const { id } = useParams();
   console.log("alhamdulillah params is", id);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { data: testDetails = [] } = useQuery({
     queryKey: ["testDetails"],
+    enabled: !!id,
     queryFn: () =>
-       axios(`http://localhost:5000/gettest/${id}`).then((res) => {
- 
+      axios(`http://localhost:5000/gettest/${id}`).then((res) => {
         return res.data;
       }),
   });
   console.log("alhamdulillah testdetails data is ", testDetails);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div>
@@ -94,33 +101,65 @@ const TestDetails = () => {
             </div>
           </div>
           <div className="  w-full">
-               <div  className="rounded-lg flex " >
-                <img className=" w-9/12 h-[400px] rounded-2xl " src={testDetails?.bannerimg} alt="" />
-               </div>
-               <div>
-                <p className="font-Outfit font-[700] text-[48px]">{testDetails?.testname}</p>
-                <p className="font-DM text-[#788094] text-[16px] font-[400]">{testDetails?.testdetails}</p>
-                <div className="my-12">
-                <p><span className="font-Outfit font-[600] text-[20px] ">testprice:  </span><span>{testDetails?.testprice}</span></p>
-                <p><span className="font-Outfit font-[600] text-[20px] ">Date  </span><span>{testDetails?.date.split('T')[0]}</span></p>
-                <p><span className="font-Outfit font-[600] text-[20px] ">Slots Number </span><span>{testDetails?.slotsnumber}</span></p>
-
-
-                </div>
-                <div>
-                    {
-                        parseInt(testDetails.slotsnumber) > 0 ?              <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
-                        Book Now
-                    </button> :                 <button
- 
-                  className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
-                >
-                  No Book Avalable
-                </button>
-                    }
-                </div>
-
-               </div>
+            <div className="rounded-lg flex ">
+              <img
+                className=" w-9/12 h-[400px] rounded-2xl "
+                src={testDetails?.bannerimg}
+                alt=""
+              />
+            </div>
+            <div>
+              <p className="font-Outfit font-[700] text-[48px]">
+                {testDetails?.testname}
+              </p>
+              <p className="font-DM text-[#788094] text-[16px] font-[400]">
+                {testDetails?.testdetails}
+              </p>
+              <div className="my-12">
+                <p>
+                  <span className="font-Outfit font-[600] text-[20px] ">
+                    testprice:{" "}
+                  </span>
+                  <span>{testDetails?.testprice}</span>
+                </p>
+                <p>
+                  <span className="font-Outfit font-[600] text-[20px] ">
+                    Date :
+                  </span>
+                  <span>
+                    {testDetails.date && testDetails.date.split("T")[0]}{" "}
+                  </span>
+                </p>
+                <p>
+                  <span className="font-Outfit font-[600] text-[20px] ">
+                    Slots Number{" "}
+                  </span>
+                  <span>{testDetails?.slotsnumber}</span>
+                </p>
+              </div>
+              <div>
+                {parseInt(testDetails.slotsnumber) > 0 ? (
+                  <>
+                    <button
+                      onClick={() => setIsOpen(true)}
+                      className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  "
+                    >
+                      Book Now
+                    </button>
+                  </>
+                ) : (
+                  <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                    Logout
+                  </button>
+                )}
+                {/* payment modal  */}
+                <PaymentModal
+                  isOpen={isOpen}
+                  closeModal={closeModal}
+                  paymentPrce={{price: testDetails?.testprice}}
+                ></PaymentModal>
+              </div>
+            </div>
           </div>
         </div>
       </div>
