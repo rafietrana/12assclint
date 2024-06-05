@@ -8,6 +8,11 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Fragment, useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "../Pages/CheckoutForm/CheckoutForm";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const fetchActiveBanner = async () => {
   const response = await axios("http://localhost:5000/getactivebanner");
@@ -41,7 +46,7 @@ const PaymentModal = ({ isOpen, closeModal, paymentPrce }) => {
 
       const discount = (intPrice * intCouponRate) / 100;
       const finalPrice = intPrice - discount;
-      console.log('Final price with discount:', finalPrice);
+      console.log("Final price with discount:", finalPrice);
       setFinalPaymentPrice(finalPrice);
     } else {
       console.log("Invalid coupon code");
@@ -101,6 +106,11 @@ const PaymentModal = ({ isOpen, closeModal, paymentPrce }) => {
                         value="Apply Now"
                       />
                     </form>
+                    <div>
+                      <Elements stripe={stripePromise}>
+                        <CheckoutForm></CheckoutForm>
+                      </Elements>
+                    </div>
                   </div>
 
                   {finalPaymentPrice !== null && (
