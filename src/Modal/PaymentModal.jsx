@@ -7,7 +7,7 @@ import {
 } from "@headlessui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../Pages/CheckoutForm/CheckoutForm";
@@ -19,9 +19,13 @@ const fetchActiveBanner = async () => {
   return response.data;
 };
 
-const PaymentModal = ({ isOpen, closeModal, paymentPrce }) => {
-  const { price } = paymentPrce;
-  const [finalPaymentPrice, setFinalPaymentPrice] = useState(parseFloat(price));
+const PaymentModal = ({ isOpen, closeModal, paymentPrice }) => {
+  const { price } = paymentPrice;
+  const [finalPaymentPrice, setFinalPaymentPrice] = useState(null);
+
+  useEffect(() => {
+    setFinalPaymentPrice(parseFloat(price));
+  }, [price]);
 
   const { data: getTrueBanner = {} } = useQuery({
     queryKey: ["getTrueBanner"],
@@ -50,7 +54,6 @@ const PaymentModal = ({ isOpen, closeModal, paymentPrce }) => {
       setFinalPaymentPrice(finalPrice);
     } else {
       console.log("Invalid coupon code");
-      setFinalPaymentPrice(parseFloat(price));
     }
   };
 
@@ -108,9 +111,7 @@ const PaymentModal = ({ isOpen, closeModal, paymentPrce }) => {
                     </form>
                     <div>
                       <Elements stripe={stripePromise}>
-                        <CheckoutForm
-                        finalPaymentPrice={finalPaymentPrice}
-                        ></CheckoutForm>
+                        <CheckoutForm finalPaymentPrice={finalPaymentPrice ?? price} closeModal={closeModal}/>
                       </Elements>
                     </div>
                   </div>
@@ -118,7 +119,7 @@ const PaymentModal = ({ isOpen, closeModal, paymentPrce }) => {
                   {finalPaymentPrice !== null && (
                     <div className="mt-4 text-center">
                       <p className="text-lg font-medium">
-                        Final Payment Price: {finalPaymentPrice} Taka
+                        Final Payment Price: {finalPaymentPrice ?? price} Taka
                       </p>
                     </div>
                   )}

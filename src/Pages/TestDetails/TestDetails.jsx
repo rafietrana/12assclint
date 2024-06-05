@@ -156,7 +156,7 @@ const TestDetails = () => {
                 <PaymentModal
                   isOpen={isOpen}
                   closeModal={closeModal}
-                  paymentPrce={{price: testDetails?.testprice}}
+                  paymentPrice={{price: testDetails?.testprice}}
                 ></PaymentModal>
               </div>
             </div>

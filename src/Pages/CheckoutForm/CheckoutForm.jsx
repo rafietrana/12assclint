@@ -3,8 +3,9 @@ import "./CheckoutForm.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "./../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
-const CheckoutForm = ({ finalPaymentPrice }) => {
+const CheckoutForm = ({ finalPaymentPrice , closeModal}) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -72,17 +73,19 @@ const CheckoutForm = ({ finalPaymentPrice }) => {
 
       if (confirmError) {
         setError(confirmError.message);
-        console.error("[Confirm Payment Error]", confirmError);
+        console.error("Confirm Payment Error no probleme", confirmError);
         return;
       }
 
       if (paymentIntent.status === "succeeded") {
-        console.log("[PaymentIntent]", paymentIntent);
-        console.log("Payment succeeded");
+        console.log("PaymentIntent Alhamdulillah", paymentIntent);
+        console.log("Payment succeeded ");
+        toast.success("Payment Sucessfully");
+        closeModal()
       }
     } catch (err) {
       setError(err.message);
-      console.error("[Handle Submit Error]", err);
+      console.error(" I found Handle Submit Error", err);
     }
   };
 
@@ -104,8 +107,12 @@ const CheckoutForm = ({ finalPaymentPrice }) => {
           },
         }}
       />
-      <button type="submit" disabled={!stripe} className="p-5 bg-green-50 rounded-full ">
-        Pay
+      <button
+        type="submit"
+        disabled={!stripe}
+        className="p-5 bg-green-50 rounded-lg "
+      >
+        Pay Now
       </button>
       {error && <div className="error">{error}</div>}
     </form>
