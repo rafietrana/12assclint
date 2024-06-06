@@ -159,6 +159,9 @@ const TestDetails = () => {
                   closeModal={closeModal}
                   paymentPrice={{price: testDetails?.testprice}}
                   paymentCollectionId={testDetails?._id}
+                  testInfo={{
+                    testName: testDetails?.testname
+                  }}
                 ></PaymentModal>
               </div>
             </div>

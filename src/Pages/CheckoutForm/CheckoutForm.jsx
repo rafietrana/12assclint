@@ -9,14 +9,18 @@ const CheckoutForm = ({
   finalPaymentPrice,
   closeModal,
   paymentCollectionId,
-  refetch
+  refetch,
+  testInfo,
 }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
   const [clientSecret, setClientSecret] = useState();
   const [error, setError] = useState(null);
+  const [procassing, setProcassing] = useState(false);
   console.log("alhamdulillah payment colllection id is", paymentCollectionId);
+  const { testName } = testInfo;
+  console.log("user is ", user);
 
   // Get clientSecret
   const getClientSecret = async (price) => {
@@ -39,6 +43,7 @@ const CheckoutForm = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setProcassing(true);
     setError(null);
 
     if (!stripe || !elements) {
@@ -48,6 +53,7 @@ const CheckoutForm = ({
     const card = elements.getElement(CardElement);
 
     if (card == null) {
+      setProcassing(false);
       return;
     }
 
@@ -61,9 +67,11 @@ const CheckoutForm = ({
       if (paymentMethodError) {
         setError(paymentMethodError.message);
         console.error("[Payment Method Error]", paymentMethodError);
+        setProcassing(false);
         return;
       } else {
         console.log("i found payment method is ", paymentMethod);
+        setProcassing(true);
       }
 
       const { error: confirmError, paymentIntent } =
@@ -80,31 +88,41 @@ const CheckoutForm = ({
       if (confirmError) {
         setError(confirmError.message);
         console.error("Confirm Payment Error no probleme", confirmError);
+        setProcassing(false);
         return;
       }
 
       if (paymentIntent.status === "succeeded") {
+        setProcassing(true);
         console.log("PaymentIntent Alhamdulillah", paymentIntent);
         console.log("Payment succeeded ");
 
-        axios.put(`http://localhost:5000/decrementslots/${paymentCollectionId}`)
+        axios
+          .put(`http://localhost:5000/decrementslots/${paymentCollectionId}`)
           .then((res) => {
-            console.log("alhamdulillah response data is from decrement  component", res);
-            if(res.status == 200){
-                 const reserveInfo ={
-                       userName: user?.displayName,
-                     userEmail: user?.email
-                 }
-                 console.log('alhamdulillah reserveinfo is',reserveInfo);
-                 refetch();
-               
-
-
-
-
-
- 
-              
+            console.log(
+              "alhamdulillah response data is from decrement  component",
+              res
+            );
+            if (res.status == 200) {
+              const reserveInfo = {
+                userName: user?.displayName,
+                userEmail: user?.email,
+                transictionId: paymentIntent?.id,
+                testname: testName || "Not Found",
+                userPhoto: user?.photoURL,
+              };
+              axios
+                .post("http://localhost:5000/reservepost", reserveInfo)
+                .then((res) => {
+                  console.log(res.data);
+                  if (res.data.insertedId > 0) {
+                    console.log("alahmdulillah this is working ");
+                  }
+                });
+              console.log("alhamdulillah reserveinfo is", reserveInfo);
+              setProcassing(false);
+              refetch();
             }
           });
         toast.success("Payment Sucessfully");
@@ -137,9 +155,15 @@ const CheckoutForm = ({
       <button
         type="submit"
         disabled={!stripe}
-        className="p-5 bg-green-50 rounded-lg "
+        className="p-5 bg-green-50 rounded-lg flex justify-center items-center gap-1 "
       >
-        Pay Now
+        <span>
+          {procassing && (
+            <span className="loading loading-spinner loading-sm"></span>
+          )}
+        </span>
+
+        <span> Pay Now </span>
       </button>
       {error && <div className="error">{error}</div>}
     </form>
