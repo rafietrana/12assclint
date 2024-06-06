@@ -111,6 +111,7 @@ const CheckoutForm = ({
                 transictionId: paymentIntent?.id,
                 testname: testName || "Not Found",
                 userPhoto: user?.photoURL,
+                reportStatus: 'Pending'
               };
               axios
                 .post("http://localhost:5000/reservepost", reserveInfo)
@@ -153,9 +154,12 @@ const CheckoutForm = ({
         }}
       />
       <button
+  
         type="submit"
-        disabled={!stripe}
+        disabled={!stripe || procassing}
+     
         className="p-5 bg-green-50 rounded-lg flex justify-center items-center gap-1 "
+     
       >
         <span>
           {procassing && (

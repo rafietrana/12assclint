@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+ 
 import Swal from "sweetalert2";
 
 const AllTest = () => {

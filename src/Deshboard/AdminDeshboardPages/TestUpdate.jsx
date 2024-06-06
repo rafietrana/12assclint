@@ -36,7 +36,7 @@ const TestUpdate = () => {
       testdetails,
       testprice,
       bannerimg,
-      slotsnumber,
+      slotsnumber: parseInt(slotsnumber),
       date,
     };
        console.log('updatetestdata is', updateTestBtn);
