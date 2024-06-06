@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 import Swal from "sweetalert2";
 
 const Reservation = () => {
@@ -21,35 +23,23 @@ const Reservation = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-
-
-
-
         console.log(id);
-        axios.delete(`http://localhost:5000/deletereseve/${id}`)
-        .then((res) => {
+        axios.delete(`http://localhost:5000/deletereseve/${id}`).then((res) => {
           console.log("alhamdulillah response is", res.data);
-          if(res.data.deletedCount > 0){
-            refetch()
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
           }
         });
-
-
-
-
-
-
       }
     });
-
   };
   return (
     <div>
@@ -85,9 +75,12 @@ const Reservation = () => {
                 <td>{reserveget?.transictionId}</td>
                 <td>{reserveget?.reportStatus}</td>
                 <td>
-                  <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
+                <Link to={`/deshboard/reservation/updatetestresult/${reserveget?._id}`}>
+                <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
                     submit test result
                   </button>
+                </Link>
+
                 </td>
                 <td>
                   {" "}

@@ -55,6 +55,7 @@ const AllTest = () => {
               <th>Test Image</th>
               <th>Test Name</th>
               <th>Test Price</th>
+              <th>Date</th>
               <th>Slots Number</th>
               <th>Update</th>
               <th>Deletet</th>
@@ -73,6 +74,7 @@ const AllTest = () => {
                 </td>
                 <td>{dataAllTest?.testname}</td>
                 <td>{dataAllTest?.testprice}</td>
+                <td>{dataAllTest?.date.split('T')[0]}</td>
                 <td>{dataAllTest?.slotsnumber}</td>
                 <td>
                   {" "}

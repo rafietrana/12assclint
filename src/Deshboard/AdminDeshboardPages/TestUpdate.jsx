@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
- 
+
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const TestUpdate = () => {
-  const currentDate = new Date().toISOString().split("T")[0];
   const params = useParams();
   console.log("alhamdulillah param is ", params.id);
 
@@ -18,7 +17,6 @@ const TestUpdate = () => {
   });
 
   console.log("alhamdulillah test page data is", testPageData);
-  
 
   // testupdate
   const handleTestUpdate = (e) => {
@@ -30,22 +28,28 @@ const TestUpdate = () => {
     const testprice = form.testprice.value;
     const bannerimg = form.bannerimg.value;
     const slotsnumber = form.slotsnumber.value;
-    const date = form.date.value;
+    const dates = form.date.value;
+
+    const convertIsoDate = new Date(dates).toISOString();
     const updateTestBtn = {
       testname,
       testdetails,
       testprice,
       bannerimg,
       slotsnumber: parseInt(slotsnumber),
-      date,
+      date: convertIsoDate,
     };
-       console.log('updatetestdata is', updateTestBtn);
+    console.log("updatetestdata is", updateTestBtn);
 
-    axios.patch(`http://localhost:5000/updatetest/${testPageData._id}`, updateTestBtn)
+    axios
+      .patch(
+        `http://localhost:5000/updatetest/${testPageData._id}`,
+        updateTestBtn
+      )
       .then((res) => {
         console.log("alhamdulillah update response is ", res.data);
-        if(res.data.matchedCount >0){
-          toast.success('sucessfully updated test data')
+        if (res.data.matchedCount > 0) {
+          toast.success("sucessfully updated test data");
         }
       });
   };
@@ -130,11 +134,8 @@ const TestUpdate = () => {
                     <input
                       name="date"
                       type="date"
-              
                       defaultValue={testPageData.date}
-                      min={currentDate}
                       className="w-full px-3 py-2 rounded-lg border outline-none "
-                   
                       required
                     />
                   </div>
