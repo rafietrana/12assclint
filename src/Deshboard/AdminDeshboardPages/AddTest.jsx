@@ -28,7 +28,7 @@ const AddTest = () => {
       testdetails,
       testprice,
       bannerimg,
-      slotsnumber,
+      slotsnumber: parseInt(slotsnumber),
       date: fullIsoDate,
     };
 

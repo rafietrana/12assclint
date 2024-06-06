@@ -5,12 +5,18 @@ import axios from "axios";
 import useAuth from "./../../Hooks/useAuth";
 import { toast } from "react-toastify";
 
-const CheckoutForm = ({ finalPaymentPrice , closeModal}) => {
+const CheckoutForm = ({
+  finalPaymentPrice,
+  closeModal,
+  paymentCollectionId,
+  refetch
+}) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
   const [clientSecret, setClientSecret] = useState();
   const [error, setError] = useState(null);
+  console.log("alhamdulillah payment colllection id is", paymentCollectionId);
 
   // Get clientSecret
   const getClientSecret = async (price) => {
@@ -80,8 +86,29 @@ const CheckoutForm = ({ finalPaymentPrice , closeModal}) => {
       if (paymentIntent.status === "succeeded") {
         console.log("PaymentIntent Alhamdulillah", paymentIntent);
         console.log("Payment succeeded ");
+
+        axios.put(`http://localhost:5000/decrementslots/${paymentCollectionId}`)
+          .then((res) => {
+            console.log("alhamdulillah response data is from decrement  component", res);
+            if(res.status == 200){
+                 const reserveInfo ={
+                       userName: user?.displayName,
+                     userEmail: user?.email
+                 }
+                 console.log('alhamdulillah reserveinfo is',reserveInfo);
+                 refetch();
+               
+
+
+
+
+
+ 
+              
+            }
+          });
         toast.success("Payment Sucessfully");
-        closeModal()
+        closeModal();
       }
     } catch (err) {
       setError(err.message);

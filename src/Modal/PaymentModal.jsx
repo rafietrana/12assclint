@@ -19,7 +19,7 @@ const fetchActiveBanner = async () => {
   return response.data;
 };
 
-const PaymentModal = ({ isOpen, closeModal, paymentPrice }) => {
+const PaymentModal = ({ isOpen, refetch, closeModal, paymentPrice,paymentCollectionId }) => {
   const { price } = paymentPrice;
   const [finalPaymentPrice, setFinalPaymentPrice] = useState(null);
 
@@ -111,7 +111,7 @@ const PaymentModal = ({ isOpen, closeModal, paymentPrice }) => {
                     </form>
                     <div>
                       <Elements stripe={stripePromise}>
-                        <CheckoutForm finalPaymentPrice={finalPaymentPrice ?? price} closeModal={closeModal}/>
+                        <CheckoutForm finalPaymentPrice={finalPaymentPrice ?? price} closeModal={closeModal} paymentCollectionId={paymentCollectionId} refetch={refetch}/>
                       </Elements>
                     </div>
                   </div>

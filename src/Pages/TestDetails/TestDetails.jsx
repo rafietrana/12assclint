@@ -10,7 +10,7 @@ const TestDetails = () => {
   console.log("alhamdulillah params is", id);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data: testDetails = [] } = useQuery({
+  const { data: testDetails = [], refetch } = useQuery({
     queryKey: ["testDetails"],
     enabled: !!id,
     queryFn: () =>
@@ -149,14 +149,16 @@ const TestDetails = () => {
                   </>
                 ) : (
                   <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                    Logout
+                    Not Avalablle this 
                   </button>
                 )}
                 {/* payment modal  */}
                 <PaymentModal
                   isOpen={isOpen}
+                  refetch={refetch}
                   closeModal={closeModal}
                   paymentPrice={{price: testDetails?.testprice}}
+                  paymentCollectionId={testDetails?._id}
                 ></PaymentModal>
               </div>
             </div>
