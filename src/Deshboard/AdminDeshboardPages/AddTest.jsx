@@ -2,10 +2,16 @@ import axios from "axios";
 // import { useState } from "react";
 import { toast } from "react-toastify";
 
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
+
+
+
+
 const AddTest = () => {
-  // const [selectedDate, setSelectedDate] = useState("");
-  // const currentDate = new Date().toISOString().split("T")[0];
-  // console.log("alhamdulillah selected date is", selectedDate);
+  const [startDate, setStartDate] = useState(null);
   const handleAddTestBtn = (e) => {
     e.preventDefault();
     console.log(
@@ -114,11 +120,16 @@ const AddTest = () => {
                   <label className="font-DM font-[400] text-[17px] ">
                     Select Date
                   </label>
-                  <input
+                  <br />
+
+ 
+
+                  <DatePicker
+                    selected={startDate}
                     name="date"
-                    type="date"
-                    className="w-full px-3 py-2 rounded-lg border outline-none "
-                    required
+                           className="  px-3 py-2 rounded-lg border outline-none w-full "
+                    onChange={(date) => setStartDate(date)}
+                            dateFormat="yyyy-MM-dd"
                   />
                 </div>
               </div>

@@ -1,14 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState, useEffect } from "react";
 
 const TestUpdate = () => {
   const params = useParams();
-  console.log("alhamdulillah param is ", params.id);
+  console.log("Alhamdulillah param is ", params.id);
 
-  const { data: testPageData = {} } = useQuery({
+  const { data: testPageData = {}, isSuccess } = useQuery({
     queryKey: ["gettest", params?.id],
     queryFn: async () => {
       const res = await axios(`http://localhost:5000/gettest/${params.id}`);
@@ -16,9 +18,16 @@ const TestUpdate = () => {
     },
   });
 
-  console.log("alhamdulillah test page data is", testPageData);
+  const [startDate, setStartDate] = useState(null);
 
-  // testupdate
+  useEffect(() => {
+    if (isSuccess && testPageData.date) {
+      setStartDate(new Date(testPageData.date));
+    }
+  }, [isSuccess, testPageData]);
+
+  console.log("Alhamdulillah test page data is", testPageData);
+
   const handleTestUpdate = (e) => {
     e.preventDefault();
 
@@ -28,28 +37,24 @@ const TestUpdate = () => {
     const testprice = form.testprice.value;
     const bannerimg = form.bannerimg.value;
     const slotsnumber = form.slotsnumber.value;
-    const dates = form.date.value;
+    const date = startDate.toISOString();
 
-    const convertIsoDate = new Date(dates).toISOString();
     const updateTestBtn = {
       testname,
       testdetails,
       testprice,
       bannerimg,
       slotsnumber: parseInt(slotsnumber),
-      date: convertIsoDate,
+      date,
     };
     console.log("updatetestdata is", updateTestBtn);
 
     axios
-      .patch(
-        `http://localhost:5000/updatetest/${testPageData._id}`,
-        updateTestBtn
-      )
+      .patch(`http://localhost:5000/updatetest/${testPageData._id}`, updateTestBtn)
       .then((res) => {
-        console.log("alhamdulillah update response is ", res.data);
+        console.log("Alhamdulillah update response is ", res.data);
         if (res.data.matchedCount > 0) {
-          toast.success("sucessfully updated test data");
+          toast.success("Successfully updated test data");
         }
       });
   };
@@ -103,6 +108,7 @@ const TestUpdate = () => {
                       required
                     />
                   </div>
+
                   <div className="space-y-2">
                     <label className="font-DM font-[400] text-[17px] ">
                       Banner Image
@@ -115,6 +121,7 @@ const TestUpdate = () => {
                       required
                     />
                   </div>
+
                   <div className="space-y-2">
                     <label className="font-DM font-[400] text-[17px] ">
                       Slots Number
@@ -127,21 +134,24 @@ const TestUpdate = () => {
                       required
                     />
                   </div>
+
                   <div className="space-y-2">
                     <label className="font-DM font-[400] text-[17px] ">
                       Select Date
                     </label>
-                    <input
+                    <p>{testPageData.date && testPageData.date.split('T')[0]}</p>
+                    <br />
+                    <DatePicker
                       name="date"
-                      type="date"
-                      defaultValue={testPageData.date}
-                      className="w-full px-3 py-2 rounded-lg border outline-none "
-                      required
+                      className="w-full px-3 py-2 rounded-lg border outline-none"
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                      dateFormat="yyyy-MM-dd"
                     />
                   </div>
                 </div>
-                <button className="bg-gradient-to-b my-5 from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
-                  Updatre Now
+                <button className="bg-gradient-to-b my-5 from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                  Update Now
                 </button>
               </form>
             </div>

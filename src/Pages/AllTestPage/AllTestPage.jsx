@@ -1,24 +1,52 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
+// import date picker
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
+import axios from "axios";
 
 const AllTestPage = () => {
-  // const thisDate = new Date().toISOString().split("T")[0];
-  const { data: getTestPage = [] } = useQuery({
-    queryKey: ["repoData"],
+  const [startDate, setStartDate] = useState("");
+  console.log("alahmdulillah start date is", startDate);
+
+  const { data: getTestPage = [], refetch } = useQuery({
+    queryKey: ["getTestPage"],
     queryFn: () =>
-      axios("http://localhost:5000/gettestall").then((res) => {
-        return res.data;
-      }),
+      axios(`http://localhost:5000/gettestall?date=${startDate}`).then(
+        (res) => {
+          return res.data;
+        }
+      ),
   });
+  console.log(getTestPage);
 
-  console.log("alhamdulillah gettestall page data is", getTestPage);
-
-  //  const finalData =     getTestPage.filter(pageTestGet => pageTestGet.date >= thisDate);
-  //  console.log('alhamdulillah finaldata is', finalData);
+  const handleSatDateBtn = (date) => {
+    console.log("alhamdulillah", date);
+    const toIsoDate = new Date(date).toISOString();
+    setStartDate(toIsoDate);
+    refetch();
+  };
 
   return (
     <div className="w-10/12 mx-auto my-11 ">
+      <div className="   space-y-2">
+        <div className="  w-full my-5 mb-7 font-Outfit flex gap-7 items-center">
+          {" "}
+          <span>Search By Date </span>{" "}
+          <span>
+            {" "}
+            <DatePicker
+              name="date"
+              className="outline-none border "
+              selected={startDate ? new Date(startDate).toISOString() : null}
+              onChange={(date) => handleSatDateBtn(date)}
+              dateFormat="yyyy-MM-dd"
+            />
+          </span>{" "}
+        </div>
+      </div>
       <div className="   mx-auto grid lg:grid-cols-4 gap-6  md:grid-cols-2 grid-cols-1">
         {getTestPage.map((pageTestGet) => (
           <div
@@ -46,11 +74,10 @@ const AllTestPage = () => {
               </p>
               <div className="text-center">
                 <Link to={`/testdetails/${pageTestGet._id}`}>
-                <button className="bg-gradient-to-b from-gray-100 to-gray-200   text-black font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
-                  View Details
-                </button>
+                  <button className="bg-gradient-to-b from-gray-100 to-gray-200   text-black font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
+                    View Details
+                  </button>
                 </Link>
-
               </div>
               <div className="card-actions   "></div>
             </div>
