@@ -26,6 +26,7 @@ const AddTest = () => {
     const slotsnumber = form.slotsnumber.value;
     const date = form.date.value;
 
+
     const fullIsoDate = new Date(date).toISOString();
     console.log("alhamdulillah full date formate is", fullIsoDate);
     console.log("date is", date);

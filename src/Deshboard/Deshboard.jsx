@@ -114,14 +114,10 @@ const Deshboard = () => {
                   </>
                 ) : (
                   <>
- 
                     <li className="py-2 px-4 font-DM font-[600] hover:bg-white hover:text-black rounded">
-                      <Link
-                        to={"/"}
-                        className="flex  items-center gap-3"
-                      >
+                      <Link to={"/"} className="flex  items-center gap-3">
                         <span>
-                        <FaHome />
+                          <FaHome />
                         </span>
                         <span>Home</span>
                       </Link>

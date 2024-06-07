@@ -9,6 +9,11 @@ const TestDetails = () => {
   const { id } = useParams();
   console.log("alhamdulillah params is", id);
   const [isOpen, setIsOpen] = useState(false);
+  // const now = new Date();
+  // const hours = now.getHours();
+  // const minutes = now.getMinutes();
+  // const seconds = now.getSeconds();
+  // console.log(`Current Time: ${hours}:${minutes}:${seconds}`);
 
   const { data: testDetails = [], refetch } = useQuery({
     queryKey: ["testDetails"],

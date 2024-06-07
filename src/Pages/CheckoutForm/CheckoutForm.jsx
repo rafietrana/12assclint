@@ -105,13 +105,22 @@ const CheckoutForm = ({
               res
             );
             if (res.status == 200) {
+              const now = new Date();
+              const hours = now.getHours();
+              const minutes = now.getMinutes();
+              const seconds = now.getSeconds();
+              const bookingDates = new Date().toISOString();
+
+              const time = `${hours}:${minutes}:${seconds}`;
               const reserveInfo = {
                 userName: user?.displayName,
                 userEmail: user?.email,
                 transictionId: paymentIntent?.id,
                 testname: testName || "Not Found",
                 userPhoto: user?.photoURL,
-                reportStatus: 'Pending'
+                reportStatus: "Pending",
+                bookingTime: time,
+                bookingDate: bookingDates,
               };
               axios
                 .post("http://localhost:5000/reservepost", reserveInfo)
@@ -154,12 +163,9 @@ const CheckoutForm = ({
         }}
       />
       <button
-  
         type="submit"
         disabled={!stripe || procassing}
-     
         className="p-5 bg-green-50 rounded-lg flex justify-center items-center gap-1 "
-     
       >
         <span>
           {procassing && (

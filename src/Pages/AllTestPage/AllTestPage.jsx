@@ -11,19 +11,30 @@ const AllTestPage = () => {
   const [startDate, setStartDate] = useState("");
   console.log("alahmdulillah start date is", startDate);
 
-  const { data: getTestPage = [], refetch } = useQuery({
+  const { data: getTestPage = [] } = useQuery({
     queryKey: ["getTestPage"],
     queryFn: () =>
-      axios(`http://localhost:5000/gettestall?date=${startDate}`).then(
+      axios("http://localhost:5000/gettestall").then((res) => {
+        return res.data;
+      }),
+  });
+
+  const { data: getQueryDate = [], refetch } = useQuery({
+    queryKey: ["getQueryDate"],
+    queryFn: () =>
+      axios(`http://localhost:5000/datequery?date=${startDate}`).then(
         (res) => {
+          console.log('alhamdulillah response is', res);
           return res.data;
+   
         }
       ),
   });
-  console.log(getTestPage);
+
+  console.log("alhamdulillah get query date is", getQueryDate);
 
   const handleSatDateBtn = (date) => {
-    console.log("alhamdulillah", date);
+ 
     const toIsoDate = new Date(date).toISOString();
     setStartDate(toIsoDate);
     refetch();
