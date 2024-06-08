@@ -4,7 +4,7 @@ import { PiFlagBannerFoldFill, PiTestTubeFill } from "react-icons/pi";
 import { Link, Outlet } from "react-router-dom";
 
 const Deshboard = () => {
-  const admin = true;
+  const admin = false;
   return (
     <div>
       <div className="bg-gray-100 font-sans leading-normal tracking-normal min-h-screen">

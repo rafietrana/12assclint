@@ -28,6 +28,7 @@ const AddTest = () => {
 
 
     const fullIsoDate = new Date(date).toISOString();
+    const localDate = new Date(date).toLocaleDateString();
     console.log("alhamdulillah full date formate is", fullIsoDate);
     console.log("date is", date);
     const addTestData = {
@@ -37,6 +38,7 @@ const AddTest = () => {
       bannerimg,
       slotsnumber: parseInt(slotsnumber),
       date: fullIsoDate,
+      localDate
     };
 
     console.log("alhamdulillah add test data is ", addTestData);

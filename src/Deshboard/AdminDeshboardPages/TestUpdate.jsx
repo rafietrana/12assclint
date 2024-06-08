@@ -37,7 +37,9 @@ const TestUpdate = () => {
     const testprice = form.testprice.value;
     const bannerimg = form.bannerimg.value;
     const slotsnumber = form.slotsnumber.value;
-    const date = startDate.toISOString();
+    
+     
+    const date = startDate ? startDate.toISOString() : null;
 
     const updateTestBtn = {
       testname,
