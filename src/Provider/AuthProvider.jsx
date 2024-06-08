@@ -30,6 +30,8 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+ 
+
   useEffect(() => {
     const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -41,6 +43,7 @@ const AuthProvider = ({ children }) => {
     singUpUser,
     loginUser,
     updateUserProfile,
+ 
     logout,
     user
   };

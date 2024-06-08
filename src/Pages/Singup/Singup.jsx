@@ -40,6 +40,7 @@ const Singup = () => {
     const district = form.district.value;
     const upozilla = form.upozilla.value;
     const photo = form.photo.files[0];
+    const userStatus = "active"
 
     if (password !== confirmPassword) {
       setLoading(false);
@@ -70,6 +71,7 @@ const Singup = () => {
           district,
           upozilla,
           image: res.data.data.display_url,
+          userStatus
         };
         console.log("alhamdulillah singup information is", singupInfo);
 
@@ -77,6 +79,10 @@ const Singup = () => {
         await updateUserProfile(name, res.data.data.display_url);
         toast.success("Successfully signed up");
         console.log(result.user);
+        axios.post('http://localhost:5000/postuserinfo', singupInfo)
+        .then(res =>{
+          console.log(res.data);
+        })
       } else {
         toast.error("Image upload failed no Probelem Please Try");
       }
