@@ -19,8 +19,8 @@ const CheckoutForm = ({
   const [error, setError] = useState(null);
   const [procassing, setProcassing] = useState(false);
   console.log("alhamdulillah payment colllection id is", paymentCollectionId);
-  const { testName } = testInfo;
-  console.log("user is ", user);
+  const { testName, testId } = testInfo;
+  console.log("alhamdulillah test id is", testId);
 
   // Get clientSecret
   const getClientSecret = async (price) => {
@@ -96,6 +96,10 @@ const CheckoutForm = ({
         setProcassing(true);
         console.log("PaymentIntent Alhamdulillah", paymentIntent);
         console.log("Payment succeeded ");
+        
+        axios.put(`http://localhost:5000/incrementcount/${testId}`).then((res) => {
+          console.log("alhamdulillah updated count issssssssssssssssssssssssss", res.data);
+        });
 
         axios
           .put(`http://localhost:5000/decrementslots/${paymentCollectionId}`)
@@ -128,6 +132,7 @@ const CheckoutForm = ({
                   console.log(res.data);
                   if (res.data.insertedId > 0) {
                     console.log("alahmdulillah this is working ");
+
                   }
                 });
               console.log("alhamdulillah reserveinfo is", reserveInfo);

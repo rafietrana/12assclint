@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
- 
+
 import Swal from "sweetalert2";
 
 const AllTest = () => {
@@ -25,19 +25,15 @@ const AllTest = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-
-
         axios.delete(`http://localhost:5000/deletetest/${id}`).then((res) => {
           console.log(res.data);
           if (res.data.deletedCount > 0) {
- 
-            refetch()
-                    Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
           }
         });
       }
@@ -46,7 +42,7 @@ const AllTest = () => {
 
   return (
     <div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto ">
         <table className="table">
           {/* head */}
           <thead>
@@ -74,7 +70,7 @@ const AllTest = () => {
                 </td>
                 <td>{dataAllTest?.testname}</td>
                 <td>{dataAllTest?.testprice}</td>
-                <td>{dataAllTest?.date.split('T')[0]}</td>
+                <td>{dataAllTest?.date.split("T")[0]}</td>
                 <td>{dataAllTest?.slotsnumber}</td>
                 <td>
                   {" "}

@@ -7,9 +7,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 
-
-
-
 const AddTest = () => {
   const [startDate, setStartDate] = useState(null);
   const handleAddTestBtn = (e) => {
@@ -26,7 +23,6 @@ const AddTest = () => {
     const slotsnumber = form.slotsnumber.value;
     const date = form.date.value;
 
-
     const fullIsoDate = new Date(date).toISOString();
     const localDate = new Date(date).toLocaleDateString();
     console.log("alhamdulillah full date formate is", fullIsoDate);
@@ -38,7 +34,8 @@ const AddTest = () => {
       bannerimg,
       slotsnumber: parseInt(slotsnumber),
       date: fullIsoDate,
-      localDate
+      localDate,
+      count: 0,
     };
 
     console.log("alhamdulillah add test data is ", addTestData);
@@ -125,14 +122,12 @@ const AddTest = () => {
                   </label>
                   <br />
 
- 
-
                   <DatePicker
                     selected={startDate}
                     name="date"
-                           className="  px-3 py-2 rounded-lg border outline-none w-full "
+                    className="  px-3 py-2 rounded-lg border outline-none w-full "
                     onChange={(date) => setStartDate(date)}
-                            dateFormat="yyyy-MM-dd"
+                    dateFormat="yyyy-MM-dd"
                   />
                 </div>
               </div>

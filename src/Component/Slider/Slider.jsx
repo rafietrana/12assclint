@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
   const { data: activeBannerData = [] } = useQuery({
@@ -51,9 +52,12 @@ const Slider = () => {
             </div>
 
             <div>
-              <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                see all services
+                <Link to={'/alltestpage'}>
+                <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                All Test Page
               </button>
+                </Link>
+
             </div>
           </div>
         </div>

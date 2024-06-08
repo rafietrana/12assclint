@@ -65,11 +65,11 @@ const AllTestPage = () => {
         {finalFilterDate.map((pageTestGet) => (
           <div
             key={pageTestGet._id}
-            className="card card-compact w-70 bg-base-100 border"
+            className="card card-compact w-70  border shadow-lg bg-gray-50"
           >
             <figure>
               <div className="avatar p-5">
-                <div className="w-24 rounded border-4">
+                <div className="h-[200px]">
                   <img src={pageTestGet.bannerimg} />
                 </div>
               </div>

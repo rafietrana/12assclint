@@ -75,11 +75,14 @@ const Reservation = () => {
                 <td>{reserveget?.transictionId}</td>
                 <td>{reserveget?.reportStatus}</td>
                 <td>
-                <Link to={`/deshboard/reservation/updatetestresult/${reserveget?._id}`}>
-                <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
-                    submit test result
-                  </button>
-                </Link>
+                  {
+                    reserveget?.reportStatus == "Pending" ?                 <Link to={`/deshboard/reservation/updatetestresult/${reserveget?._id}`}>
+                    <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
+                        submit test result
+                      </button>
+                    </Link>  : <p>Submited</p>
+                  }
+
 
                 </td>
                 <td>

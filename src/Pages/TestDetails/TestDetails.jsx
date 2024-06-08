@@ -165,8 +165,11 @@ const TestDetails = () => {
                   paymentPrice={{price: testDetails?.testprice}}
                   paymentCollectionId={testDetails?._id}
                   testInfo={{
-                    testName: testDetails?.testname
+                    testName: testDetails?.testname,
+                    testId: testDetails?._id,
+                    
                   }}
+
                 ></PaymentModal>
               </div>
             </div>
