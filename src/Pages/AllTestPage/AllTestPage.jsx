@@ -1,13 +1,15 @@
+import { useRef, useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import ReactToPrint from "react-to-print";
 
 const AllTestPage = () => {
   const [startDate, setStartDate] = useState(null);
   const [finalFilterDate, setFinalFilterDate] = useState([]);
+  const componentRef = useRef();
   console.log("alhamdulillah start date is", startDate);
 
   const { data: getTestPage = [] } = useQuery({
@@ -18,15 +20,17 @@ const AllTestPage = () => {
       }),
   });
 
-  const { data: getQueryDate = []  } = useQuery({
+  const { data: getQueryDate = [] } = useQuery({
     queryKey: ["getQueryDate", startDate],
     queryFn: () =>
-      axios.get("http://localhost:5000/datequery", {
-        params: { date: startDate },
-      }).then((res) => {
-        return res.data;
-      }),
-    enabled: !!startDate,  
+      axios
+        .get("http://localhost:5000/datequery", {
+          params: { date: startDate },
+        })
+        .then((res) => {
+          return res.data;
+        }),
+    enabled: !!startDate,
   });
 
   useEffect(() => {
@@ -61,7 +65,18 @@ const AllTestPage = () => {
           </span>
         </div>
       </div>
-      <div className="mx-auto grid lg:grid-cols-4 gap-6 md:grid-cols-2 grid-cols-1">
+      <ReactToPrint
+        trigger={() => (
+          <button className="bg-gradient-to-b from-gray-100 to-gray-200 text-black  py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
+            Print All Tests
+          </button>
+        )}
+        content={() => componentRef.current}
+      />
+      <div
+        ref={componentRef}
+        className="mx-auto grid lg:grid-cols-4 gap-6 md:grid-cols-2 grid-cols-1"
+      >
         {finalFilterDate.map((pageTestGet) => (
           <div
             key={pageTestGet._id}
@@ -70,7 +85,7 @@ const AllTestPage = () => {
             <figure>
               <div className="avatar p-5">
                 <div className="h-[200px]">
-                  <img src={pageTestGet.bannerimg} />
+                  <img src={pageTestGet.bannerimg} alt="Test Banner" />
                 </div>
               </div>
             </figure>

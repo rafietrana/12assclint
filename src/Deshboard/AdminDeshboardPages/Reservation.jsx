@@ -1,17 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import Swal from "sweetalert2";
 
 const Reservation = () => {
+  const [finalReservationValue, setFinalReservationValue] = useState([]);
+  const [emailValues, setEmailValues] = useState(null);
+
   const { data: getreserve = [], refetch } = useQuery({
     queryKey: ["getreserve"],
     queryFn: () =>
-      axios("http://localhost:5000/getreserve").then((res) => {
-        return res.data;
-      }),
+      axios("http://localhost:5000/getreserve").then((res) => res.data),
   });
+
+  useEffect(() => {
+    if (!emailValues) {
+      setFinalReservationValue(getreserve);
+    }
+  }, [getreserve, emailValues]);
 
   console.log("alhamdulillah reserve data is", getreserve);
 
@@ -41,9 +48,46 @@ const Reservation = () => {
       }
     });
   };
+
+  const handleEmailSearch = async (e) => {
+    e.preventDefault();
+    console.log("alhamdulillah this is hitting");
+    const emailValue = e.target.email.value;
+    setEmailValues(emailValue);
+  };
+
+  console.log("alhamdulillah email value is", emailValues);
+
+  const { data: emailSearchValue = [] } = useQuery({
+    queryKey: ["emailSearchValue", emailValues],
+    enabled: !!emailValues,
+    queryFn: () =>
+      axios(`http://localhost:5000/searchbyemail/${emailValues}`).then(
+        (res) => res.data
+      ),
+  });
+
+  useEffect(() => {
+    if (emailSearchValue.length > 0) {
+      setFinalReservationValue(emailSearchValue);
+    }
+  }, [emailSearchValue]);
+
   return (
     <div>
       <div className="overflow-x-auto">
+        <form onSubmit={handleEmailSearch}>
+          <div className="flex gap-3 items-center my-7">
+            <label>Search By Email</label>
+            <input name="email" type="email" className="px-3 py-2 rounded-lg" />
+            <input
+              className="btn btn-info text-white"
+              type="submit"
+              value="Search"
+            />
+          </div>
+        </form>
+
         <table className="table">
           {/* head */}
           <thead>
@@ -52,14 +96,15 @@ const Reservation = () => {
               <th>User Image</th>
               <th>User Name</th>
               <th>User Email</th>
-              <th>Transction Id</th>
+              <th>Reserve test Name</th>
+              <th>Transaction Id</th>
               <th>Report Status</th>
               <th>Submit Test Result</th>
-              <th>Cancal Reservation</th>
+              <th>Cancel Reservation</th>
             </tr>
           </thead>
           <tbody>
-            {getreserve.map((reserveget, idx) => (
+            {finalReservationValue.map((reserveget, idx) => (
               <tr key={reserveget?._id}>
                 <th>{idx + 1}</th>
                 <td>
@@ -71,27 +116,28 @@ const Reservation = () => {
                 </td>
                 <td>{reserveget?.userName}</td>
                 <td>{reserveget?.userEmail}</td>
-
-                <td>{reserveget?.transictionId}</td>
+                <td>{reserveget?.testname}</td>
+                <td>{reserveget?.transactionId}</td>
                 <td>{reserveget?.reportStatus}</td>
                 <td>
-                  {
-                    reserveget?.reportStatus == "Pending" ?                 <Link to={`/deshboard/reservation/updatetestresult/${reserveget?._id}`}>
-                    <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
-                        submit test result
+                  {reserveget?.reportStatus === "Pending" ? (
+                    <Link
+                      to={`/dashboard/reservation/updatetestresult/${reserveget?._id}`}
+                    >
+                      <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                        Submit test result
                       </button>
-                    </Link>  : <p>Submited</p>
-                  }
-
-
+                    </Link>
+                  ) : (
+                    <p>Submitted</p>
+                  )}
                 </td>
                 <td>
-                  {" "}
                   <button
                     onClick={() => handleDeleteBtn(reserveget?._id)}
                     className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
                   >
-                    Cancal
+                    Cancel
                   </button>
                 </td>
               </tr>

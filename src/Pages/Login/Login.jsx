@@ -1,11 +1,12 @@
  
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../assets/lgoin.jpg";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser } = useAuth();
+  const navigate = useNavigate()
 
   console.log("alhamdulillah login user is ", loginUser);
   const handleLoginBtn = (e) => {
@@ -18,6 +19,7 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         toast.success("alhamdulillah sucessfully logedin");
+        navigate('/deshboard')
       })
       .catch((error) => {
         console.error(error);

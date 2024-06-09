@@ -35,7 +35,7 @@ const PromotionSection = () => {
         </div>
       </div>
     </section>
-  );
+ 
     </div>
   );
 };

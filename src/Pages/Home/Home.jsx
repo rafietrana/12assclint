@@ -1,9 +1,11 @@
 import About from "../../Component/About/About";
-import Recommandation from "../../Component/About/Recommandation/Recommandation";
+
+import FeturedTest from "../../Component/FeturedTest/FeturedTest";
 import Promotion from "../../Component/Promotion/Promotion";
 import PromotionSection from "../../Component/PromotionSection/PromotionSection";
 import Slider from "../../Component/Slider/Slider";
 import useAuth from "../../Hooks/useAuth";
+import RecommendationSlider from "./../../Component/RecommendationSlider/RecommendationSlider";
 
 const Home = () => {
   const { user } = useAuth();
@@ -14,7 +16,8 @@ const Home = () => {
       <About></About>
       <Promotion></Promotion>
       <PromotionSection></PromotionSection>
-      <Recommandation></Recommandation>
+      <RecommendationSlider></RecommendationSlider>
+      <FeturedTest></FeturedTest>
     </div>
   );
 };
