@@ -19,6 +19,7 @@ import AllTestPage from "../Pages/AllTestPage/AllTestPage";
 import TestDetails from "../Pages/TestDetails/TestDetails";
 import UpdateTestResult from "../Deshboard/AdminDeshboardPages/UpdateTestResult";
 import UserDeshboardAcces from "../PrivetRoute/UserDeshboardAcces";
+import StatisPage from "../Deshboard/AdminDeshboardPages/StatisPage";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       </UserDeshboardAcces>
     ),
     children: [
+      {
+        path: "/deshboard",
+        element:  <StatisPage></StatisPage>
+      },
       {
         path: "userprofile",
         element: <UserProfile></UserProfile>,
