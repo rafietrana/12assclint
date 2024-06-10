@@ -44,17 +44,17 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        <Link className="font-DM uppercase font-medium text-[17px] text-sm">
-          pages
+        <Link to={'/abouts'} className="font-DM uppercase font-medium text-[17px] text-sm">
+          About
         </Link>
       </li>
       <li>
-        <Link className="font-DM uppercase font-medium text-[17px] text-sm">
+        <Link to={'/blog'} className="font-DM uppercase font-medium text-[17px] text-sm">
           Blog
         </Link>
       </li>
       <li>
-        <Link className="font-DM uppercase font-medium text-[17px] text-sm">
+        <Link to={'/contact'} className="font-DM uppercase font-medium text-[17px] text-sm">
           Contact
         </Link>
       </li>

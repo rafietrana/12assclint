@@ -3,7 +3,7 @@ import aboutImg from "../../assets/aboutimg.png";
 import { IoCall } from "react-icons/io5";
 const About = () => {
   return (
-    <div className="w-9/12 my-7      py-24 mx-auto">
+    <div className="w-9/12 my-7 py-24 mx-auto">
       <div className="md:flex gap-12 ">
         <div className="md:w-1/2 relative">
           <img src={aboutImg} alt="" />

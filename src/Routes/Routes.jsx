@@ -21,6 +21,10 @@ import UpdateTestResult from "../Deshboard/AdminDeshboardPages/UpdateTestResult"
 import UserDeshboardAcces from "../PrivetRoute/UserDeshboardAcces";
 import StatisPage from "../Deshboard/AdminDeshboardPages/StatisPage";
 
+import Abouts from "../Pages/About/Abouts";
+import Blog from "../Pages/Blog/Blog";
+import ContactPage from "../Pages/ContactPage/ContactPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +33,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/abouts",
+        element: <Abouts></Abouts>,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage></ContactPage>
+      },
+      {
+           path: '/blog',
+           element: <Blog></Blog>
       },
       {
         path: "/singup",
@@ -41,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: "/alltestpage",
         element: <AllTestPage></AllTestPage>,
-        loader: ()=>fetch("http://localhost:5000/productscount")
+        loader: () => fetch("http://localhost:5000/productscount"),
       },
       {
         path: "/testdetails/:id",
@@ -60,7 +76,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/deshboard",
-        element:  <StatisPage></StatisPage>
+        element: <StatisPage></StatisPage>,
       },
       {
         path: "userprofile",
