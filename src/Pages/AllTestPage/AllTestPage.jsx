@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
@@ -10,14 +10,31 @@ const AllTestPage = () => {
   const [startDate, setStartDate] = useState(null);
   const [finalFilterDate, setFinalFilterDate] = useState([]);
   const componentRef = useRef();
-  console.log("alhamdulillah start date is", startDate);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const { count } = useLoaderData();  
+  const itemPerPages = 4;
+  const numberOfPages = Math.ceil(count / itemPerPages);
+
+  const pages = [...Array(numberOfPages).keys()];
+
+  const handleNextBtn = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevBtn = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   const { data: getTestPage = [] } = useQuery({
-    queryKey: ["getTestPage"],
+    queryKey: ["getTestPage", currentPage],
     queryFn: () =>
-      axios("http://localhost:5000/gettestall").then((res) => {
-        return res.data;
-      }),
+      axios(`http://localhost:5000/gettestall?page=${currentPage}&size=${itemPerPages}`)
+        .then((res) => res.data.tests), 
   });
 
   const { data: getQueryDate = [] } = useQuery({
@@ -27,9 +44,7 @@ const AllTestPage = () => {
         .get("http://localhost:5000/datequery", {
           params: { date: startDate },
         })
-        .then((res) => {
-          return res.data;
-        }),
+        .then((res) => res.data),
     enabled: !!startDate,
   });
 
@@ -38,7 +53,6 @@ const AllTestPage = () => {
       const filterDate = getQueryDate.filter((dateFilter) => {
         return dateFilter.localDate === startDate;
       });
-      console.log("alhamdulillah filter date is", filterDate);
       setFinalFilterDate(filterDate);
     } else {
       setFinalFilterDate(getTestPage);
@@ -67,7 +81,7 @@ const AllTestPage = () => {
       </div>
       <ReactToPrint
         trigger={() => (
-          <button className="bg-gradient-to-b from-gray-100 to-gray-200 text-black  py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
+          <button className="bg-gradient-to-b from-gray-100 to-gray-200 text-black py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
             Print All Tests
           </button>
         )}
@@ -80,7 +94,7 @@ const AllTestPage = () => {
         {finalFilterDate.map((pageTestGet) => (
           <div
             key={pageTestGet._id}
-            className="card card-compact w-70  border shadow-lg bg-gray-50"
+            className="card card-compact w-70 border shadow-lg bg-gray-50"
           >
             <figure>
               <div className="avatar p-5">
@@ -116,6 +130,23 @@ const AllTestPage = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="my-8 flex justify-center items-center">
+        <button onClick={handlePrevBtn} className="px-2 py-1 bg-gray-100">
+          Prev
+        </button>
+        {pages.map((page) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={`bg-gray-50 mx-1 p-4 rounded-md ${currentPage === page && 'bg-green-500 text-white'}`}
+            key={page}
+          >
+            {page + 1}
+          </button>
+        ))}
+        <button onClick={handleNextBtn} className="px-2 py-1 bg-gray-100">
+          Next
+        </button>
       </div>
     </div>
   );
