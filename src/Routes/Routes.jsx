@@ -13,12 +13,12 @@ import AddTest from "../Deshboard/AdminDeshboardPages/AddTest";
 import AllTest from "../Deshboard/AdminDeshboardPages/AllTest";
 import Reservation from "../Deshboard/AdminDeshboardPages/Reservation";
 import AddBanner from "../Deshboard/AdminDeshboardPages/AddBanner";
-import AllBanner from './../Deshboard/AdminDeshboardPages/AllBanner';
+import AllBanner from "./../Deshboard/AdminDeshboardPages/AllBanner";
 import TestUpdate from "../Deshboard/AdminDeshboardPages/TestUpdate";
 import AllTestPage from "../Pages/AllTestPage/AllTestPage";
 import TestDetails from "../Pages/TestDetails/TestDetails";
 import UpdateTestResult from "../Deshboard/AdminDeshboardPages/UpdateTestResult";
- 
+import UserDeshboardAcces from "../PrivetRoute/UserDeshboardAcces";
 
 const router = createBrowserRouter([
   {
@@ -38,18 +38,23 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: '/alltestpage',
-        element:  <AllTestPage></AllTestPage>
+        path: "/alltestpage",
+        element: <AllTestPage></AllTestPage>,
       },
       {
-        path: '/testdetails/:id',
-        element: <TestDetails></TestDetails>
-      }
+        path: "/testdetails/:id",
+        element: <TestDetails></TestDetails>,
+      },
     ],
   },
   {
     path: "deshboard",
-    element: <Deshboard></Deshboard>,
+    element: (
+      <UserDeshboardAcces>
+        {" "}
+        <Deshboard></Deshboard>
+      </UserDeshboardAcces>
+    ),
     children: [
       {
         path: "userprofile",
@@ -72,7 +77,7 @@ const router = createBrowserRouter([
         element: <AddTest></AddTest>,
       },
       {
-      path: "alltest",
+        path: "alltest",
         element: <AllTest></AllTest>,
       },
       {
@@ -88,15 +93,13 @@ const router = createBrowserRouter([
         element: <AllBanner></AllBanner>,
       },
       {
-        path: 'testupdate/:id',
+        path: "testupdate/:id",
         element: <TestUpdate></TestUpdate>,
-    
       },
       {
-        path: 'reservation/updatetestresult/:id',
-        element: <UpdateTestResult></UpdateTestResult>
-      }
- 
+        path: "reservation/updatetestresult/:id",
+        element: <UpdateTestResult></UpdateTestResult>,
+      },
     ],
   },
 ]);

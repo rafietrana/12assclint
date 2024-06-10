@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
+ 
 
 const Slider = () => {
+ 
   const { data: activeBannerData = [] } = useQuery({
     queryKey: ["activeBanner"],
     queryFn: () =>
@@ -11,7 +13,7 @@ const Slider = () => {
       }),
   });
 
-  console.log("alhamdulillah active bannerdata is mashallah", activeBannerData);
+ 
 
   const getStyledBannerTitle = (title) => {
     if (!title) return "";

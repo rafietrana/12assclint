@@ -7,9 +7,11 @@ import logoImg from "../../src/assets/logofinal.svg";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import useAdmin from "../Hooks/UseAdmin";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+  const [data] = useAdmin();
   console.log("alhamdulillah user from nabvar component", user);
   console.log("alhamdulillah logout is ", logout);
 
@@ -20,14 +22,25 @@ const Navbar = () => {
           Home
         </Link>
       </li>
+
+      {user && (
+        <li>
+          {" "}
+          <Link
+            to={"deshboard"}
+            className="font-DM uppercase font-medium text-[17px] text-sm"
+          >
+            {data?.admin ? <p>Admin Deshboard</p> : <p>user Deshboard</p>}
+          </Link>{" "}
+        </li>
+      )}
+
       <li>
-        <Link to={'deshboard'} className="font-DM uppercase font-medium text-[17px] text-sm">
-          Deshboard
-        </Link>
-      </li>
-      <li>
-        <Link to={'/alltestpage'} className="font-DM uppercase font-medium text-[17px] text-sm">
-           All Test
+        <Link
+          to={"/alltestpage"}
+          className="font-DM uppercase font-medium text-[17px] text-sm"
+        >
+          All Test
         </Link>
       </li>
       <li>
@@ -167,10 +180,9 @@ const Navbar = () => {
               </>
             ) : (
               <>
-
                 <Link to={"/login"}>
                   <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                         Login
+                    Login
                   </button>
                 </Link>
               </>

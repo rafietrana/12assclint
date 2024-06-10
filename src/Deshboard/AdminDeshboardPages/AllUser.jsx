@@ -4,6 +4,7 @@ import { useState } from "react";
 import UserDetailsModal from "../../Component/Modal/UserDetailsModal";
 import Swal from "sweetalert2";
 import jsPDF from "jspdf";
+import { toast } from "react-toastify";
 
 const AllUser = () => {
   const [isOpens, setIsOpens] = useState(false);
@@ -113,6 +114,22 @@ const AllUser = () => {
       });
     }
   };
+
+
+
+  const handleMakeAdmin = async(ids) =>{
+ 
+  const  res = await axios.patch(`http://localhost:5000/makeadmin/${ids}`)
+  console.log('alhamdulillah make admin res is', res);
+  if(res.data.modifiedCount > 0){
+    refetch();
+    toast.success('make admin sucessfully')
+  }
+ 
+ 
+  };
+
+
   
   return (
     <div>
@@ -182,6 +199,12 @@ const AllUser = () => {
                     Download Details
                   </button>
                 </td>
+                    <td className="">
+                        {
+                         'role' in usergetall == true ? <p>Admin</p>   :              <button onClick={()=>handleMakeAdmin(usergetall?._id)} className="px-3 py-2  rounded-lg  bg-gray-200">Make Admin</button>
+                        }
+            
+                    </td>
               </tr>
             ))}
           </tbody>

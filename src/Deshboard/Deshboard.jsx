@@ -2,9 +2,15 @@ import { FaAppStoreIos, FaHistory, FaHome, FaUser } from "react-icons/fa";
 import { FaNoteSticky } from "react-icons/fa6";
 import { PiFlagBannerFoldFill, PiTestTubeFill } from "react-icons/pi";
 import { Link, Outlet } from "react-router-dom";
+import useAdmin from "./../Hooks/UseAdmin";
 
 const Deshboard = () => {
-  const admin = true;
+
+
+  const [data] = useAdmin();
+  console.log("data from deshboard", data);
+  const admin = data?.admin;
+
   return (
     <div>
       <div className="bg-gray-100 font-sans leading-normal tracking-normal min-h-screen">

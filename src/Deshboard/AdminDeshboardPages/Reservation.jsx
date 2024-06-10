@@ -117,7 +117,7 @@ const Reservation = () => {
                 <td>{reserveget?.userName}</td>
                 <td>{reserveget?.userEmail}</td>
                 <td>{reserveget?.testname}</td>
-                <td>{reserveget?.transactionId}</td>
+                <td>{reserveget?.transictionId}</td>
                 <td>{reserveget?.reportStatus}</td>
                 <td>
                   {reserveget?.reportStatus === "Pending" ? (
