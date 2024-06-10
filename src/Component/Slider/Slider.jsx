@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
- 
 
 const Slider = () => {
- 
   const { data: activeBannerData = [] } = useQuery({
     queryKey: ["activeBanner"],
     queryFn: () =>
@@ -13,14 +11,11 @@ const Slider = () => {
       }),
   });
 
- 
-
   const getStyledBannerTitle = (title) => {
     if (!title) return "";
 
     const words = title.split(" ");
     if (words.length < 3) return title;
-    console.log("alhamdulillah word is ", words);
 
     return (
       <>
@@ -32,42 +27,35 @@ const Slider = () => {
   };
 
   return (
-    <div className="bg-[#E5F8FC]   h-[600px]  ">
-      <div className="w-10/12 mx-auto lg:flex  justify-between   items-center">
-        <div className="space-y-3 w-full md:w-1/2 ">
+    <div className="bg-[#E5F8FC] h-auto md:h-[600px] py-8 md:py-0">
+      <div className="w-11/12 mx-auto lg:flex justify-between items-center">
+        <div className="space-y-3 w-full lg:w-1/2">
           <p className="font-Outfit uppercase bg-green font-bold text-[#0DD07D]">
-            For <span className="text-blue-500"> {activeBannerData?.couponrate} %</span> Descount Apply <span className="text-blue-500"> {activeBannerData?.couponcode}</span>
+            For <span className="text-blue-500">{activeBannerData?.couponrate}%</span> Discount Apply{" "}
+            <span className="text-blue-500">{activeBannerData?.couponcode}</span>
           </p>
-          <p className="text-7xl font-bold font-Outfit space-y-3 ">
-            {/* Caring for <span className="text-[#0DD07D]">Health</span> <br />
-            Caring for You */}
+          <p className="lg:text-7xl md:text-4xl text-2xl font-bold font-Outfit">
             {getStyledBannerTitle(activeBannerData?.bannertitle)}
           </p>
           <p className="font-Outfit text-[#788094]">
             {activeBannerData?.description}
           </p>
-          <div className="flex gap-2 py-5  ">
-            <div>
-              <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                discover More
-              </button>
-            </div>
-
-            <div>
-                <Link to={'/alltestpage'}>
-                <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+          <div className="flex flex-wrap gap-2 py-5">
+            <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+              Discover More
+            </button>
+            <Link to="/alltestpage">
+              <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
                 All Test Page
               </button>
-                </Link>
-
-            </div>
+            </Link>
           </div>
         </div>
-        <div className="md:w-1/2 hidden lg:block w-full  ">
+        <div className="w-full lg:w-1/2 mt-8 lg:mt-0">
           <img
-            className="h-[600px] object-cover overflow-hidden"
+            className="h-auto md:h-[600px] object-cover overflow-hidden"
             src={activeBannerData?.bannerimg}
-            alt=""
+            alt="Banner"
           />
         </div>
       </div>

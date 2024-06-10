@@ -17,20 +17,14 @@ const UserDeshboardAcces = ({ children }) => {
     },
   });
 
-
-  
-
   console.log("alhamdulilah isDeshboard is", isDeshboard);
   if (loading) {
-    return <p>Loading.........</p>;
+    return <p>Loading.........if this is not close automaticly please Reload mannually</p>;
   }
 
-  if (isDeshboard?.userStatus == "blocked"  && 'role' in isDeshboard == false) {
+  if (isDeshboard?.userStatus == "blocked" && "role" in isDeshboard == false) {
     return <Navigate to={"/"}></Navigate>;
   }
-
-
-  
 
   return children;
 };

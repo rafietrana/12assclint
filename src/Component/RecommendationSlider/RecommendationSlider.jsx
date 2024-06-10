@@ -27,9 +27,9 @@ const RecommendationSlider = () => {
 
   return (
     <div className="flex justify-center"> {/* Center aligning */}
-      <section className="bg-blue-50 py-12 w-9/12 mb-28 h-[400px] flex items-center flex-col bg-cover bg-[url('https://i.ibb.co/X4chSx9/video-bg.jpg')]">
+      <section className="bg-blue-50 py-12 md:w-9/12 w-full mb-28 h-[400px] flex items-center flex-col bg-cover bg-[url('https://i.ibb.co/X4chSx9/video-bg.jpg')]">
         <div className="container mx-auto px-6">
-          <Slider className="w-6/12 mt-8 mx-auto" {...settings}>
+          <Slider className="md:w-6/12 mt-8 w-full mx-auto" {...settings}>
             {recommendations.map((recommendation) => (
               <div key={recommendation.id} className="p-4">
                 <div className="bg-white p-6 rounded-lg shadow-lg">

@@ -8,6 +8,7 @@ import {
 
 import auth from "../Firebase/Firebase";
 import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -40,7 +41,19 @@ const AuthProvider = ({ children }) => {
     setLoading(true)
     const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false)
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axios.post("http://localhost:5000/jwt", userInfo).then((res) => {
+          console.log('alhamdulillah token is', res.data.token);
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+            setLoading(false);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+      }
+   
     });
     return () => unSubcribe();
   }, []);

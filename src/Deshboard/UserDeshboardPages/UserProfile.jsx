@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import useAxiosSecurs from "../../Hooks/UseAxiosSecures";
 
 const UserProfile = () => {
   const { user, updateUserProfile } = useAuth();
+  const axiosSecure = useAxiosSecurs();
 
   const { data: getUserInfo = [], refetch } = useQuery({
     queryKey: ["getUserInfo", user?.email],
     enabled: !!user?.email,
     queryFn: () =>
-      axios(`http://localhost:5000/getuserinfo/${user?.email}`).then((res) => {
+      axiosSecure(`/getuserinfo/${user?.email}`).then((res) => {
         return res.data;
       }),
   });
@@ -36,14 +37,22 @@ const UserProfile = () => {
     updateUserProfile(name, image)
       .then((result) => {
         console.log(result);
-        axios.put(`http://localhost:5000/updateuserinfo/${getUserInfo._id}`, updateUserInfo)
-        .then(res =>{
-          console.log(res.data);
-          if(res.data.modifiedCount >0){
-            refetch()
-            toast.success('sucessfully updated User Information')
-          }
-        })
+        axiosSecure
+          .put(
+            `http://localhost:5000/updateuserinfo/${getUserInfo._id}`,
+            updateUserInfo
+          )
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              toast.success("sucessfully updated User Information");
+
+              setTimeout(()=>{
+                window.location.reload()
+              },1000)
+            }
+          });
       })
       .catch((error) => {
         console.error(error);

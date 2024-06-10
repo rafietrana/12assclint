@@ -1,3 +1,5 @@
+ 
+
 import FeturedTest from "../../Component/FeturedTest/FeturedTest";
 import Promotion from "../../Component/Promotion/Promotion";
 import PromotionSection from "../../Component/PromotionSection/PromotionSection";
@@ -17,7 +19,7 @@ const Home = () => {
   return (
     <div>
       <Slider></Slider>
-
+  
       <Promotion></Promotion>
       <PromotionSection></PromotionSection>
       <RecommendationSlider></RecommendationSlider>
