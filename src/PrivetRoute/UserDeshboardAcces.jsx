@@ -11,7 +11,7 @@ const UserDeshboardAcces = ({ children }) => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axios(
-        `http://localhost:5000/getloginuser/${user.email}`
+        `https://my-ass-12-server.vercel.app/getloginuser/${user.email}`
       );
       return res.data;
     },

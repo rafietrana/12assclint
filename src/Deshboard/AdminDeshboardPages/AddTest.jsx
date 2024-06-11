@@ -41,7 +41,7 @@ const AddTest = () => {
     // console.log("alhamdulillah add test data is ", addTestData);
 
     axios
-      .post("http://localhost:5000/posttestdata", addTestData)
+      .post("https://my-ass-12-server.vercel.app/posttestdata", addTestData)
       .then((res) => {
         // console.log("alhamdulillah", res);
         if (res.status == 200) {

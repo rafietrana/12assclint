@@ -8,7 +8,7 @@ const AllTest = () => {
   const { data: alltestdata = [], refetch } = useQuery({
     queryKey: ["alltest"],
     queryFn: () =>
-      axios("http://localhost:5000/getalltest").then((res) => {
+      axios("https://my-ass-12-server.vercel.app/getalltest").then((res) => {
         return res.data;
       }),
   });
@@ -25,17 +25,19 @@ const AllTest = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/deletetest/${id}`).then((res) => {
-          // console.log(res.data);
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
-          }
-        });
+        axios
+          .delete(`https://my-ass-12-server.vercel.app/deletetest/${id}`)
+          .then((res) => {
+            // console.log(res.data);
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };
@@ -73,24 +75,13 @@ const AllTest = () => {
                 <td>{dataAllTest?.testprice}</td>
                 <td>{dataAllTest?.date.split("T")[0]}</td>
                 <td>{dataAllTest?.slotsnumber}</td>
-                <td>          
-                  
-                     <Link to={`/deshboard/singlereservation/${dataAllTest?._id}`}>
-
-                     <button
- 
- className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
->
-View Now
-</button>
-
-                     </Link>
-                  
-
-                  
-                  
-                  
-                  </td>
+                <td>
+                  <Link to={`/deshboard/singlereservation/${dataAllTest?._id}`}>
+                    <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                      View Now
+                    </button>
+                  </Link>
+                </td>
                 <td>
                   {" "}
                   <Link to={`/deshboard/testupdate/${dataAllTest._id}`}>

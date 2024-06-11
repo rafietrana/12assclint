@@ -6,9 +6,11 @@ const FeturedTest = () => {
   const { data: getsortfeturedtest = [] } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
-      axios("http://localhost:5000/getsortfeturedid").then((res) => {
-        return res.data;
-      }),
+      axios("https://my-ass-12-server.vercel.app/getsortfeturedid").then(
+        (res) => {
+          return res.data;
+        }
+      ),
   });
   return (
     <div>

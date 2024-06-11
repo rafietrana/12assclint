@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://my-ass-12-server.vercel.app/",
 });
 
 const useAxiosSecuree = () => {
   const navigate = useNavigate();
   const { logout, user } = useContext(AuthContext);
-  console.log('alhamdulillah user from ', user);
+  console.log("alhamdulillah user from ", user);
 
   axiosSecure.interceptors.request.use(
     function (config) {
@@ -18,11 +18,11 @@ const useAxiosSecuree = () => {
       console.log("alhamdulillah request stopped by interceptor", token);
       config.headers.authorization = `Bearer ${token}`;
 
-      if (['post', 'put', 'delete', 'patch'].includes(config.method)) {
+      if (["post", "put", "delete", "patch"].includes(config.method)) {
         if (!config.data) {
           config.data = {};
         }
-        config.data.userEmail = user?.email;  
+        config.data.userEmail = user?.email;
       }
 
       return config;

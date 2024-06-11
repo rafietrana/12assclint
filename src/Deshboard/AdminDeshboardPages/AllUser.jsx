@@ -11,7 +11,7 @@ const AllUser = () => {
   const { data: getalluser = [], refetch } = useQuery({
     queryKey: ["getalluser"],
     queryFn: () =>
-      axios("http://localhost:5000/getalluser").then((res) => {
+      axios("https://my-ass-12-server.vercel.app/getalluser").then((res) => {
         return res?.data;
       }),
   });
@@ -32,17 +32,19 @@ const AllUser = () => {
       confirmButtonText: "Yes, Block User!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.put(`http://localhost:5000/blockuser/${id}`).then((res) => {
-          // console.log(res.data);
-          if (res.data.modifiedCount > 0) {
-            refetch();
-            Swal.fire({
-              title: "Blocked!",
-              text: "The user has been blocked.",
-              icon: "success",
-            });
-          }
-        });
+        axios
+          .put(`https://my-ass-12-server.vercel.app/blockuser/${id}`)
+          .then((res) => {
+            // console.log(res.data);
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Blocked!",
+                text: "The user has been blocked.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };
@@ -59,17 +61,19 @@ const AllUser = () => {
       confirmButtonText: "Yes, Unblock User!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.put(`http://localhost:5000/unBlockuser/${id}`).then((res) => {
-          // console.log(res.data);
-          if (res.data.modifiedCount > 0) {
-            refetch();
-            Swal.fire({
-              title: "Unblocked!",
-              text: "The user has been unblocked.",
-              icon: "success",
-            });
-          }
-        });
+        axios
+          .put(`https://my-ass-12-server.vercel.app/unBlockuser/${id}`)
+          .then((res) => {
+            // console.log(res.data);
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Unblocked!",
+                text: "The user has been unblocked.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };
@@ -77,13 +81,13 @@ const AllUser = () => {
   const handleDownloadUserDetails = async (userId) => {
     try {
       const userDetails = await axios.get(
-        `http://localhost:5000/userdetails/${userId}`
+        `https://my-ass-12-server.vercel.app/userdetails/${userId}`
       );
       // console.log("alhamdulillah user details is", userDetails);
       const user = userDetails.data;
 
       const testDetailsResponse = await axios.get(
-        `http://localhost:5000/testdetails/${user?.email}`
+        `https://my-ass-12-server.vercel.app/testdetails/${user?.email}`
       );
       // console.log("alhamdulillah test details is", testDetailsResponse);
       const testDetails = testDetailsResponse.data;
@@ -124,7 +128,9 @@ const AllUser = () => {
   };
 
   const handleMakeAdmin = async (ids) => {
-    const res = await axios.patch(`http://localhost:5000/makeadmin/${ids}`);
+    const res = await axios.patch(
+      `https://my-ass-12-server.vercel.app/makeadmin/${ids}`
+    );
     // console.log("alhamdulillah make admin res is", res);
     if (res.data.modifiedCount > 0) {
       refetch();

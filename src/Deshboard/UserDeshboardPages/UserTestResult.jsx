@@ -6,29 +6,29 @@ import { useRef } from "react";
 
 const UserTestResult = () => {
   const { user } = useAuth();
-  const componentRef = useRef()
+  const componentRef = useRef();
 
   const { data: userTestResult = [] } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
-      axios(`http://localhost:5000/getusertestresult/${user?.email}`).then(
-        (res) => {
-          return res.data;
-        }
-      ),
+      axios(
+        `https://my-ass-12-server.vercel.app/getusertestresult/${user?.email}`
+      ).then((res) => {
+        return res.data;
+      }),
   });
   // console.log("alhamdulillah user test result is", userTestResult);
   return (
     <div>
       <div>
-      <ReactToPrint
-        trigger={() => (
-          <button className="bg-gradient-to-b from-gray-100 to-gray-200 text-black py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
-            Download Result
-          </button>
-        )}
-        content={() => componentRef.current}
-      />
+        <ReactToPrint
+          trigger={() => (
+            <button className="bg-gradient-to-b from-gray-100 to-gray-200 text-black py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
+              Download Result
+            </button>
+          )}
+          content={() => componentRef.current}
+        />
       </div>
       <div className="overflow-x-auto">
         <table ref={componentRef} className="table">

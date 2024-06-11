@@ -6,9 +6,11 @@ const Slider = () => {
   const { data: activeBannerData = [] } = useQuery({
     queryKey: ["activeBanner"],
     queryFn: () =>
-      axios("http://localhost:5000/getactivebanner").then((res) => {
-        return res.data;
-      }),
+      axios("https://my-ass-12-server.vercel.app/getactivebanner").then(
+        (res) => {
+          return res.data;
+        }
+      ),
   });
 
   const getStyledBannerTitle = (title) => {

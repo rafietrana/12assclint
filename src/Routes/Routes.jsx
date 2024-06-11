@@ -63,7 +63,8 @@ const router = createBrowserRouter([
             <AllTestPage></AllTestPage>
           </PrivetRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/productscount"),
+        loader: () =>
+          fetch("https://my-ass-12-server.vercel.app/productscount"),
       },
       {
         path: "/testdetails/:id",
@@ -130,7 +131,7 @@ const router = createBrowserRouter([
       },
       {
         path: "singlereservation/:testid",
-        element:  <SingleReservation></SingleReservation>,
+        element: <SingleReservation></SingleReservation>,
       },
     ],
   },

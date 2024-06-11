@@ -49,7 +49,7 @@ const AddBanner = () => {
         // console.log("alhamdulillah singup information is", bannerInfo);
 
         axios
-          .post("http://localhost:5000/setbanner", bannerInfo)
+          .post("https://my-ass-12-server.vercel.app/setbanner", bannerInfo)
           .then((res) => {
             // console.log("alhamdulillah response is ", res.data);
             if (res.data.insertedId) {

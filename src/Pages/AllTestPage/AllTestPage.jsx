@@ -38,7 +38,7 @@ const AllTestPage = () => {
     queryKey: ["getTestPage", currentPage],
     queryFn: () =>
       axiosSecure(
-        `http://localhost:5000/gettestall?page=${currentPage}&size=${itemPerPages}&email=${user?.email}`
+        `https://my-ass-12-server.vercel.app/gettestall?page=${currentPage}&size=${itemPerPages}&email=${user?.email}`
       ).then((res) => res.data.tests),
   });
 
@@ -46,7 +46,7 @@ const AllTestPage = () => {
     queryKey: ["getQueryDate", startDate],
     queryFn: () =>
       axios
-        .get("http://localhost:5000/datequery", {
+        .get("https://my-ass-12-server.vercel.app/datequery", {
           params: { date: startDate },
         })
         .then((res) => res.data),
