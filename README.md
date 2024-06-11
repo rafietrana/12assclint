@@ -20,8 +20,7 @@
 - Fully Responsive
 - add dynamic banner and add coupon
 - user can payment using stipe
-- 
-- 
+
   
   
 
