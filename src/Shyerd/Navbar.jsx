@@ -12,8 +12,8 @@ import useAdmin from "../Hooks/UseAdmin";
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const [data] = useAdmin();
-  console.log("alhamdulillah user from nabvar component", user);
-  console.log("alhamdulillah logout is ", logout);
+  // console.log("alhamdulillah user from nabvar component", user);
+  // console.log("alhamdulillah logout is ", logout);
 
   const menuNev = (
     <>
@@ -35,14 +35,18 @@ const Navbar = () => {
         </li>
       )}
 
-      <li>
-        <Link
+
+        {
+          user &&           <li>    <Link
           to={"/alltestpage"}
           className="font-DM uppercase font-medium text-[17px] text-sm"
         >
           All Test
         </Link>
-      </li>
+        </li>
+        }
+
+
       <li>
         <Link to={'/abouts'} className="font-DM uppercase font-medium text-[17px] text-sm">
           About
@@ -62,13 +66,13 @@ const Navbar = () => {
   );
 
   const handleLogoutBtn = () => {
-    console.log("alhamdulillah your logout button is now working mashalllah");
+    // console.log("alhamdulillah your logout button is now working mashalllah");
     logout()
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
       })
-      .then((error) => {
-        console.error(error);
+      .then(() => {
+        // console.error(error);
       });
   };
   return (

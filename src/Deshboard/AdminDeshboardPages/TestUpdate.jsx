@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 const TestUpdate = () => {
   const params = useParams();
-  console.log("Alhamdulillah param is ", params.id);
+  // console.log("Alhamdulillah param is ", params.id);
 
   const { data: testPageData = {}, isSuccess } = useQuery({
     queryKey: ["gettest", params?.id],
@@ -26,7 +26,7 @@ const TestUpdate = () => {
     }
   }, [isSuccess, testPageData]);
 
-  console.log("Alhamdulillah test page data is", testPageData);
+  // console.log("Alhamdulillah test page data is", testPageData);
 
   const handleTestUpdate = (e) => {
     e.preventDefault();
@@ -37,8 +37,7 @@ const TestUpdate = () => {
     const testprice = form.testprice.value;
     const bannerimg = form.bannerimg.value;
     const slotsnumber = form.slotsnumber.value;
-    
-     
+
     const date = startDate ? startDate.toISOString() : null;
 
     const updateTestBtn = {
@@ -49,12 +48,15 @@ const TestUpdate = () => {
       slotsnumber: parseInt(slotsnumber),
       date,
     };
-    console.log("updatetestdata is", updateTestBtn);
+    // console.log("updatetestdata is", updateTestBtn);
 
     axios
-      .patch(`http://localhost:5000/updatetest/${testPageData._id}`, updateTestBtn)
+      .patch(
+        `http://localhost:5000/updatetest/${testPageData._id}`,
+        updateTestBtn
+      )
       .then((res) => {
-        console.log("Alhamdulillah update response is ", res.data);
+        // console.log("Alhamdulillah update response is ", res.data);
         if (res.data.matchedCount > 0) {
           toast.success("Successfully updated test data");
         }
@@ -141,7 +143,9 @@ const TestUpdate = () => {
                     <label className="font-DM font-[400] text-[17px] ">
                       Select Date
                     </label>
-                    <p>{testPageData.date && testPageData.date.split('T')[0]}</p>
+                    <p>
+                      {testPageData.date && testPageData.date.split("T")[0]}
+                    </p>
                     <br />
                     <DatePicker
                       name="date"

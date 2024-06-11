@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 const UserDeshboardAcces = ({ children }) => {
   const { user, loading } = useAuth();
 
-  const { data: isDeshboard } = useQuery({
+  const { data: isDeshboard, isLoading } = useQuery({
     queryKey: ["isDeshboard"],
     enabled: !loading,
     queryFn: async () => {
@@ -17,9 +17,13 @@ const UserDeshboardAcces = ({ children }) => {
     },
   });
 
-  console.log("alhamdulilah isDeshboard is", isDeshboard);
-  if (loading) {
-    return <p>Loading.........if this is not close automaticly please Reload mannually</p>;
+  // console.log("alhamdulilah isDeshboard is", isDeshboard);
+  if (isLoading) {
+    return (
+      <p>
+        Loading.........if this is not close automaticly please Reload mannually
+      </p>
+    );
   }
 
   if (isDeshboard?.userStatus == "blocked" && "role" in isDeshboard == false) {

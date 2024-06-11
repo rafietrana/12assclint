@@ -1,27 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
+import useAxiosSecuree from "../../Hooks/useAxiosSecuree";
+import useAuth from "../../Hooks/useAuth";
 
 const AllBanner = () => {
+  const axiosSecure = useAxiosSecuree();
+  const { user } = useAuth();
   const { data: allBannerData = [], refetch } = useQuery({
     queryKey: ["getBanner"],
     queryFn: () =>
-      axios("http://localhost:5000/getbanner").then((res) => {
+      axiosSecure(`/getbanner?email=${user?.email}`).then((res) => {
         return res.data;
       }),
   });
 
-  console.log("alhamdulillah bannerData is", allBannerData);
+  // console.log("alhamdulillah bannerData is", allBannerData);
 
   const handleActiveBtn = (bannerData) => {
-    console.log("alhamdulillah is active is id is", bannerData._id);
+    // console.log("alhamdulillah is active is id is", bannerData._id);
 
     axios
       .put(`http://localhost:5000/updateisactive/${bannerData._id}`)
-      .then((res) => {
-        console.log("alhamdulillah this is", res.status);
+      .then(() => {
+        // console.log("alhamdulillah this is", res.status);
 
-        toast.success("alhamdulillah");
+        toast.success("This is Updated");
         refetch();
       });
   };
@@ -47,7 +51,7 @@ const AllBanner = () => {
             <tbody>
               {allBannerData.map((dataAllBanner, idx) => (
                 <tr key={dataAllBanner._id}>
-                  <th>{idx +1}</th>
+                  <th>{idx + 1}</th>
                   <td>
                     <div className="avatar">
                       <div className="w-24 rounded">

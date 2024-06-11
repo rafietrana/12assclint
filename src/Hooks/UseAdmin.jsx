@@ -11,11 +11,13 @@ const useAdmin = () => {
     queryKey: ["usersAdmin"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axios(`http://localhost:5000/users/admin/${user.email}`);
+      const res = await axios(
+        `http://localhost:5000/users/admin/${user.email}`
+      );
       return res.data;
     },
   });
-  console.log("alhamdulillah data is maybbe true", data);
+  // console.log("alhamdulillah data is maybbe true", data);
 
   return [data, adminLoading];
 };

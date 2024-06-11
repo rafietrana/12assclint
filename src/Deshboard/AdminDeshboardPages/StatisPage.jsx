@@ -1,6 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import RechertsTwo from "../../Component/RechertsTwo";
 
 const StatisPage = () => {
@@ -12,11 +21,10 @@ const StatisPage = () => {
       }),
   });
 
-  console.log("alhamdulillah this is sort booking data", sortBookingData);
+  // console.log("alhamdulillah this is sort booking data", sortBookingData);
 
   return (
     <div>
-    
       <ResponsiveContainer width="100%" height={400}>
         <LineChart
           data={sortBookingData}
@@ -32,7 +40,12 @@ const StatisPage = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line
+            type="monotone"
+            dataKey="count"
+            stroke="#8884d8"
+            activeDot={{ r: 8 }}
+          />
         </LineChart>
       </ResponsiveContainer>
       <div>

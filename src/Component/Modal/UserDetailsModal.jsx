@@ -10,7 +10,7 @@ import axios from "axios";
 
 import { Fragment } from "react";
 const UserDetailsModal = ({ isOpens, closeModals, userId }) => {
-  console.log("user id is", userId);
+  // console.log("user id is", userId);
 
   const { data: singleuserdata = [] } = useQuery({
     queryKey: ["singleuserdata"],
@@ -20,7 +20,7 @@ const UserDetailsModal = ({ isOpens, closeModals, userId }) => {
       }),
   });
 
-  console.log("alhamdulillah single user information is", singleuserdata);
+  // console.log("alhamdulillah single user information is", singleuserdata);
   return (
     <Transition appear show={isOpens} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModals}>
@@ -56,32 +56,47 @@ const UserDetailsModal = ({ isOpens, closeModals, userId }) => {
                   Review Info Before Reserve
                 </DialogTitle>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">Name:    {singleuserdata?.name}</p>
+                  <p className="text-sm text-gray-500">
+                    Name: {singleuserdata?.name}
+                  </p>
                 </div>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">Email: {singleuserdata?.email}</p>
+                  <p className="text-sm text-gray-500">
+                    Email: {singleuserdata?.email}
+                  </p>
                 </div>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">bloodGroup: {singleuserdata?.bloodGroup}</p>
+                  <p className="text-sm text-gray-500">
+                    bloodGroup: {singleuserdata?.bloodGroup}
+                  </p>
                 </div>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">district: {singleuserdata?.district}</p>
+                  <p className="text-sm text-gray-500">
+                    district: {singleuserdata?.district}
+                  </p>
                 </div>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">upozilla: {singleuserdata?.upozilla}</p>
+                  <p className="text-sm text-gray-500">
+                    upozilla: {singleuserdata?.upozilla}
+                  </p>
                 </div>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">userStatus: {singleuserdata?.userStatus}</p>
+                  <p className="text-sm text-gray-500">
+                    userStatus: {singleuserdata?.userStatus}
+                  </p>
                 </div>
- 
+
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">password: {singleuserdata?.password}</p>
+                  <p className="text-sm text-gray-500">
+                    password: {singleuserdata?.password}
+                  </p>
                 </div>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">image Url: {singleuserdata?.image}</p>
+                  <p className="text-sm text-gray-500">
+                    image Url: {singleuserdata?.image}
+                  </p>
                 </div>
- 
-       
+
                 {/* checkout form */}
               </DialogPanel>
             </TransitionChild>

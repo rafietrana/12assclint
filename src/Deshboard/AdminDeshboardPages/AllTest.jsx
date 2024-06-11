@@ -12,7 +12,7 @@ const AllTest = () => {
         return res.data;
       }),
   });
-  console.log("alhamdulillah all data is ", alltestdata);
+  // console.log("alhamdulillah all data is ", alltestdata);
 
   const handleDeleteTestBtn = (id) => {
     Swal.fire({
@@ -26,7 +26,7 @@ const AllTest = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`http://localhost:5000/deletetest/${id}`).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({
@@ -53,6 +53,7 @@ const AllTest = () => {
               <th>Test Price</th>
               <th>Date</th>
               <th>Slots Number</th>
+              <th>User Reservation</th>
               <th>Update</th>
               <th>Deletet</th>
             </tr>
@@ -72,6 +73,24 @@ const AllTest = () => {
                 <td>{dataAllTest?.testprice}</td>
                 <td>{dataAllTest?.date.split("T")[0]}</td>
                 <td>{dataAllTest?.slotsnumber}</td>
+                <td>          
+                  
+                     <Link to={`/deshboard/singlereservation/${dataAllTest?._id}`}>
+
+                     <button
+ 
+ className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+>
+View Now
+</button>
+
+                     </Link>
+                  
+
+                  
+                  
+                  
+                  </td>
                 <td>
                   {" "}
                   <Link to={`/deshboard/testupdate/${dataAllTest._id}`}>

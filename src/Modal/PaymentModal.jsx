@@ -19,7 +19,14 @@ const fetchActiveBanner = async () => {
   return response.data;
 };
 
-const PaymentModal = ({ isOpen, refetch, closeModal, paymentPrice,paymentCollectionId, testInfo}) => {
+const PaymentModal = ({
+  isOpen,
+  refetch,
+  closeModal,
+  paymentPrice,
+  paymentCollectionId,
+  testInfo,
+}) => {
   const { price } = paymentPrice;
   const [finalPaymentPrice, setFinalPaymentPrice] = useState(null);
 
@@ -34,26 +41,26 @@ const PaymentModal = ({ isOpen, refetch, closeModal, paymentPrice,paymentCollect
 
   const handleApplyCouponBtn = (e) => {
     e.preventDefault();
-    console.log("Applying Coupon Code");
+    // console.log("Applying Coupon Code");
 
     const couponCode = e.target.couponname.value.trim();
     const bannerCouponCode = getTrueBanner?.couponcode?.trim();
 
-    console.log("Entered Coupon Code:", couponCode);
-    console.log("Banner Coupon Code:", bannerCouponCode);
+    // console.log("Entered Coupon Code:", couponCode);
+    // console.log("Banner Coupon Code:", bannerCouponCode);
 
     if (couponCode === bannerCouponCode) {
-      console.log("Coupon is valid");
+      // console.log("Coupon is valid");
 
       const intPrice = parseFloat(price);
       const intCouponRate = parseFloat(getTrueBanner.couponrate);
 
       const discount = (intPrice * intCouponRate) / 100;
       const finalPrice = intPrice - discount;
-      console.log("Final price with discount:", finalPrice);
+      // console.log("Final price with discount:", finalPrice);
       setFinalPaymentPrice(finalPrice);
     } else {
-      console.log("Invalid coupon code");
+      // console.log("Invalid coupon code");
     }
   };
 
@@ -111,7 +118,13 @@ const PaymentModal = ({ isOpen, refetch, closeModal, paymentPrice,paymentCollect
                     </form>
                     <div>
                       <Elements stripe={stripePromise}>
-                        <CheckoutForm finalPaymentPrice={finalPaymentPrice ?? price} closeModal={closeModal} paymentCollectionId={paymentCollectionId} refetch={refetch} testInfo={testInfo}/>
+                        <CheckoutForm
+                          finalPaymentPrice={finalPaymentPrice ?? price}
+                          closeModal={closeModal}
+                          paymentCollectionId={paymentCollectionId}
+                          refetch={refetch}
+                          testInfo={testInfo}
+                        />
                       </Elements>
                     </div>
                   </div>

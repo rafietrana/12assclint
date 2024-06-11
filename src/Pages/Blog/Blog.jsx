@@ -2,6 +2,7 @@ import Footer from "../../Shyerd/Footer/Footer";
 
 const Blog = () => {
   return (
+	<>
     <div className="w-9/12  mx-auto">
            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 my-7">
               <div >
@@ -62,8 +63,11 @@ const Blog = () => {
 </div>
               </div>
            </div>
-        <Footer></Footer>
+
     </div>
+	<Footer>
+	</Footer>
+	</>
   );
 };
 

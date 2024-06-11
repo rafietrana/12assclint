@@ -9,7 +9,7 @@ const RecommendationSlider = () => {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    axios("../../../public/Recommendation.json").then((res) => {
+    axios("/Recommendation.json").then((res) => {
       setRecommendations(res?.data);
     });
   }, []);

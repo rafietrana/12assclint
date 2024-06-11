@@ -13,38 +13,36 @@ import axios from "axios";
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true)
-  console.log("alhamdulillah current user is form authprovider", user);
+  const [loading, setLoading] = useState(true);
+  // console.log("alhamdulillah current user is form authprovider", user);
   const singUpUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const loginUser = (email, password) => {
-    setLoading(true)
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const logout = () => {
-    setLoading(true)
+    setLoading(true);
     return signOut(auth);
   };
   const updateUserProfile = (name, photo) => {
-    setLoading(true)
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
     });
   };
 
- 
-
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
         const userInfo = { email: currentUser.email };
         axios.post("http://localhost:5000/jwt", userInfo).then((res) => {
-          console.log('alhamdulillah token is', res.data.token);
+          // console.log("alhamdulillah token is", res.data.token);
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
             setLoading(false);
@@ -52,8 +50,8 @@ const AuthProvider = ({ children }) => {
         });
       } else {
         localStorage.removeItem("access-token");
+        setLoading(false)
       }
-   
     });
     return () => unSubcribe();
   }, []);
@@ -64,7 +62,7 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     loading,
     logout,
-    user
+    user,
   };
 
   return (

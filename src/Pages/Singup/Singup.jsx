@@ -16,13 +16,13 @@ const Singup = () => {
   const { singUpUser, updateUserProfile } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("../../../public/District.json")
+    fetch("/District.json")
       .then((res) => res.json())
       .then((data) => setDistrict(data));
   }, []);
 
   useEffect(() => {
-    fetch("../../../public/Upzilas.json")
+    fetch("/Upzilas.json")
       .then((res) => res.json())
       .then((data) => setUpzillas(data));
   }, []);
@@ -40,7 +40,7 @@ const Singup = () => {
     const district = form.district.value;
     const upozilla = form.upozilla.value;
     const photo = form.photo.files[0];
-    const userStatus = "active"
+    const userStatus = "active";
 
     if (password !== confirmPassword) {
       setLoading(false);
@@ -48,7 +48,7 @@ const Singup = () => {
     }
 
     const formData = new FormData();
-    console.log("alhamdulillah form data is", formData);
+    // console.log("alhamdulillah form data is", formData);
     formData.append("image", photo);
 
     try {
@@ -71,23 +71,24 @@ const Singup = () => {
           district,
           upozilla,
           image: res.data.data.display_url,
-          userStatus
+          userStatus,
         };
-        console.log("alhamdulillah singup information is", singupInfo);
+        // console.log("alhamdulillah singup information is", singupInfo);
 
         const result = await singUpUser(email, password);
         await updateUserProfile(name, res.data.data.display_url);
         toast.success("Successfully signed up");
-        console.log(result.user);
-        axios.post('http://localhost:5000/postuserinfo', singupInfo)
-        .then(res =>{
-          console.log(res.data);
-        })
+        // console.log(result.user);
+        axios
+          .post("http://localhost:5000/postuserinfo", singupInfo)
+          .then((res) => {
+            // console.log(res.data);
+          });
       } else {
         toast.error("Image upload failed no Probelem Please Try");
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       toast.error("found error when starting singup");
     } finally {
       setLoading(false);

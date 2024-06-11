@@ -1,20 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
-import useAxiosSecurs from "../../Hooks/UseAxiosSecures";
+import useAxiosSecuree from "../../Hooks/useAxiosSecuree";
 
 const UserProfile = () => {
   const { user, updateUserProfile } = useAuth();
-  const axiosSecure = useAxiosSecurs();
+  const axiosSecure = useAxiosSecuree();
 
   const { data: getUserInfo = [], refetch } = useQuery({
     queryKey: ["getUserInfo", user?.email],
     enabled: !!user?.email,
     queryFn: () =>
       axiosSecure(`/getuserinfo/${user?.email}`).then((res) => {
-        return res.data;
+        return res?.data;
       }),
   });
+
+  console.log(getUserInfo);
 
   const handleUserProfileUpdate = async (e) => {
     e.preventDefault();
@@ -32,31 +34,29 @@ const UserProfile = () => {
       district,
       bloodGroup,
     };
-    console.log("alhamdulillah update user info is", updateUserInfo);
+    // console.log("alhamdulillah update user info is", updateUserInfo);
 
     updateUserProfile(name, image)
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        // console.log(result);
+
         axiosSecure
-          .put(
-            `http://localhost:5000/updateuserinfo/${getUserInfo._id}`,
-            updateUserInfo
-          )
+          .put(`/updateuserinfo/${getUserInfo._id}`, updateUserInfo)
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.modifiedCount > 0) {
               refetch();
               toast.success("sucessfully updated User Information");
 
-              setTimeout(()=>{
-                window.location.reload()
-              },1000)
+              // setTimeout(() => {
+              //   window.location.reload();
+              // }, 1000);
             }
           });
       })
-      .catch((error) => {
-        console.error(error);
-        console.log("i found error in your code");
+      .catch(() => {
+        // console.error(error);
+        // console.log("i found error in your code");
       });
   };
 
@@ -83,6 +83,12 @@ const UserProfile = () => {
                     Password:
                   </strong>{" "}
                   <span className="text-gray-600">{getUserInfo?.password}</span>
+                </p>
+                <p>
+                  <strong className="font-semibold text-gray-700">
+                    Email:
+                  </strong>{" "}
+                  <span className="text-gray-600">{getUserInfo?.email}</span>
                 </p>
                 <p>
                   <strong className="font-semibold text-gray-700">

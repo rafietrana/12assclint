@@ -8,21 +8,21 @@ const Login = () => {
   const { loginUser } = useAuth();
   const navigate = useNavigate()
 
-  console.log("alhamdulillah login user is ", loginUser);
+  // console.log("alhamdulillah login user is ", loginUser);
   const handleLoginBtn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
     loginUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         toast.success("alhamdulillah sucessfully logedin");
         navigate('/deshboard')
       })
       .catch((error) => {
-        console.error(error);
+        // console.error(error);
         toast.error("please Try Agin ");
       });
   };

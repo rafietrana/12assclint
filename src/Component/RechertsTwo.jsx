@@ -1,9 +1,6 @@
-
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
-
-
 
 // Example reservation data
 // const reservations = [
@@ -32,37 +29,29 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 //   // Add more reservations as needed
 // ];
 
-
-
-
-
 // Prepare data for the chart
-
 
 const COLORS = ["#FF8042", "#0088FE"];
 
 const RechertsTwo = () => {
+  const { data: reserve = [] } = useQuery({
+    queryKey: ["reserve"],
+    queryFn: () =>
+      axios("http://localhost:5000/getreserve").then((res) => {
+        return res.data;
+      }),
+  });
 
-
-    const { data: reserve = [] } = useQuery({
-        queryKey: ["reserve"],
-        queryFn: () =>
-          axios("http://localhost:5000/getreserve").then((res) => {
-            return res.data;
-          }),
-      });
-
-
-      const data = [
-        {
-          name: "Pending",
-          value: reserve.filter((r) => r.reportStatus === "Pending").length,
-        },
-        {
-          name: "Completed",
-          value: reserve.filter((r) => r.reportStatus === "delivered").length,
-        },
-      ];
+  const data = [
+    {
+      name: "Pending",
+      value: reserve.filter((r) => r.reportStatus === "Pending").length,
+    },
+    {
+      name: "Completed",
+      value: reserve.filter((r) => r.reportStatus === "delivered").length,
+    },
+  ];
   return (
     <PieChart width={400} height={400}>
       <Pie

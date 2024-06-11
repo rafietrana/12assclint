@@ -20,7 +20,7 @@ const Reservation = () => {
     }
   }, [getreserve, emailValues]);
 
-  console.log("alhamdulillah reserve data is", getreserve);
+  // console.log("alhamdulillah reserve data is", getreserve);
 
   const handleDeleteBtn = (id) => {
     Swal.fire({
@@ -33,9 +33,9 @@ const Reservation = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(id);
+        // console.log(id);
         axios.delete(`http://localhost:5000/deletereseve/${id}`).then((res) => {
-          console.log("alhamdulillah response is", res.data);
+          // console.log("alhamdulillah response is", res.data);
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({
@@ -51,12 +51,12 @@ const Reservation = () => {
 
   const handleEmailSearch = async (e) => {
     e.preventDefault();
-    console.log("alhamdulillah this is hitting");
+    // console.log("alhamdulillah this is hitting");
     const emailValue = e.target.email.value;
     setEmailValues(emailValue);
   };
 
-  console.log("alhamdulillah email value is", emailValues);
+  // console.log("alhamdulillah email value is", emailValues);
 
   const { data: emailSearchValue = [] } = useQuery({
     queryKey: ["emailSearchValue", emailValues],
@@ -121,9 +121,7 @@ const Reservation = () => {
                 <td>{reserveget?.reportStatus}</td>
                 <td>
                   {reserveget?.reportStatus === "Pending" ? (
-                    <Link
-                      to={`updatetestresult/${reserveget?._id}`}
-                    >
+                    <Link to={`updatetestresult/${reserveget?._id}`}>
                       <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
                         Submit test result
                       </button>

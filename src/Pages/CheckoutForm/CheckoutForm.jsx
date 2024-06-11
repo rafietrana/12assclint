@@ -18,9 +18,9 @@ const CheckoutForm = ({
   const [clientSecret, setClientSecret] = useState();
   const [error, setError] = useState(null);
   const [procassing, setProcassing] = useState(false);
-  console.log("alhamdulillah payment colllection id is", paymentCollectionId);
+  // console.log("alhamdulillah payment colllection id is", paymentCollectionId);
   const { testName, testId } = testInfo;
-  console.log("alhamdulillah test id is", testId);
+  // console.log("alhamdulillah test id is", testId);
 
   // Get clientSecret
   const getClientSecret = async (price) => {
@@ -31,7 +31,7 @@ const CheckoutForm = ({
       );
       setClientSecret(data.clientSecret);
     } catch (err) {
-      console.error("Error getting client secret:", err);
+      // console.error("Error getting client secret:", err);
     }
   };
 
@@ -66,11 +66,11 @@ const CheckoutForm = ({
 
       if (paymentMethodError) {
         setError(paymentMethodError.message);
-        console.error("[Payment Method Error]", paymentMethodError);
+        // console.error("[Payment Method Error]", paymentMethodError);
         setProcassing(false);
         return;
       } else {
-        console.log("i found payment method is ", paymentMethod);
+        // console.log("i found payment method is ", paymentMethod);
         setProcassing(true);
       }
 
@@ -87,27 +87,32 @@ const CheckoutForm = ({
 
       if (confirmError) {
         setError(confirmError.message);
-        console.error("Confirm Payment Error no probleme", confirmError);
+        // console.error("Confirm Payment Error no probleme", confirmError);
         setProcassing(false);
         return;
       }
 
       if (paymentIntent.status === "succeeded") {
         setProcassing(true);
-        console.log("PaymentIntent Alhamdulillah", paymentIntent);
-        console.log("Payment succeeded ");
-        
-        axios.put(`http://localhost:5000/incrementcount/${testId}`).then((res) => {
-          console.log("alhamdulillah updated count issssssssssssssssssssssssss", res.data);
-        });
+        // console.log("PaymentIntent Alhamdulillah", paymentIntent);
+        // console.log("Payment succeeded ");
+
+        axios
+          .put(`http://localhost:5000/incrementcount/${testId}`)
+          .then(() => {
+            // console.log(
+            //   "alhamdulillah updated count issssssssssssssssssssssssss",
+            //   res.data
+            // );
+          });
 
         axios
           .put(`http://localhost:5000/decrementslots/${paymentCollectionId}`)
           .then((res) => {
-            console.log(
-              "alhamdulillah response data is from decrement  component",
-              res
-            );
+            // console.log(
+            //   "alhamdulillah response data is from decrement  component",
+            //   res
+            // );
             if (res.status == 200) {
               const now = new Date();
               const hours = now.getHours();
@@ -125,17 +130,18 @@ const CheckoutForm = ({
                 reportStatus: "Pending",
                 bookingTime: time,
                 bookingDate: bookingDates,
+                testId
+
               };
               axios
                 .post("http://localhost:5000/reservepost", reserveInfo)
                 .then((res) => {
-                  console.log(res.data);
+                  // console.log(res.data);
                   if (res.data.insertedId > 0) {
-                    console.log("alahmdulillah this is working ");
-
+                    // console.log("alahmdulillah this is working ");
                   }
                 });
-              console.log("alhamdulillah reserveinfo is", reserveInfo);
+              // console.log("alhamdulillah reserveinfo is", reserveInfo);
               setProcassing(false);
               refetch();
             }
@@ -145,7 +151,7 @@ const CheckoutForm = ({
       }
     } catch (err) {
       setError(err.message);
-      console.error(" I found Handle Submit Error", err);
+      // console.error(" I found Handle Submit Error", err);
     }
   };
 

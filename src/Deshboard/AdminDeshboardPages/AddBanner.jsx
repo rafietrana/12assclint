@@ -10,7 +10,7 @@ const AddBanner = () => {
   const handleAddBannerBtn = async (e) => {
     setImageLoading(true);
     e.preventDefault();
-    console.log("alhamdulillah your handleabtn is now working mashalllah ");
+    // console.log("alhamdulillah your handleabtn is now working mashalllah ");
     const form = e.target;
     const bannername = form.bannername.value;
     const bannerimg = form.bannerimg.files[0];
@@ -44,23 +44,23 @@ const AddBanner = () => {
           description,
           couponcode,
           couponrate,
-          isActive:  parseInt("false"),
+          isActive: parseInt("false"),
         };
-        console.log("alhamdulillah singup information is", bannerInfo);
+        // console.log("alhamdulillah singup information is", bannerInfo);
 
         axios
           .post("http://localhost:5000/setbanner", bannerInfo)
           .then((res) => {
-            console.log("alhamdulillah response is ", res.data);
+            // console.log("alhamdulillah response is ", res.data);
             if (res.data.insertedId) {
               toast.success("alhamdulillah sucessfully added all data");
             }
           });
       } else {
-        console.log("i found error");
+        // console.log("i found error");
       }
     } catch (error) {
-      console.error("error is", error);
+      // console.error("error is", error);
       toast.error("found error when starting upload image");
     } finally {
       setImageLoading(false);
@@ -124,7 +124,7 @@ const AddBanner = () => {
                   </label>
                   <input
                     name="couponrate"
-                    type="text"
+                    type="number"
                     className="w-full px-3 py-2 rounded-lg border outline-none "
                   />
                 </div>

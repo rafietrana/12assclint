@@ -1,6 +1,6 @@
 const Promotion = () => {
   return (
-    <div className="my-16 bg-gray-50  ">
+    <div className=" bg-gray-50  ">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-16 w-10/12 mx-auto h-auto md:h-[600px]">
         <div className="flex justify-center md:justify-start">
           <img className="w-full h-auto md:h-[600px]" src="https://i.ibb.co/YZPdP3T/about.png" alt="Promotion" />

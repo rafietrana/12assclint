@@ -15,13 +15,13 @@ const AllUser = () => {
         return res?.data;
       }),
   });
-  console.log("alhamdulillah getall user is", getalluser);
+  // console.log("alhamdulillah getall user is", getalluser);
   const closeModals = () => {
     setIsOpens(false);
   };
 
   const handleBlockUser = (id) => {
-    console.log("alhamdulillah id is", id);
+    // console.log("alhamdulillah id is", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -33,7 +33,7 @@ const AllUser = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.put(`http://localhost:5000/blockuser/${id}`).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.modifiedCount > 0) {
             refetch();
             Swal.fire({
@@ -48,7 +48,7 @@ const AllUser = () => {
   };
 
   const handleunBlockUser = (id) => {
-    console.log("alhamdulillah id is", id);
+    // console.log("alhamdulillah id is", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -60,7 +60,7 @@ const AllUser = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.put(`http://localhost:5000/unBlockuser/${id}`).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.modifiedCount > 0) {
             refetch();
             Swal.fire({
@@ -76,14 +76,18 @@ const AllUser = () => {
 
   const handleDownloadUserDetails = async (userId) => {
     try {
-      const userDetails = await axios.get(`http://localhost:5000/userdetails/${userId}`);
-      console.log("alhamdulillah user details is", userDetails);
+      const userDetails = await axios.get(
+        `http://localhost:5000/userdetails/${userId}`
+      );
+      // console.log("alhamdulillah user details is", userDetails);
       const user = userDetails.data;
-  
-      const testDetailsResponse = await axios.get(`http://localhost:5000/testdetails/${user?.email}`);
-      console.log("alhamdulillah test details is", testDetailsResponse);
+
+      const testDetailsResponse = await axios.get(
+        `http://localhost:5000/testdetails/${user?.email}`
+      );
+      // console.log("alhamdulillah test details is", testDetailsResponse);
       const testDetails = testDetailsResponse.data;
-  
+
       const doc = new jsPDF();
       let yPos = 10;
       doc.text(`User's Name: ${user.name || "N/A"}`, 10, yPos);
@@ -92,21 +96,25 @@ const AllUser = () => {
       yPos += 10;
       doc.text(`User's Status: ${user.userStatus || "N/A"}`, 10, yPos);
       yPos += 10;
-  
+
       if (Array.isArray(testDetails) && testDetails.length > 0) {
         testDetails.forEach((test, index) => {
-          doc.text(`Test ${index + 1}: ${test?.testname || 'N/A'}`, 10, yPos);
+          doc.text(`Test ${index + 1}: ${test?.testname || "N/A"}`, 10, yPos);
           yPos += 10;
-          doc.text(`Test ${index + 1} Delivery Status: ${test.reportStatus || 'N/A'}`, 10, yPos);
+          doc.text(
+            `Test ${index + 1} Delivery Status: ${test.reportStatus || "N/A"}`,
+            10,
+            yPos
+          );
           yPos += 10;
         });
       } else {
-        doc.text('No tests found for this user.', 10, yPos);
+        doc.text("No tests found for this user.", 10, yPos);
       }
-  
+
       doc.save(`user_${user.name || "unknown"}_details.pdf`);
     } catch (error) {
-      console.error("Error fetching user details:", error);
+      // console.error("Error fetching user details:", error);
       Swal.fire({
         title: "Error",
         text: "Failed to fetch user details. Please try again later.",
@@ -115,22 +123,15 @@ const AllUser = () => {
     }
   };
 
-
-
-  const handleMakeAdmin = async(ids) =>{
- 
-  const  res = await axios.patch(`http://localhost:5000/makeadmin/${ids}`)
-  console.log('alhamdulillah make admin res is', res);
-  if(res.data.modifiedCount > 0){
-    refetch();
-    toast.success('make admin sucessfully')
-  }
- 
- 
+  const handleMakeAdmin = async (ids) => {
+    const res = await axios.patch(`http://localhost:5000/makeadmin/${ids}`);
+    // console.log("alhamdulillah make admin res is", res);
+    if (res.data.modifiedCount > 0) {
+      refetch();
+      toast.success("make admin sucessfully");
+    }
   };
 
-
-  
   return (
     <div>
       <div className="overflow-x-auto">
@@ -199,12 +200,18 @@ const AllUser = () => {
                     Download Details
                   </button>
                 </td>
-                    <td className="">
-                        {
-                         'role' in usergetall == true ? <p>Admin</p>   :              <button onClick={()=>handleMakeAdmin(usergetall?._id)} className="px-3 py-2  rounded-lg  bg-gray-200">Make Admin</button>
-                        }
-            
-                    </td>
+                <td className="">
+                  {"role" in usergetall == true ? (
+                    <p>Admin</p>
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(usergetall?._id)}
+                      className="px-3 py-2  rounded-lg  bg-gray-200"
+                    >
+                      Make Admin
+                    </button>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

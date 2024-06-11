@@ -3,18 +3,27 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
-export const axiosSecure = axios.create({
+const axiosSecure = axios.create({
   baseURL: "http://localhost:5000/",
 });
 
-const useAxiosSecurs = () => {
+const useAxiosSecuree = () => {
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+  const { logout, user } = useContext(AuthContext);
+  console.log('alhamdulillah user from ', user);
+
   axiosSecure.interceptors.request.use(
     function (config) {
       const token = localStorage.getItem("access-token");
-      // console.log("alhamdulillah request stopped by interseptor", token);
+      console.log("alhamdulillah request stopped by interceptor", token);
       config.headers.authorization = `Bearer ${token}`;
+
+      if (['post', 'put', 'delete', 'patch'].includes(config.method)) {
+        if (!config.data) {
+          config.data = {};
+        }
+        config.data.userEmail = user?.email;  
+      }
 
       return config;
     },
@@ -23,19 +32,17 @@ const useAxiosSecurs = () => {
     }
   );
 
-  //     axios secure response user in the interceptor
   axiosSecure.interceptors.response.use(
     function (response) {
-      // console.log("woow response stoped in the interceptor");
+      console.log("woow response stopped in the interceptor");
       return response;
     },
     async function (error) {
       const status = error.response.status;
-      console.log("alhamdulillah errratus in the response", status);
+      console.log("alhamdulillah erratus in the response", status);
 
-      if (status == 401 || status == 403) {
+      if (status === 401 || status === 403) {
         await logout();
-
         navigate("/login");
       }
 
@@ -46,4 +53,4 @@ const useAxiosSecurs = () => {
   return axiosSecure;
 };
 
-export default useAxiosSecurs;
+export default useAxiosSecuree;

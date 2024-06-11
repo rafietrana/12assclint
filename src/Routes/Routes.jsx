@@ -24,6 +24,8 @@ import StatisPage from "../Deshboard/AdminDeshboardPages/StatisPage";
 import Abouts from "../Pages/About/Abouts";
 import Blog from "../Pages/Blog/Blog";
 import ContactPage from "../Pages/ContactPage/ContactPage";
+import PrivetRoutes from "../PrivetRoutes/PrivetRoutes";
+import SingleReservation from "../Deshboard/AdminDeshboardPages/SingleReservation/SingleReservation";
 
 const router = createBrowserRouter([
   {
@@ -40,11 +42,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <ContactPage></ContactPage>
+        element: <ContactPage></ContactPage>,
       },
       {
-           path: '/blog',
-           element: <Blog></Blog>
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/singup",
@@ -56,7 +58,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/alltestpage",
-        element: <AllTestPage></AllTestPage>,
+        element: (
+          <PrivetRoutes>
+            <AllTestPage></AllTestPage>
+          </PrivetRoutes>
+        ),
         loader: () => fetch("http://localhost:5000/productscount"),
       },
       {
@@ -121,6 +127,10 @@ const router = createBrowserRouter([
       {
         path: "reservation/updatetestresult/:id",
         element: <UpdateTestResult></UpdateTestResult>,
+      },
+      {
+        path: "singlereservation/:testid",
+        element:  <SingleReservation></SingleReservation>,
       },
     ],
   },

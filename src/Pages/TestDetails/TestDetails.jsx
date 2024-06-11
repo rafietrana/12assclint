@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const TestDetails = () => {
   const { id } = useParams();
-  console.log("alhamdulillah params is", id);
+  // console.log("alhamdulillah params is", id);
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: testDetails = [], refetch } = useQuery({
@@ -18,7 +18,7 @@ const TestDetails = () => {
         return res.data;
       }),
   });
-  console.log("alhamdulillah testdetails data is ", testDetails);
+  // console.log("alhamdulillah testdetails data is ", testDetails);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -27,7 +27,9 @@ const TestDetails = () => {
   return (
     <div>
       <div className="bg-[#EBF7F9] h-[300px] flex justify-center items-center flex-col space-y-3">
-        <p className="font-Outfit font-semibold text-4xl md:text-6xl">Test Details</p>
+        <p className="font-Outfit font-semibold text-4xl md:text-6xl">
+          Test Details
+        </p>
         <div className="text-sm breadcrumbs">
           <ul className="font-Outfit">
             <li>
@@ -89,14 +91,21 @@ const TestDetails = () => {
             />
           </div>
           <div className="mt-5">
-            <p className="font-Outfit font-bold text-3xl md:text-5xl">{testDetails?.testname}</p>
-            <p className="font-DM text-gray-600 text-base md:text-lg mt-4">{testDetails?.testdetails}</p>
+            <p className="font-Outfit font-bold text-3xl md:text-5xl">
+              {testDetails?.testname}
+            </p>
+            <p className="font-DM text-gray-600 text-base md:text-lg mt-4">
+              {testDetails?.testdetails}
+            </p>
             <div className="my-6 space-y-4">
               <p className="font-Outfit font-semibold text-lg">
                 Test Price: <span>{testDetails?.testprice}</span>
               </p>
               <p className="font-Outfit font-semibold text-lg">
-                Date: <span>{testDetails.date && testDetails.date.split("T")[0]}</span>
+                Date:{" "}
+                <span>
+                  {testDetails.date && testDetails.date.split("T")[0]}
+                </span>
               </p>
               <p className="font-Outfit font-semibold text-lg">
                 Slots Number: <span>{testDetails?.slotsnumber}</span>

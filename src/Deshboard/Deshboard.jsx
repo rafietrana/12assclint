@@ -8,7 +8,7 @@ const Deshboard = () => {
 
 
   const [data] = useAdmin();
-  console.log("data from deshboard", data);
+  // console.log("data from deshboard", data);
   const admin = data?.admin;
 
   return (

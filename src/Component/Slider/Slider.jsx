@@ -31,8 +31,14 @@ const Slider = () => {
       <div className="w-11/12 mx-auto lg:flex justify-between items-center">
         <div className="space-y-3 w-full lg:w-1/2">
           <p className="font-Outfit uppercase bg-green font-bold text-[#0DD07D]">
-            For <span className="text-blue-500">{activeBannerData?.couponrate}%</span> Discount Apply{" "}
-            <span className="text-blue-500">{activeBannerData?.couponcode}</span>
+            For{" "}
+            <span className="text-blue-500">
+              {activeBannerData?.couponrate}%
+            </span>{" "}
+            Discount Apply{" "}
+            <span className="text-blue-500">
+              {activeBannerData?.couponcode}
+            </span>
           </p>
           <p className="lg:text-7xl md:text-4xl text-2xl font-bold font-Outfit">
             {getStyledBannerTitle(activeBannerData?.bannertitle)}

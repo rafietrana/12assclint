@@ -11,9 +11,9 @@ const AddTest = () => {
   const [startDate, setStartDate] = useState(null);
   const handleAddTestBtn = (e) => {
     e.preventDefault();
-    console.log(
-      "alhamdulilah add test button is now working mashallh this is veru importent"
-    );
+    // // console.log(
+    //   "alhamdulilah add test button is now working mashallh this is veru importent"
+    // );
 
     const form = e.target;
     const testname = form.testname.value;
@@ -25,8 +25,8 @@ const AddTest = () => {
 
     const fullIsoDate = new Date(date).toISOString();
     const localDate = new Date(date).toLocaleDateString();
-    console.log("alhamdulillah full date formate is", fullIsoDate);
-    console.log("date is", date);
+    // console.log("alhamdulillah full date formate is", fullIsoDate);
+    // console.log("date is", date);
     const addTestData = {
       testname,
       testdetails,
@@ -38,12 +38,12 @@ const AddTest = () => {
       count: 0,
     };
 
-    console.log("alhamdulillah add test data is ", addTestData);
+    // console.log("alhamdulillah add test data is ", addTestData);
 
     axios
       .post("http://localhost:5000/posttestdata", addTestData)
       .then((res) => {
-        console.log("alhamdulillah", res);
+        // console.log("alhamdulillah", res);
         if (res.status == 200) {
           toast.success("sucessfully added data");
         }
