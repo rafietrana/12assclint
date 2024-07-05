@@ -28,4 +28,20 @@ Diagnostic Center Management System Website is a web platform designed to cater 
 - Fully Responsive
 - add dynamic banner and add coupon
 - user can payment using stipe
+
+
+## Installation Steps
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/rafietrana/12asscint.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd folder-name
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
  
