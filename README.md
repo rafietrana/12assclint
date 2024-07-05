@@ -7,11 +7,11 @@
 ### Live Website Link: https://my-ass-12-1aa68.web.app/
 
 ## Technology i used:
-# React js
-# javascript
-# tailwind css
-# express js 
-# Mongodb
+ - React js
+ - javascript
+ - tailwind css
+ - express js 
+ - Mongodb
 
 ## Website Features
 - Dynamic  Data Load and show
