@@ -5,6 +5,9 @@
 
 
 ### Live Website Link: https://my-ass-12-1aa68.web.app/
+## Introduction
+
+Diagnostic Center Management System Website is a web platform designed to cater to bast text service enthusiasts of all levels. Whether you're into blood test, br, Watercolour or Oil Painting, Charcoal Sketching, or Cartoon Drawing, Ranga provides a comprehensive space to explore, create, and share your passion.
 
 ## Technology i used:
  - React js
@@ -25,8 +28,4 @@
 - Fully Responsive
 - add dynamic banner and add coupon
 - user can payment using stipe
-
-  
-  
-
-## My Seleceted category name: assignment12_category_0004
+ 
