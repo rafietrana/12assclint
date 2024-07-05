@@ -1,12 +1,13 @@
 # Mediax
 ##Diagnostic Center Management System Website
 
- # user Name: Rafiet Rana
- # Login email: bdmail674@gmail.com 
- # login password: Rana#425278
+
 
 
 ### Live Website Link: https://my-ass-12-1aa68.web.app/
+
+##Technology i used:
+#React js
 
 ## Website Features
 - Dynamic  Data Load and show
