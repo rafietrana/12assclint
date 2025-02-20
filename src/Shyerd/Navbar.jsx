@@ -18,8 +18,8 @@ const Navbar = () => {
   const menuNev = (
     <>
       <li>
-        <Link className="font-DM uppercase font-medium text-[17px] text-sm ">
-          Home
+        <Link className="font-DM uppercase font-medium text-[19px]   ">
+          Home +
         </Link>
       </li>
 
@@ -28,9 +28,9 @@ const Navbar = () => {
           {" "}
           <Link
             to={"deshboard"}
-            className="font-DM uppercase font-medium text-[17px] text-sm"
+            className="font-DM uppercase font-medium text-[19px] "
           >
-            {data?.admin ? <p>Admin Deshboard</p> : <p>user Deshboard</p>}
+            {data?.admin ? <p>Admin Deshboard +</p> : <p>user Deshboard +</p>}
           </Link>{" "}
         </li>
       )}
@@ -39,27 +39,27 @@ const Navbar = () => {
         {
           user &&           <li>    <Link
           to={"/alltestpage"}
-          className="font-DM uppercase font-medium text-[17px] text-sm"
+          className="font-DM uppercase font-medium text-[19px]  "
         >
-          All Test
+          All Test +
         </Link>
         </li>
         }
 
 
       <li>
-        <Link to={'/abouts'} className="font-DM uppercase font-medium text-[17px] text-sm">
-          About
+        <Link to={'/abouts'} className="font-DM uppercase font-medium text-[19px]  ">
+          About +
         </Link>
       </li>
       <li>
-        <Link to={'/blog'} className="font-DM uppercase font-medium text-[17px] text-sm">
-          Blog
+        <Link to={'/blog'} className="font-DM uppercase font-medium text-[19px]  ">
+          Blog +
         </Link>
       </li>
       <li>
-        <Link to={'/contact'} className="font-DM uppercase font-medium text-[17px] text-sm">
-          Contact
+        <Link to={'/contact'} className="font-DM uppercase font-medium text-[19px]  ">
+          Contact +
         </Link>
       </li>
     </>
@@ -79,8 +79,9 @@ const Navbar = () => {
     <div>
       {/* top navBar */}
 
-      <div className="w-full bg-[#1F5FFF] p-3 hidden lg:block  ">
-        <div className="flex justify-between">
+      <div className=" bg-[#1F5FFF] p-3 hidden lg:block   ">
+      
+        <div className="flex  justify-between">
           <div className="flex gap-5">
             <p className="flex items-center gap-3 text-white font-sans font-medium ">
               <span className="p-1 border-2   border-white rounded-full text-white text-xl ">
@@ -129,7 +130,9 @@ const Navbar = () => {
       </div>
 
       {/* bottom navbr */}
-      <div className="shadow-md items-center ">
+      <div className="relative">
+      <div className=" w-full mx-auto  items-center   ">
+      <img className="absolute top-0 -left-16   w-[20%] h-full  " src="https://i.ibb.co.com/ynRCxC3d/imageleftshape.png" alt="" />
         <div className="navbar  mx-auto ">
           <div className="navbar-start">
             <div className="dropdown">
@@ -160,7 +163,7 @@ const Navbar = () => {
                 {menuNev}
               </ul>
             </div>
-            <div className="  px-11  py-3">
+            <div className="   z-10  py-3">
               <img src={logoImg} alt="" />
             </div>
           </div>
@@ -194,6 +197,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      </div>
+
     </div>
   );
 };

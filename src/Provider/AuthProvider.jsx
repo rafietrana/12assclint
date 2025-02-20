@@ -6,9 +6,10 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-import auth from "../Firebase/Firebase";
+ 
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import auth from "../Firebase/Firebase";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
