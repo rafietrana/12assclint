@@ -3,7 +3,10 @@ import aboutImg from "../../assets/aboutimg.png";
 import { IoCall } from "react-icons/io5";
 const About = () => {
   return (
-    <div className="w-9/12 my-7 py-24 mx-auto">
+    <div className="relative">
+  <img className="absolute bottom-0 right-10 animate-bounce [animation-duration:2s] " src="https://i.ibb.co.com/tML8rbzv/medicine-1.png" alt="" />
+   <div className="w-9/12 my-7 py-24 mx-auto ">
+      
       <div className="md:flex gap-12 ">
         <div className="md:w-1/2 relative">
           <img src={aboutImg} alt="" />
@@ -44,10 +47,16 @@ const About = () => {
           </div>
         </div>
         <div className="space-y-5 md:w-1/2">
-          <p className="font-Outfit uppercase bg-green font-bold text-[#0DD07D]">
-            ABOUT US COMPANY
-          </p>
-          <p className="font-Outfit   text-[48px] font-[600]">
+          
+            <div className="flex gap-2">
+            <div>
+                <img src="https://i.ibb.co.com/4wpZ9gwc/rana.png" alt="" />
+            </div>
+              <div><p className="font-Outfit uppercase bg-green font-bold text-[#0DD07D]">  ABOUT US COMPANY</p></div>
+            </div>
+    
+ 
+          <p className="font-Outfit leading-[57px]   text-[48px] font-[600]">
             Affordable Health Care Solutions
           </p>
           <p className="font-Outfit text-[#788094]">
@@ -109,6 +118,8 @@ const About = () => {
         </div>
       </div>
     </div>
+    </div>
+ 
   );
 };
 
