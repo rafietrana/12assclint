@@ -30,10 +30,10 @@ const Slider = () => {
 
   return (
     <div className="  md:h-[600px] py-8 md:py-0 relative">
-      <img className="absolute left-0 top-0 h-[600px] w-full -z-10" src="https://i.ibb.co.com/YFQfmXcx/slidershap.jpg" alt="" />
-      <img className="absolute right-[35%] top-10 animate-bounce [animation-duration:2s] size-14" src="https://i.ibb.co.com/Zz7FHyn7/drugs.png" alt="" />
-      <img className="absolute right-[15%] top-48 animate-spin [animation-duration:3s] size-20" src="https://i.ibb.co.com/203v9cY5/rightsideshape.png" alt="" />
-      <img className="absolute right-[39%] top-[60%] animate-spin [animation-duration:4s] size-11" src="https://i.ibb.co.com/20vN3KzD/medical.png" alt="" />
+      <img className="absolute opacity-0 md:opacity-100 left-0 top-0 h-[600px] w-full -z-10" src="https://i.ibb.co.com/YFQfmXcx/slidershap.jpg" alt="" />
+      <img className="absolute opacity-0 md:opacity-100 right-[35%] top-10 animate-bounce [animation-duration:2s] size-14" src="https://i.ibb.co.com/Zz7FHyn7/drugs.png" alt="" />
+      <img className="absolute  opacity-0 md:opacity-100 right-[15%] top-48 animate-spin [animation-duration:3s] size-20" src="https://i.ibb.co.com/203v9cY5/rightsideshape.png" alt="" />
+      <img className="absolute opacity-0 md:opacity-100  right-[39%] top-[60%] animate-spin [animation-duration:4s] size-11" src="https://i.ibb.co.com/20vN3KzD/medical.png" alt="" />
       <div className="w-10/12  mx-auto lg:flex justify-between items-center">
         <div className="space-y-3 w-full lg:w-1/2">
             <div className="flex  items-center gap-2">
@@ -73,7 +73,7 @@ const Slider = () => {
         </div>
         <div className="w-full lg:w-1/2 mt-8 lg:mt-0">
           <img
-            className="h-auto md:h-[600px]  object-cover overflow-hidden"
+            className="h-auto   hidden md:block md:h-[600px]  object-cover overflow-hidden"
             src={activeBannerData?.bannerimg}
             alt="Banner"
           />

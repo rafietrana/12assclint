@@ -7,6 +7,8 @@ import axios from "axios";
 const useAdmin = () => {
   const { user, loading } = useContext(AuthContext);
 
+  
+
   const { data, isPending: adminLoading } = useQuery({
     queryKey: ["usersAdmin"],
     enabled: !loading,

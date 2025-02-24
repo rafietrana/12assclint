@@ -12,7 +12,7 @@ import Footer from "../../Shyerd/Footer/Footer";
   
 
 const Home = () => {
-    const {user} = useAuth()
+      const {user} = useAuth()
   return (
     <div>
       <Slider></Slider>

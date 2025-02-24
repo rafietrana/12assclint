@@ -95,7 +95,7 @@ const Services = () => {
         </div>
         <div>
           {" "}
-          <p className="text-[48px] font-Outfit text-[#000D44] font-[600] text-center leading-[50px] mt-4 ">
+          <p className="  text-xl   md:text-[48px] font-Outfit text-[#000D44] font-[600] text-center md:leading-[50px] mt-4 ">
             Our Mediax specialties <br />
             Technical service
           </p>
@@ -104,14 +104,15 @@ const Services = () => {
 
       {/* card section starterd alhamdulillah */}
       <div className=" mx-auto w-10/12 ">
-        <div className="grid grid-cols-4  gap-3  my-11 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-11 ">
           {servicesOptionsData.map((dataServicesOption, idx) => (
             <div
               className="flex group relative justify-center items-center shadow-sm flex-col bg-white  rounded-xl py-5"
               key={idx}
             >
+              <img className="absolute top-0 right-0" src="https://i.ibb.co.com/rfq2BqRm/shapes.png" alt="" />
               <img
-                className="w-20 group-hover:rotate-180 transition-transform duration-[2000ms]  z-40 mb-6 text-[16px] bg-[#EDF5F8] p-3 rounded-full"
+                className="w-20 group-hover:rotate-180 transition-transform duration-[2000ms]  z-40 mb-6 text-[16px] bg-[#EDF5F8] hover:bg-[#35DC95]   p-3 rounded-full"
                 src={dataServicesOption?.icon}
                 alt=""
               />
@@ -126,9 +127,9 @@ const Services = () => {
                 }}
                 className="text-black z-40 font-semibold my-6 px-6 py-2 rounded-full shadow-sm   shadow-blue-200 hover:scale-105 transition-transform"
               >
-                READ MORE
+                READ MORE    
               </button>
-              <img className="absolute top-0 left-0 h-full rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-[400ms] ease-in-out " src={dataServicesOption?.image} alt="" />
+              <img className="absolute top-0 left-0 h-full rounded-xl opacity-0 group-hover:opacity-100     duration-[400ms] ease-in-out " src={dataServicesOption?.image} alt="" />
             </div>
           ))}
         </div>

@@ -4,7 +4,7 @@ import { IoCall } from "react-icons/io5";
 const About = () => {
   return (
     <div className="relative">
-  <img className="absolute bottom-0 right-10 animate-bounce [animation-duration:2s] " src="https://i.ibb.co.com/tML8rbzv/medicine-1.png" alt="" />
+  <img className="absolute bottom-0 right-10 animate-bounce [animation-duration:2s] -z-10 " src="https://i.ibb.co.com/tML8rbzv/medicine-1.png" alt="" />
    <div className="w-9/12 my-7 py-24 mx-auto ">
       
       <div className="md:flex gap-12 ">
