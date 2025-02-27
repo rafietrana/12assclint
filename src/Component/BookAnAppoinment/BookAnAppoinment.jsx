@@ -2,7 +2,7 @@ const BookAnAppoinment = () => {
   return (
     <div className=" -z-30 ">
         <div className="bg-[#F5F7FA]">
-        <p className="text-[100px] text-white tracking-[0.5em] font-bold ">MEDIX</p>
+        <p className="text-[100px] text-white tracking-[0.5em] font-bold hidden md:block ">MEDIX</p>
         </div>
     
       {/* box start */}
@@ -13,13 +13,13 @@ const BookAnAppoinment = () => {
           alt=""
         />
         <img
-          className="absolute right-0 bottom-0"
+          className=" hidden md:block   absolute right-0 bottom-0"
           src="https://i.ibb.co.com/k2FJkZbv/right-doctor-image.png"
           alt=""
         />
-        <div className="w-10/12 h-[469px] mx-auto  flex items-center    ">
-          <div className="w-[55%] space-y-6">
-            <h1 className="font-Outfit leading-[50px] text-white text-[48px] font-[600]">
+        <div className="w-10/12 h-[469px] mx-auto flex-none  md:flex items-center    ">
+          <div className="w-full    md:w-[55%] space-y-6">
+            <h1 className="font-Outfit pt-12 md:pt-0 leading-[50px] text-white text-[48px] font-[600]">
               We’re welcoming new patients and can’t wait to meet you!
             </h1>
             <p className="text-[16px] text-white font-[400] w-10/12">
@@ -37,7 +37,7 @@ const BookAnAppoinment = () => {
               </button>
             </div>
           </div>
-          <div className="w-[45%]"></div>
+          <div className="w-[45%] hidden "></div>
         </div>
       </div>
       {/* box end */}
