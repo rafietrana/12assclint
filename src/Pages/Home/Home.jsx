@@ -6,7 +6,7 @@ import BookAnAppoinment from "../../Component/BookAnAppoinment/BookAnAppoinment"
  
 import Services from "../../Component/Services/Services";
 import Slider from "../../Component/Slider/Slider";
-import useAuth from "../../Hooks/useAuth";
+// import useAuth from "../../Hooks/useAuth";
  
  
 import Footer from "../../Shyerd/Footer/Footer";
