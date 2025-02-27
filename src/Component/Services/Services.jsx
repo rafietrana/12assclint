@@ -116,16 +116,13 @@ const Services = () => {
                 src={dataServicesOption?.icon}
                 alt=""
               />
-              <h1 className="font-[600] z-40 text-[24px]  font-Outfit text-[#09184C] group-hover:text-white hover:text-[#04CE78]">
+              <h1 className="font-[600] z-40 text-[24px]  font-Outfit text-[#09184C] group-hover:text-white hover:!text-[#04CE78]">
                 {dataServicesOption?.title}
               </h1>
-              <p className="mt-2 group-hover:text-gray-200 z-40">{dataServicesOption?.subtitle}</p>
+              <p className="mt-2 group-hover:text-gray-200 text-[#BDBDBD] font-[600  text-[16px] z-40">{dataServicesOption?.subtitle}</p>
               <button
-                style={{
-                  background:
-                    "linear-gradient(180deg, #C2D4FF 37.5%, #F0F4FF 100%)",  
-                }}
-                className="text-black z-40 font-semibold my-6 px-6 py-2 rounded-full shadow-sm   shadow-blue-200 hover:scale-105 transition-transform"
+           
+                className="text-black bg-gradient-to-b from-[#C2D4FF] hover:from-[#35DC95] to-[#F0F4FF] hover:to-white  z-40 font-semibold my-6 px-6 py-2 rounded-full shadow-sm   shadow-blue-200 hover:scale-105 transition-transform"
               >
                 READ MORE    
               </button>
