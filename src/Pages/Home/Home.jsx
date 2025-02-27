@@ -1,7 +1,8 @@
  
 
 import About from "../../Component/About/About";
-import FeturedTest from "../../Component/FeturedTest/FeturedTest";
+import BookAnAppoinment from "../../Component/BookAnAppoinment/BookAnAppoinment";
+// import FeturedTest from "../../Component/FeturedTest/FeturedTest";
  
 import Services from "../../Component/Services/Services";
 import Slider from "../../Component/Slider/Slider";
@@ -12,16 +13,18 @@ import Footer from "../../Shyerd/Footer/Footer";
   
 
 const Home = () => {
-      const {user} = useAuth()
+      // const {user} = useAuth()
   return (
     <div>
       <Slider></Slider>
       <About></About>
       <Services></Services>
+      <BookAnAppoinment></BookAnAppoinment>
+      
  
-      {
+      {/* {
         user   &&       <FeturedTest></FeturedTest>
-      }
+      } */}
  
 
       <Footer></Footer>
