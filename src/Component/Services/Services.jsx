@@ -79,20 +79,20 @@ const Services = () => {
   return (
     <div className="bg-[#F5F7FA] min-h-[600px] py-10">
       <div className="flex flex-col justify-center items-center">
-        <div className="flex gap-2 mt-5 justify-center items-center ">
-          <div>
-            <img
-              className=""
-              src="https://i.ibb.co.com/4wpZ9gwc/rana.png"
-              alt=""
-            />
-          </div>
-          <div>
-            <p className="font-Outfit text-[18px]  text-[#04CE78] font-[500]">
-              OUR SERVICES
-            </p>
-          </div>
+      <div className="flex gap-2 mt-5 justify-center items-center ">
+        <div>
+          <img
+            className=""
+            src="https://i.ibb.co.com/4wpZ9gwc/rana.png"
+            alt=""
+          />
         </div>
+        <div>
+          <p className="font-Outfit text-[18px]  text-[#04CE78] font-[500]">
+            OUR SERVICES
+          </p>
+        </div>
+      </div>
         <div>
           {" "}
           <p className="  text-xl   md:text-[48px] font-Outfit text-[#000D44] font-[600] text-center md:leading-[50px] mt-4 ">

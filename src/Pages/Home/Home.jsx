@@ -2,6 +2,7 @@
 
 import About from "../../Component/About/About";
 import BookAnAppoinment from "../../Component/BookAnAppoinment/BookAnAppoinment";
+import ChooseMe from "../../Component/ChooseMe/ChooseMe";
 // import FeturedTest from "../../Component/FeturedTest/FeturedTest";
  
 import Services from "../../Component/Services/Services";
@@ -20,6 +21,7 @@ const Home = () => {
       <About></About>
       <Services></Services>
       <BookAnAppoinment></BookAnAppoinment>
+      <ChooseMe></ChooseMe>
       
  
       {/* {
