@@ -1,3 +1,5 @@
+import CountUp from 'react-countup'
+
 const Counter = () => {
   const counterData = [
     {
@@ -29,10 +31,13 @@ const Counter = () => {
               <div key={idx} className=" text-center ">
                 <div className="">
                   <h1 className="text-[#04CE78] text-4xl lg:text-[64px]  font-[600] ">
-                    <span >  {dataCounter?.number} </span>
-                  <span className="text-white -ml-3">+</span>{" "}
+                  <CountUp end={dataCounter.number} delay={1000}    enableScrollSpy />
+         
+                    <span className="text-white">+</span>{" "}
                   </h1>
-                  <p className="text-white lg:mt-5">{dataCounter?.description}</p>
+                  <p className="text-white lg:mt-5">
+                    {dataCounter?.description}
+                  </p>
                 </div>
               </div>
             ))}
