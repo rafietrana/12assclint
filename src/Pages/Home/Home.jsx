@@ -3,6 +3,7 @@
 import About from "../../Component/About/About";
 import BookAnAppoinment from "../../Component/BookAnAppoinment/BookAnAppoinment";
 import ChooseMe from "../../Component/ChooseMe/ChooseMe";
+import Counter from "../../Component/Counter/Counter";
 // import FeturedTest from "../../Component/FeturedTest/FeturedTest";
  
 import Services from "../../Component/Services/Services";
@@ -22,6 +23,7 @@ const Home = () => {
       <Services></Services>
       <BookAnAppoinment></BookAnAppoinment>
       <ChooseMe></ChooseMe>
+      <Counter></Counter>
       
  
       {/* {
