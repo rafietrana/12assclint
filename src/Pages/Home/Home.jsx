@@ -4,6 +4,7 @@ import About from "../../Component/About/About";
 import BookAnAppoinment from "../../Component/BookAnAppoinment/BookAnAppoinment";
 import ChooseMe from "../../Component/ChooseMe/ChooseMe";
 import Counter from "../../Component/Counter/Counter";
+import DoctorProfessional from "../../Component/DoctorProfessional/DoctorProfessional";
 // import FeturedTest from "../../Component/FeturedTest/FeturedTest";
  
 import Services from "../../Component/Services/Services";
@@ -16,7 +17,7 @@ import Footer from "../../Shyerd/Footer/Footer";
 
 const Home = () => {
       // const {user} = useAuth()
-  return (
+return (
     <div>
       <Slider></Slider>
       <About></About>
@@ -24,6 +25,7 @@ const Home = () => {
       <BookAnAppoinment></BookAnAppoinment>
       <ChooseMe></ChooseMe>
       <Counter></Counter>
+      <DoctorProfessional></DoctorProfessional>
       
  
       {/* {

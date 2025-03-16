@@ -21,7 +21,7 @@ const ChooseMe = () => {
   ];
 
   return (
-    <div className="my-20 px-4 md:px-8 lg:px-16">
+    <div className="my-48 px-4 md:px-8 lg:px-16">
       <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-10">
         
         {/* Left Section */}
