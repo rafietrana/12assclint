@@ -48,7 +48,7 @@ const About = () => {
         </div>
         <div className="space-y-5 md:w-1/2">
           
-            <div className="flex gap-2">
+            <div className="flex gap-2 mt-9 md:mt-0">
             <div>
                 <img src="https://i.ibb.co.com/4wpZ9gwc/rana.png" alt="" />
             </div>
@@ -56,7 +56,8 @@ const About = () => {
             </div>
     
  
-          <p className="font-Outfit md:leading-[57px] text-xl   md:text-[48px] font-[600]">
+          <p className="font-Outfit md:leading-[57px] text-xl  
+            md:text-[48px] font-[600]">
             Affordable Health Care Solutions
           </p>
           <p className="font-Outfit text-[#788094]">
@@ -64,7 +65,7 @@ const About = () => {
             This can include the commitment to patient care, community health,
             and any specifical goals for our values.
           </p>
-          <div className="flex gap-9">
+          <div className="flex-none md:flex gap-9">
             <div className="space-y-3">
               <p className="flex gap-2 items-center ">
                 <span className="text-green-500 ">
