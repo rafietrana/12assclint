@@ -2,6 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
+import {fadeIn} from "../../variants"
+import { motion } from 'framer-motion';
 
 const DoctorProfessional = () => {
   const doctors = [
@@ -72,9 +74,14 @@ const DoctorProfessional = () => {
                 />
               </div>
               <div>
-                <p className="font-Outfit text-[18px] uppercase text-[#04CE78] font-[500]">
+                <motion.p className="font-Outfit text-[18px] uppercase text-[#04CE78] font-[500]"
+                         variants={fadeIn("up", 0.3)}
+                         initial="hidden"
+                         whileInView="show"
+                         viewport={{ once: false, amount: 0.2 }}
+                >
                   Expert Doctors
-                </p>
+                </motion.p>
               </div>
             </div>
             <div>

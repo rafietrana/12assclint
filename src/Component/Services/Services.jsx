@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { fadeIn } from "../../variants";
+
 const Services = () => {
   const servicesOptionsData = [
     {
@@ -74,62 +77,79 @@ const Services = () => {
     },
   ];
 
-  console.log(servicesOptionsData);
-
   return (
     <div className="bg-[#F5F7FA] min-h-[600px] py-10">
-      <div className="flex flex-col justify-center items-center">
-      <div className="flex gap-2 mt-5 justify-center items-center ">
-        <div>
-          <img
-            className=""
-            src="https://i.ibb.co.com/4wpZ9gwc/rana.png"
-            alt=""
-          />
-        </div>
-        <div>
-          <p className="font-Outfit text-[18px]  text-[#04CE78] font-[500]">
+      {/* Section Title */}
+      <motion.div
+        className="text-center"
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.2 }}
+      >
+        <div className="flex gap-2 justify-center items-center">
+          <img src="https://i.ibb.co/4wpZ9gwc/rana.png" alt="" />
+          <motion.div
+            className="text-[#04CE78] font-semibold text-lg"
+            variants={fadeIn("up", 0.3)}
+          >
             OUR SERVICES
-          </p>
+          </motion.div>
         </div>
-      </div>
-        <div>
-          {" "}
-          <p className="  text-xl   md:text-[48px] font-Outfit text-[#000D44] font-[600] text-center md:leading-[50px] mt-4 ">
-            Our Mediax specialties <br />
-            Technical service
-          </p>
-        </div>
-      </div>
+        <p className="text-xl md:text-4xl font-semibold text-[#000D44] mt-4">
+          Our Mediax specialties <br /> Technical service
+        </p>
+      </motion.div>
 
-      {/* card section starterd alhamdulillah */}
-      <div className=" mx-auto w-10/12 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-11 ">
+      {/* Services Cards */}
+      <div className="mx-auto w-10/12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-11"
+          variants={fadeIn("up", 0.3)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.2 }}
+        >
           {servicesOptionsData.map((dataServicesOption, idx) => (
-            <div
-              className="flex group relative justify-center items-center shadow-sm flex-col bg-white  rounded-xl py-5"
+            <motion.div
+              className="relative flex flex-col justify-center items-center bg-white shadow-md rounded-xl py-6 group overflow-hidden"
               key={idx}
+              whileHover={{ scale: 1.05 }}
             >
-              <img className="absolute top-0 right-0" src="https://i.ibb.co.com/rfq2BqRm/shapes.png" alt="" />
-              <img
-                className="w-20 group-hover:rotate-180 transition-transform duration-[2000ms]  z-40 mb-6 text-[16px] bg-[#EDF5F8] hover:bg-[#35DC95]   p-3 rounded-full"
-                src={dataServicesOption?.icon}
+              <motion.img
+                className="absolute top-0 right-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500"
+                src="https://i.ibb.co/rfq2BqRm/shapes.png"
                 alt=""
               />
-              <h1 className="font-[600] z-40 text-[24px]  font-Outfit text-[#09184C] group-hover:text-white hover:!text-[#04CE78]">
-                {dataServicesOption?.title}
-              </h1>
-              <p className="mt-2 group-hover:text-gray-200 text-[#BDBDBD] font-[600  text-[16px] z-40">{dataServicesOption?.subtitle}</p>
-              <button
-           
-                className="text-black bg-gradient-to-b from-[#C2D4FF] hover:from-[#35DC95] to-[#F0F4FF] hover:to-white  z-40 font-semibold my-6 px-6 py-2 rounded-full shadow-sm   shadow-blue-200 hover:scale-105 transition-transform"
+              <motion.img
+                className="w-16 group-hover:rotate-180 transition-transform duration-1000 z-40 mb-4"
+                src={dataServicesOption.icon}
+                alt=""
+                whileHover={{ rotate: 360 }}
+              />
+              <motion.h1
+                className="text-xl font-semibold text-[#09184C] group-hover:text-white transition-colors duration-500 z-20"
+                whileHover={{ color: "#04CE78" }}
               >
-                READ MORE    
-              </button>
-              <img className="absolute top-0 left-0 h-full rounded-xl opacity-0 group-hover:opacity-100     duration-[400ms] ease-in-out " src={dataServicesOption?.image} alt="" />
-            </div>
+                {dataServicesOption.title}
+              </motion.h1>
+              <motion.p className="mt-2 text-gray-500 group-hover:text-white z-20">
+                {dataServicesOption.subtitle}
+              </motion.p>
+              <motion.button
+                className="text-black bg-gradient-to-b from-[#C2D4FF] hover:from-[#35DC95] to-[#F0F4FF] hover:to-white z-40 font-semibold my-4 px-6 py-2 rounded-full shadow-md hover:scale-105 transition-transform"
+                whileHover={{ scale: 1.1 }}
+              >
+                READ MORE
+              </motion.button>
+              <motion.img
+                className="absolute top-0 left-0 h-full w-full rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                src={dataServicesOption.image}
+                alt=""
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
