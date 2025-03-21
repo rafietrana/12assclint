@@ -77,6 +77,13 @@ const Services = () => {
     },
   ];
 
+
+
+
+  const handleServicesButton = () =>{
+    document.getElementById('book-appoinment').scrollIntoView({behavior:'smooth'})
+  }
+
   return (
     <div className="bg-[#F5F7FA] min-h-[600px] py-10">
       {/* Section Title */}
@@ -137,10 +144,11 @@ const Services = () => {
                 {dataServicesOption.subtitle}
               </motion.p>
               <motion.button
+              onClick={handleServicesButton}
                 className="text-black bg-gradient-to-b from-[#C2D4FF] hover:from-[#35DC95] to-[#F0F4FF] hover:to-white z-40 font-semibold my-4 px-6 py-2 rounded-full shadow-md hover:scale-105 transition-transform"
                 whileHover={{ scale: 1.1 }}
               >
-                READ MORE
+                Book Appoinment
               </motion.button>
               <motion.img
                 className="absolute top-0 left-0 h-full w-full rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
