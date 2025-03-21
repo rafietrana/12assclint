@@ -10,14 +10,15 @@ import DoctorProfessional from "../../Component/DoctorProfessional/DoctorProfess
  
 import Services from "../../Component/Services/Services";
 import Slider from "../../Component/Slider/Slider";
-// import useAuth from "../../Hooks/useAuth";
+import useAuth from "../../Hooks/useAuth";
  
  
 import Footer from "../../Shyerd/Footer/Footer";
+import FeturedTest from './../../Component/FeturedTest/FeturedTest';
   
 
 const Home = () => {
-      // const {user} = useAuth()
+      const {user} = useAuth()
 return (
     <div  >
       <Slider></Slider>
@@ -30,9 +31,9 @@ return (
       <AppoinmentContact></AppoinmentContact>
       
  
-      {/* {
+        {
         user   &&       <FeturedTest></FeturedTest>
-      } */}
+      }   
  
 
       <Footer></Footer>

@@ -29,7 +29,7 @@ const Slider = () => {
 
   return (
     <motion.div
-      className="md:h-[600px] py-8 md:py-0 relative"
+      className="md:h-[600px] py-8 md:py-0 md:pt-10 relative "
       variants={fadeIn("up", 0.1)}
       initial="hidden"
       whileInView="show"
@@ -37,7 +37,7 @@ const Slider = () => {
     >
       {/* Background Images with Animation */}
       <motion.img
-        className="absolute opacity-0 md:opacity-100 left-0 top-0 h-[600px] w-full -z-10"
+        className="absolute opacity-0 md:opacity-100 left-0 top-0 h-[640px] w-full -z-10"
         src="https://i.ibb.co.com/YFQfmXcx/slidershap.jpg"
         alt=""
         animate={{ opacity: [0, 1], scale: [0.9, 1] }}
