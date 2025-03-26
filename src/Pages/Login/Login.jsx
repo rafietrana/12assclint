@@ -1,84 +1,79 @@
- 
 import { Link, useNavigate } from "react-router-dom";
-import loginImg from "../../assets/lgoin.jpg";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  // console.log("alhamdulillah login user is ", loginUser);
   const handleLoginBtn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email, password);
+
     loginUser(email, password)
       .then((result) => {
-        // console.log(result.user);
-        toast.success("alhamdulillah sucessfully logedin");
-        navigate('/deshboard')
+        toast.success("Successfully logged in!");
+        navigate("/dashboard");
       })
       .catch((error) => {
-        // console.error(error);
-        toast.error("please Try Agin ");
+        toast.error("Login failed, please try again.");
       });
   };
 
   return (
-    <div className="w-9/12 mx-auto my-16">
-      <div className="flex bg-gray-100 shadow-lg ">
-        <div className="w-1/2 h-[200px ] object-cover">
-          <img className="w-[500px]" src={loginImg} alt="" />
+    <div className="min-h-screen flex justify-center items-center bg-gray-100 py-12">
+      <div className="w-full max-w-md bg-white shadow-xl rounded-lg p-8">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-bold text-gray-800">Login</h2>
+          <p className="text-sm text-gray-600 mt-3">Welcome back, please login to continue.</p>
         </div>
-        <div className="w-1/2 flex justify-center items-center flex-col">
-          <div className="my-5 font-Outfit  font-semibold text-2xl ">
-            <p>Login Now</p>
-          </div>
-          <div className="bg-white p-5 w-10/12  rounded-lg shadow-lg">
-            <form onSubmit={handleLoginBtn}>
-              <div className="space-y-3">
-                <div>
-                  <label className="font-DM font-[500] text-[15px] text-[#788094]">
-                    Email
-                  </label>
-                  <br />
-                  <input
-                    type="text"
-                    name="email"
-                    className="border rounded-lg p-4 w-full  outline-none "
-                    required
-                  />
-                </div>
 
-                <div>
-                  <label className="font-DM font-[500] text-[15px] text-[#788094]">
-                    Password
-                  </label>
-                  <br />
-                  <input
-                    type="text"
-                    name="password"
-                    className="border rounded-lg p-4 w-full outline-none "
-                    required
-                  />
-                </div>
-              </div>
-              <button className="bg-gradient-to-b w-full my-5 from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mr-6 ">
-                Login Now
-              </button>
-            </form>
-            <div className="flex justify-center items-center">
-              <p>
-                Create an account{" "}
-                <span className="text-red-500">
-                  <Link to={"/singup"}>Singup</Link>
-                </span>
-              </p>
-            </div>
+        <form onSubmit={handleLoginBtn} className="space-y-5">
+          {/* Email Input */}
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Enter your email"
+            />
           </div>
+
+          {/* Password Input */}
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              required
+              className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          {/* Login Button */}
+          <div>
+            <button
+              type="submit"
+              className="w-full py-3 px-4 bg-gradient-to-b from-green-400 to-green-600 text-white font-bold rounded-md hover:from-green-500 hover:to-green-700 transition duration-300 ease-in-out"
+            >
+              Login Now
+            </button>
+          </div>
+        </form>
+
+        {/* Signup Redirect */}
+        <div className="mt-5 text-center">
+          <p className="text-sm text-gray-600">
+            Dont have an account?{" "}
+            <Link to="/signup" className="text-green-500 font-semibold">Sign Up</Link>
+          </p>
         </div>
       </div>
     </div>
