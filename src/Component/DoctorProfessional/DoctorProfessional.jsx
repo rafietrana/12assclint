@@ -111,10 +111,10 @@ const DoctorProfessional = () => {
               <SwiperSlide key={doctor.id}>
                 <div className="p-4 bg-white  text-center">
                   <img src={doctor.image} alt={doctor.name} className="" />
-                  <h3 className="mt-2 font-[600] text-[24px]  text-black font-Outfit">
+                  <h3 className="mt-2 font-[600] text-[17px]  text-black font-Outfit">
                     {doctor.name}
                   </h3>
-                  <p className="text-gray-600">{doctor.specialty}</p>
+                  <p className="text-gray-600m texty-[14px]">{doctor.specialty}</p>
                 </div>
               </SwiperSlide>
             ))}

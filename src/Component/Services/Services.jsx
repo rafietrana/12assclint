@@ -119,7 +119,7 @@ const Services = () => {
         >
           {servicesOptionsData.map((dataServicesOption, idx) => (
             <motion.div
-              className="relative flex flex-col justify-center items-center bg-white shadow-md rounded-xl py-6 group overflow-hidden"
+              className="relative flex flex-col justify-center items-center bg-white   rounded-xl py-6 group overflow-hidden"
               key={idx}
               whileHover={{ scale: 1.05 }}
             >
@@ -145,7 +145,7 @@ const Services = () => {
               </motion.p>
               <motion.button
               onClick={handleServicesButton}
-                className="text-black bg-gradient-to-b from-[#C2D4FF] hover:from-[#35DC95] to-[#F0F4FF] hover:to-white z-40 font-semibold my-4 px-6 py-2 rounded-full shadow-md hover:scale-105 transition-transform"
+                className="text-black bg-gradient-to-b from-[#C2D4FF] hover:from-[#35DC95] to-[#F0F4FF] hover:to-white z-40 font-semibold my-4 px-6 py-2 rounded-full  hover:scale-105 transition-transform"
                 whileHover={{ scale: 1.1 }}
               >
                 Book Appoinment

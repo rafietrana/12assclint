@@ -24,7 +24,7 @@ const BookAnAppoinment = () => {
           alt=""
         />
         <img
-          className="hidden md:block absolute right-0 bottom-0"
+          className="hidden md:block absolute w-[600px] right-0 bottom-0"
           src="https://i.ibb.co.com/k2FJkZbv/right-doctor-image.png"
           alt=""
         />
@@ -41,7 +41,7 @@ const BookAnAppoinment = () => {
               We’re welcoming new patients and can’t wait to meet you!
             </motion.h1>
             <motion.p
-              className="text-[16px] text-white font-[400] sm:w-full md:w-10/12"
+              className="text-[16px] text-white font-[400] sm:w-full md:w-10/12 "
               variants={fadeIn("up", 0.4)}
               initial="hidden"
               whileInView="show"

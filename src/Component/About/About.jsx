@@ -41,7 +41,7 @@ const About = () => {
         <div className="md:flex gap-12">
           {/* Left Side - Image Section */}
           <motion.div className="md:w-1/2 relative" variants={fadeIn("left", 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
-            <img src={aboutImg} alt="Doctor" />
+            <img className="hidden md:block" src={aboutImg} alt="Doctor" />
             <motion.div className="hidden md:block absolute bottom-2 right-0" variants={fadeIn("up", 0.4)} initial="hidden" whileInView="show">
               <div className="w-[210px] h-[180px] shadow-lg rounded-xl space-y-2 flex justify-center items-center flex-col p-5">
                 <motion.div className="text-[#000D44] font-[600] text-center text-[20px]">
