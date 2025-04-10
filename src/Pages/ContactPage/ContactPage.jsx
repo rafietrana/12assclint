@@ -1,7 +1,10 @@
+import Footer from "../../Shyerd/Footer/Footer";
+
  
 
 const ContactPage = () => {
     return (
+        <>
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <h2 className="font-Outfit text-center text-3xl font-semibold">Contact Us</h2>
@@ -30,7 +33,12 @@ const ContactPage = () => {
                     </form>
                 </div>
             </div>
+
+
         </div>
+        
+        <Footer></Footer>
+        </>
     );
 };
 

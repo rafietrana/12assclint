@@ -73,6 +73,8 @@ const Singup = () => {
         };
 
         const result = await singUpUser(email, password);
+        console.log(result);
+        
         await updateUserProfile(name, res.data.data.display_url);
         toast.success("Successfully signed up");
 

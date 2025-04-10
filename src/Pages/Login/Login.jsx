@@ -16,8 +16,12 @@ const Login = () => {
       .then((result) => {
         toast.success("Successfully logged in!");
         navigate("/dashboard");
+        console.log(result);
+        
       })
       .catch((error) => {
+        console.log(error);
+        
         toast.error("Login failed, please try again.");
       });
   };
