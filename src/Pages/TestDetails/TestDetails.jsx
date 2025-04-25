@@ -14,7 +14,7 @@ const TestDetails = () => {
     queryKey: ["testDetails"],
     enabled: !!id,
     queryFn: () =>
-      axios(`https://my-ass-12-server.vercel.app/gettest/${id}`).then((res) => {
+      axios(`http://localhost:5000/gettest/${id}`).then((res) => {
         return res.data;
       }),
   });

@@ -11,9 +11,7 @@ const Reservation = () => {
   const { data: getreserve = [], refetch } = useQuery({
     queryKey: ["getreserve"],
     queryFn: () =>
-      axios("https://my-ass-12-server.vercel.app/getreserve").then(
-        (res) => res.data
-      ),
+      axios("http://localhost:5000/getreserve").then((res) => res.data),
   });
 
   useEffect(() => {
@@ -36,19 +34,17 @@ const Reservation = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // console.log(id);
-        axios
-          .delete(`https://my-ass-12-server.vercel.app/deletereseve/${id}`)
-          .then((res) => {
-            // console.log("alhamdulillah response is", res.data);
-            if (res.data.deletedCount > 0) {
-              refetch();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success",
-              });
-            }
-          });
+        axios.delete(`http://localhost:5000/deletereseve/${id}`).then((res) => {
+          // console.log("alhamdulillah response is", res.data);
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
       }
     });
   };
@@ -66,9 +62,9 @@ const Reservation = () => {
     queryKey: ["emailSearchValue", emailValues],
     enabled: !!emailValues,
     queryFn: () =>
-      axios(
-        `https://my-ass-12-server.vercel.app/searchbyemail/${emailValues}`
-      ).then((res) => res.data),
+      axios(`http://localhost:5000/searchbyemail/${emailValues}`).then(
+        (res) => res.data
+      ),
   });
 
   useEffect(() => {

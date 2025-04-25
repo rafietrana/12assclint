@@ -15,11 +15,9 @@ const UserDetailsModal = ({ isOpens, closeModals, userId }) => {
   const { data: singleuserdata = [] } = useQuery({
     queryKey: ["singleuserdata"],
     queryFn: () =>
-      axios(`https://my-ass-12-server.vercel.app/getsingleuser/${userId}`).then(
-        (res) => {
-          return res?.data;
-        }
-      ),
+      axios(`http://localhost:5000/getsingleuser/${userId}`).then((res) => {
+        return res?.data;
+      }),
   });
 
   // console.log("alhamdulillah single user information is", singleuserdata);

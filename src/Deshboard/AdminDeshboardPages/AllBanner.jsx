@@ -21,9 +21,7 @@ const AllBanner = () => {
     // console.log("alhamdulillah is active is id is", bannerData._id);
 
     axios
-      .put(
-        `https://my-ass-12-server.vercel.app/updateisactive/${bannerData._id}`
-      )
+      .put(`http://localhost:5000/updateisactive/${bannerData._id}`)
       .then(() => {
         // console.log("alhamdulillah this is", res.status);
 

@@ -8,7 +8,7 @@ const AllTest = () => {
   const { data: alltestdata = [], refetch } = useQuery({
     queryKey: ["alltest"],
     queryFn: () =>
-      axios("https://my-ass-12-server.vercel.app/getalltest").then((res) => {
+      axios("http://localhost:5000/getalltest").then((res) => {
         return res.data;
       }),
   });
@@ -25,19 +25,17 @@ const AllTest = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`https://my-ass-12-server.vercel.app/deletetest/${id}`)
-          .then((res) => {
-            // console.log(res.data);
-            if (res.data.deletedCount > 0) {
-              refetch();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success",
-              });
-            }
-          });
+        axios.delete(`http://localhost:5000/deletetest/${id}`).then((res) => {
+          // console.log(res.data);
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
       }
     });
   };

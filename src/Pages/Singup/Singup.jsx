@@ -74,12 +74,12 @@ const Singup = () => {
 
         const result = await singUpUser(email, password);
         console.log(result);
-        
+
         await updateUserProfile(name, res.data.data.display_url);
         toast.success("Successfully signed up");
 
         axios
-          .post("https://my-ass-12-server.vercel.app/postuserinfo", singupInfo)
+          .post("http://localhost:5000/postuserinfo", singupInfo)
           .then((res) => {
             console.log(res.data);
           });
@@ -104,7 +104,9 @@ const Singup = () => {
           <form onSubmit={handleSingupBtn}>
             <div className="space-y-4">
               <div>
-                <label className="font-DM font-[500] text-[15px] text-[#788094]">Name</label>
+                <label className="font-DM font-[500] text-[15px] text-[#788094]">
+                  Name
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -114,7 +116,9 @@ const Singup = () => {
               </div>
 
               <div>
-                <label className="font-DM font-[500] text-[15px] text-[#788094]">Email</label>
+                <label className="font-DM font-[500] text-[15px] text-[#788094]">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -124,7 +128,9 @@ const Singup = () => {
               </div>
 
               <div>
-                <label className="font-DM font-[500] text-[15px] text-[#788094]">Password</label>
+                <label className="font-DM font-[500] text-[15px] text-[#788094]">
+                  Password
+                </label>
                 <input
                   type="password"
                   name="password"
@@ -134,7 +140,9 @@ const Singup = () => {
               </div>
 
               <div>
-                <label className="font-DM font-[500] text-[15px] text-[#788094]">Confirm Password</label>
+                <label className="font-DM font-[500] text-[15px] text-[#788094]">
+                  Confirm Password
+                </label>
                 <input
                   type="password"
                   name="confirmPassword"
@@ -215,7 +223,9 @@ const Singup = () => {
                   <p className="animate-spin">
                     <ImSpinner9 />{" "}
                   </p>
-                  <p className="font-Outfit font-[500] text-[16px]">Please wait, Image is uploading...</p>
+                  <p className="font-Outfit font-[500] text-[16px]">
+                    Please wait, Image is uploading...
+                  </p>
                 </div>
               ) : (
                 "SIGN UP"

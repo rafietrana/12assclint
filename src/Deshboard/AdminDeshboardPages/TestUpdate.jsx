@@ -13,9 +13,7 @@ const TestUpdate = () => {
   const { data: testPageData = {}, isSuccess } = useQuery({
     queryKey: ["gettest", params?.id],
     queryFn: async () => {
-      const res = await axios(
-        `https://my-ass-12-server.vercel.app/gettest/${params.id}`
-      );
+      const res = await axios(`http://localhost:5000/gettest/${params.id}`);
       return res.data;
     },
   });
@@ -54,7 +52,7 @@ const TestUpdate = () => {
 
     axios
       .patch(
-        `https://my-ass-12-server.vercel.app/updatetest/${testPageData._id}`,
+        `http://localhost:5000/updatetest/${testPageData._id}`,
         updateTestBtn
       )
       .then((res) => {

@@ -9,11 +9,9 @@ const SingleReservation = () => {
   const { data: getsinglereserve = [] } = useQuery({
     queryKey: ["getsinglereserve"],
     queryFn: () =>
-      axios(`https://my-ass-12-server.vercel.app/singlereserve/${testid}`).then(
-        (res) => {
-          return res?.data;
-        }
-      ),
+      axios(`http://localhost:5000/singlereserve/${testid}`).then((res) => {
+        return res?.data;
+      }),
   });
 
   console.log("alhamdulillah single reserve data is", getsinglereserve);

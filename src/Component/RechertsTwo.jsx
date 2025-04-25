@@ -37,7 +37,7 @@ const RechertsTwo = () => {
   const { data: reserve = [] } = useQuery({
     queryKey: ["reserve"],
     queryFn: () =>
-      axios("https://my-ass-12-server.vercel.app/getreserve").then((res) => {
+      axios("http://localhost:5000/getreserve").then((res) => {
         return res.data;
       }),
   });

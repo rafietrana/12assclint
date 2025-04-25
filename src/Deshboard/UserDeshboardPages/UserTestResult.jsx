@@ -11,11 +11,11 @@ const UserTestResult = () => {
   const { data: userTestResult = [] } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
-      axios(
-        `https://my-ass-12-server.vercel.app/getusertestresult/${user?.email}`
-      ).then((res) => {
-        return res.data;
-      }),
+      axios(`http://localhost:5000/getusertestresult/${user?.email}`).then(
+        (res) => {
+          return res.data;
+        }
+      ),
   });
   // console.log("alhamdulillah user test result is", userTestResult);
   return (

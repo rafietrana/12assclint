@@ -10,11 +10,11 @@ const UserAppoinments = () => {
   const { data: getReserveUser = [], refetch } = useQuery({
     queryKey: ["getReserveUser"],
     queryFn: () =>
-      axios(
-        `https://my-ass-12-server.vercel.app/getuserreserve/${user?.email}`
-      ).then((res) => {
-        return res.data;
-      }),
+      axios(`http://localhost:5000/getuserreserve/${user?.email}`).then(
+        (res) => {
+          return res.data;
+        }
+      ),
   });
   // console.log("alhamdulillah reserve data is", getReserveUser);
 
@@ -32,9 +32,7 @@ const UserAppoinments = () => {
         // console.log("alahmdulillah is is", id);
 
         axios
-          .delete(
-            `https://my-ass-12-server.vercel.app/deleteuserappoinment/${id}`
-          )
+          .delete(`http://localhost:5000/deleteuserappoinment/${id}`)
           .then((res) => {
             // console.log(res.data);
             if (res.data.deletedCount > 0) {
