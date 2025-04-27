@@ -130,7 +130,7 @@ const Navbar = () => {
       </div>
 
       {/* bottom navbr */}
-      <div className="relative shadow-lg">
+      <div className="relative ">
       <div className=" w-full mx-auto  items-center    ">
       <img className="absolute top-0 -left-16   w-[20%] h-full  " src="https://i.ibb.co.com/ynRCxC3d/imageleftshape.png" alt="" />
         <div className="navbar  mx-auto ">

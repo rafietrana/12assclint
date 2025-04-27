@@ -41,6 +41,20 @@ const Singup = () => {
     const photo = form.photo.files[0];
     const userStatus = "active";
 
+    // const formb = {
+    //   name,
+    //   email,
+    //   password,
+    //   confirmPassword,
+      
+    //   bloodGroup,
+    //   district,
+    //   upozilla,
+    //   photo,
+    // };
+
+    // console.log("alhamdulillah form data which you have added ", formb);
+
     if (password !== confirmPassword) {
       setLoading(false);
       return toast.error("Password does not match");
@@ -71,6 +85,7 @@ const Singup = () => {
           image: res.data.data.display_url,
           userStatus,
         };
+        console.log("alhamdulillah singupinformation is", singupInfo);
 
         const result = await singUpUser(email, password);
         console.log(result);
