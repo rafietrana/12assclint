@@ -26,7 +26,7 @@ const fadeIn = (direction = "up", delay = 0) => {
 
 const About = () => {
   return (
-    <div className="relative">
+    <div className="relative lg:mt-32 mt-0">
       {/* Floating Image */}
       <motion.img
         className="absolute hidden md:block bottom-0 right-10 animate-bounce [animation-duration:2s] -z-10"
