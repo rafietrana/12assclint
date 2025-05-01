@@ -9,6 +9,8 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../Hooks/UseAdmin";
 
+
+
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const [data] = useAdmin();
@@ -132,7 +134,7 @@ const Navbar = () => {
       {/* bottom navbr */}
       <div className="relative ">
       <div className=" w-full mx-auto  items-center    ">
-      <img className="absolute top-0 -left-16   w-[20%] h-full  " src="https://i.ibb.co.com/ynRCxC3d/imageleftshape.png" alt="" />
+      <img className="absolute top-0 -left-16   w-[24%] h-full  " src="https://i.ibb.co.com/ynRCxC3d/imageleftshape.png" alt="" />
         <div className="navbar  mx-auto ">
           <div className="navbar-start">
             <div className="dropdown">

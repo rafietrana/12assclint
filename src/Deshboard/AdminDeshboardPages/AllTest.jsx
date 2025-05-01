@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import Swal from "sweetalert2";
 
 const AllTest = () => {
@@ -30,6 +29,7 @@ const AllTest = () => {
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({
+
               title: "Deleted!",
               text: "Your file has been deleted.",
               icon: "success",
@@ -55,7 +55,7 @@ const AllTest = () => {
               <th>Slots Number</th>
               <th>User Reservation</th>
               <th>Update</th>
-              <th>Deletet</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>

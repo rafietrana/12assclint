@@ -2,7 +2,7 @@
 
 import About from "../../Component/About/About";
 import AppoinmentContact from "../../Component/AppoinmentContact/AppoinmentContact";
-import BookAnAppoinment from "../../Component/BookAnAppoinment/BookAnAppoinment";
+
 import ChooseMe from "../../Component/ChooseMe/ChooseMe";
 import Counter from "../../Component/Counter/Counter";
 import DoctorProfessional from "../../Component/DoctorProfessional/DoctorProfessional";
@@ -24,7 +24,7 @@ return (
       <Slider></Slider>
       <About></About>
       <Services></Services>
-      <BookAnAppoinment></BookAnAppoinment>
+ 
       <ChooseMe></ChooseMe>
       <Counter></Counter>
       <DoctorProfessional></DoctorProfessional>
