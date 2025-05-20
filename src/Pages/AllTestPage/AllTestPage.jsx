@@ -71,93 +71,103 @@ const AllTestPage = () => {
 
   return (
     <>
-      <div className="w-10/12 mx-auto my-11">
-        <div className="space-y-2">
-          <div className="w-full my-5 mb-7 font-Outfit flex gap-7 items-center">
-            <span>Search By Local Date</span>
-            <span>
-              <DatePicker
-                name="date"
-                className="outline-none border"
-                selected={startDate ? new Date(startDate) : null}
-                onChange={(date) => handleSatDateBtn(date)}
-              />
-            </span>
+      <div className="w-11/12 mx-auto my-11">
+        {/* Filter & Print Controls */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+          <div className="flex items-center gap-4">
+            <label className="font-Outfit">Search By Local Date</label>
+            <DatePicker
+              name="date"
+              className="outline-none border px-2 py-1 rounded"
+              selected={startDate ? new Date(startDate) : null}
+              onChange={(date) => handleSatDateBtn(date)}
+              placeholderText="Select Date"
+            />
+          </div>
+
+          <div className="flex justify-end w-full md:w-auto">
+            <ReactToPrint
+              trigger={() => (
+                <button className="  text-black py-2 px-4   shadow-sm hover:shadow-lg transition duration-300 ease-in-out">
+                  Print All Tests
+                </button>
+              )}
+              content={() => componentRef.current}
+            />
           </div>
         </div>
-        <ReactToPrint
-          trigger={() => (
-            <button className="bg-gradient-to-b from-gray-100 to-gray-200 text-black py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
-              Print All Tests
-            </button>
-          )}
-          content={() => componentRef.current}
-        />
-        <div
-          ref={componentRef}
-          className="mx-auto grid lg:grid-cols-4 gap-6 md:grid-cols-2 grid-cols-1"
-        >
-          {finalFilterDate.map((pageTestGet) => (
-            <div
-              key={pageTestGet._id}
-              className="card card-compact w-70 border shadow-lg bg-gray-50"
-            >
-              <figure>
-                <div className="avatar p-5">
-                  <div className="h-[200px]">
-                    <img src={pageTestGet.bannerimg} alt="Test Banner" />
-                  </div>
-                </div>
-              </figure>
-              <div className="card-body">
-                <h2 className="font-Outfit text-xl font-medium text-center">
-                  {pageTestGet?.testname}
-                </h2>
-                <p className="text-center">{pageTestGet.date.split("T")[0]}</p>
-                <p className="text-center">
-                  <span className="font-Outfit">Slots Number: </span>
-                  {pageTestGet.slotsnumber}
-                </p>
-                <p className="text-center">
-                  <span className="font-Outfit">Local Search Date: </span>
-                  {pageTestGet?.localDate}
-                </p>
-                <p className="text-center">
-                  {pageTestGet.testdetails.slice(0, 50)}...
-                </p>
-                <div className="text-center">
-                  <Link to={`/testdetails/${pageTestGet._id}`}>
-                    <button className="bg-gradient-to-b from-gray-100 to-gray-200 text-black font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                      View Details
-                    </button>
-                  </Link>
-                </div>
-                <div className="card-actions"></div>
-              </div>
-            </div>
-          ))}
+
+        {/* Table View */}
+        <div ref={componentRef} className="overflow-x-auto border border-gray-200 rounded-lg">
+          <table className="min-w-full table-auto text-sm text-center">
+            <thead className="bg-gray-100 text-gray-700 font-medium">
+              <tr>
+                <th className="px-4 py-2 border">Banner</th>
+                <th className="px-4 py-2 border">Test Name</th>
+                <th className="px-4 py-2 border">Date</th>
+                <th className="px-4 py-2 border">Slots</th>
+                <th className="px-4 py-2 border">Local Date</th>
+                <th className="px-4 py-2 border">Details</th>
+                <th className="px-4 py-2 border">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {finalFilterDate.map((test) => (
+                <tr key={test._id} className="border-b hover:bg-gray-50 transition">
+                  <td className="px-4 py-2 border">
+                    <img src={test.bannerimg} alt="Banner" className="h-16 mx-auto rounded" />
+                  </td>
+                  <td className="px-4 py-2 border">{test.testname}</td>
+                  <td className="px-4 py-2 border">{test.date.split("T")[0]}</td>
+                  <td className="px-4 py-2 border">{test.slotsnumber}</td>
+                  <td className="px-4 py-2 border">{test.localDate}</td>
+                  <td className="px-4 py-2 border">
+                    {test.testdetails.slice(0, 50)}...
+                  </td>
+                  <td className="px-4 py-2 border">
+                    <Link to={`/testdetails/${test._id}`}>
+                      <button className="bg-gray-200 hover:bg-gray-300 text-sm px-3 py-1 rounded">
+                        View Details
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <div className="my-8 flex justify-center items-center">
-          <button onClick={handlePrevBtn} className="px-2 py-1 bg-gray-100">
+
+        {/* Pagination Controls */}
+        <div className="my-8 flex flex-wrap justify-center gap-2">
+          <button
+            onClick={handlePrevBtn}
+            className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+          >
             Prev
           </button>
           {pages.map((page) => (
             <button
-              onClick={() => setCurrentPage(page)}
-              className={`bg-gray-50 mx-1 p-4 rounded-md ${
-                currentPage === page && "bg-green-500 text-white"
-              }`}
               key={page}
+              onClick={() => setCurrentPage(page)}
+              className={`px-4 py-2 rounded ${
+                currentPage === page
+                  ? "bg-green-500 text-white"
+                  : "bg-gray-50 hover:bg-gray-200"
+              }`}
             >
               {page + 1}
             </button>
           ))}
-          <button onClick={handleNextBtn} className="px-2 py-1 bg-gray-100">
+          <button
+            onClick={handleNextBtn}
+            className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+          >
             Next
           </button>
         </div>
       </div>
-      <Footer></Footer>
+
+      <Footer />
     </>
   );
 };

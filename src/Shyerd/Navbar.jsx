@@ -2,128 +2,128 @@ import { FaCaretDown, FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { IoIosCall } from "react-icons/io";
 import { MdLocationPin, MdOutlineMessage } from "react-icons/md";
-
 import logoImg from "../../src/assets/logofinal.svg";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../Hooks/UseAdmin";
 
-
-
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const [data] = useAdmin();
-  // console.log("alhamdulillah user from nabvar component", user);
-  // console.log("alhamdulillah logout is ", logout);
 
   const menuNev = (
     <>
       <li>
-        <Link className="font-DM uppercase font-medium text-[19px]   ">
-          Home +
+        <Link className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition">
+          Home
         </Link>
       </li>
 
       {user && (
         <li>
-          {" "}
           <Link
             to={"deshboard"}
-            className="font-DM uppercase font-medium text-[19px] "
+            className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition"
           >
-            {data?.admin ? <p>Admin Deshboard +</p> : <p>user Deshboard +</p>}
-          </Link>{" "}
+            {data?.admin ? <p>Admin Dashboard</p> : <p>User Dashboard</p>}
+          </Link>
         </li>
       )}
 
-
-        {
-          user &&           <li>    <Link
-          to={"/alltestpage"}
-          className="font-DM uppercase font-medium text-[19px]  "
-        >
-          All Test +
-        </Link>
+      {user && (
+        <li>
+          <Link
+            to={"/alltestpage"}
+            className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition"
+          >
+            All Tests
+          </Link>
         </li>
-        }
-
+      )}
 
       <li>
-        <Link to={'/abouts'} className="font-DM uppercase font-medium text-[19px]  ">
-          About +
+        <Link
+          to={'/abouts'}
+          className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition"
+        >
+          About
         </Link>
       </li>
       <li>
-        <Link to={'/blog'} className="font-DM uppercase font-medium text-[19px]  ">
-          Blog +
+        <Link
+          to={'/blog'}
+          className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition"
+        >
+          Blog
         </Link>
       </li>
       <li>
-        <Link to={'/contact'} className="font-DM uppercase font-medium text-[19px]  ">
-          Contact +
+        <Link
+          to={'/contact'}
+          className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition"
+        >
+          Contact
         </Link>
       </li>
     </>
   );
 
   const handleLogoutBtn = () => {
-    // console.log("alhamdulillah your logout button is now working mashalllah");
     logout()
       .then(() => {
-        // console.log(result.user);
+        // Handle success
       })
-      .then(() => {
-        // console.error(error);
+      .catch((error) => {
+        console.log(error);
+        
       });
   };
+
   return (
     <div>
-      {/* top navBar */}
-
-      <div className=" bg-[#1F5FFF] p-3 hidden lg:block   ">
-      
-        <div className="flex  justify-between">
+      {/* Top Navbar */}
+      <div className="bg-[#1F5FFF] p-3 hidden lg:block">
+        <div className="flex justify-between">
           <div className="flex gap-5">
-            <p className="flex items-center gap-3 text-white font-sans font-medium ">
-              <span className="p-1 border-2   border-white rounded-full text-white text-xl ">
+            <p className="flex items-center gap-3 text-white font-medium">
+              <span className="p-1 border-2 border-white rounded-full text-white text-xl">
                 <IoIosCall />
-              </span>{" "}
+              </span>
               <span>Phone: 01727993241</span>
             </p>
-            <p className="flex items-center gap-3 text-white font-sans font-medium ">
-              <span className="p-1 border-2   border-white rounded-full text-white text-xl ">
+            <p className="flex items-center gap-3 text-white font-medium">
+              <span className="p-1 border-2 border-white rounded-full text-white text-xl">
                 <MdOutlineMessage />
-              </span>{" "}
+              </span>
               <span>Phone: 01727993241</span>
             </p>
-            <p className="flex items-center gap-3 text-white font-sans font-medium ">
-              <span className="p-1 border-2   border-white rounded-full text-white text-xl ">
+            <p className="flex items-center gap-3 text-white font-medium">
+              <span className="p-1 border-2 border-white rounded-full text-white text-xl">
                 <MdLocationPin />
-              </span>{" "}
+              </span>
               <span>Phone: 01727993241</span>
             </p>
           </div>
           <div>
             <div className="flex gap-5 items-center">
               <p className="font-medium text-white flex gap-2 items-center">
-                {" "}
-                <span>Language </span>
+                <span>Language</span>
                 <span className="text-white font-bold">
                   <FaCaretDown />
-                </span>{" "}
+                </span>
               </p>
 
               <p className="font-medium text-white flex gap-2 items-center">
-                Follow:{" "}
+                Follow:
                 <span>
-                  <FaFacebook></FaFacebook>
-                </span>{" "}
+                  <FaFacebook />
+                </span>
                 <span>
-                  <FaInstagram></FaInstagram>
-                </span>{" "}
+                  <FaInstagram />
+                </span>
                 <span>
-                  <FaLinkedin></FaLinkedin>
+                  <FaLinkedin />
                 </span>
               </p>
             </div>
@@ -131,76 +131,74 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* bottom navbr */}
-      <div className="relative ">
-      <div className=" w-full mx-auto  items-center    ">
-      <img className="absolute top-0 -left-16   w-[24%] h-full  " src="https://i.ibb.co.com/ynRCxC3d/imageleftshape.png" alt="" />
-        <div className="navbar  mx-auto ">
-          <div className="navbar-start">
-            <div className="dropdown">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost lg:hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+      {/* Bottom Navbar */}
+      <div className="relative">
+        <div className="w-full mx-auto items-center">
+          <div className="navbar mx-auto">
+            <div className="navbar-start">
+              <div className="dropdown">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost lg:hidden"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h8m-8 6h16"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h8m-8 6h16"
+                    />
+                  </svg>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[1] shadow bg-base-100 w-52"
+                >
+                  {menuNev}
+                </ul>
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1]  shadow bg-base-100 rounded-box w-52"
-              >
-                {menuNev}
-              </ul>
+              <div className="z-10 py-3">
+                <img src={logoImg} alt="Logo" />
+              </div>
             </div>
-            <div className="   z-10  py-3">
-              <img src={logoImg} alt="" />
+            <div className="navbar-center hidden lg:flex">
+              <ul className="menu menu-horizontal px-1">{menuNev}</ul>
             </div>
-          </div>
-          <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{menuNev}</ul>
-          </div>
-          <div className="navbar-end flex items-center gap-2">
-            <Link to={"/singup"}>
-              <button className="bg-gradient-to-b  mr-5 md:mr-0  from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
-                SING UP
-              </button>
-            </Link>
-            {user ? (
-              <>
-                <button
-                  onClick={handleLogoutBtn}
-                  className="bg-gradient-to-b hidden md:block from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
-                >
-                  Logout
+            <div className="navbar-end flex items-center gap-2">
+              <Link to={"/singup"}>
+                <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                  Sign Up
                 </button>
-              </>
-            ) : (
-              <>
-                <Link to={"/login"}>
-                  <button className="bg-gradient-to-b hidden md:block from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-                    Login
+              </Link>
+              {user ? (
+                <>
+                  <button
+                    onClick={handleLogoutBtn}
+                    className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+                  >
+                    Logout
                   </button>
-                </Link>
-              </>
-            )}
+                </>
+              ) : (
+                <>
+                  <Link to={"/login"}>
+                    <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                      Login
+                    </button>
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
-      </div>
-
     </div>
   );
 };
