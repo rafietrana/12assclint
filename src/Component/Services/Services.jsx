@@ -95,17 +95,29 @@ const Services = () => {
         viewport={{ once: false, amount: 0.2 }}
       >
         <div className="flex gap-2 justify-center items-center">
-          <img src="https://i.ibb.co/4wpZ9gwc/rana.png" alt="" />
+          <motion.img
+    variants={fadeIn("down", 0.3)}
+                         initial="hidden"
+                         whileInView="show"
+                         viewport={{ once: false, amount: 0.2 }}
+           src="https://i.ibb.co/4wpZ9gwc/rana.png" alt="" />
           <motion.div
             className="text-[#04CE78] font-semibold text-lg"
-            variants={fadeIn("up", 0.3)}
+          variants={fadeIn("down", 0.3)}
+                         initial="hidden"
+                         whileInView="show"
+                         viewport={{ once: false, amount: 0.2 }}
           >
             OUR SERVICES
           </motion.div>
         </div>
-        <p className="text-xl md:text-4xl font-semibold text-[#000D44] mt-4">
+        <motion.p className="text-xl font-Outfit md:text-[30px] font-semibold text-[#000D44] mt-4"
+           variants={fadeIn("down", 0.3)}
+                         initial="hidden"
+                         whileInView="show"
+                         viewport={{ once: false, amount: 0.2 }}>
           Our Mediax specialties <br /> Technical service
-        </p>
+        </motion.p>
       </motion.div>
 
       {/* Services Cards */}

@@ -2,8 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
-import {fadeIn} from "../../variants"
-import { motion } from 'framer-motion';
+import { fadeIn } from "../../variants";
+import { motion } from "framer-motion";
 
 const DoctorProfessional = () => {
   const doctors = [
@@ -61,24 +61,29 @@ const DoctorProfessional = () => {
 
   return (
     <div>
-      <div className="w-9/12 mx-auto">
+      <div className="w-9/12  mt-32 mx-auto">
         {/* title section start */}
         <div>
           <div className="flex flex-col justify-center items-center">
             <div className="flex gap-2 mt-5 justify-center items-center ">
               <div>
-                <img
+                <motion.img
                   className=""
+                  variants={fadeIn("down", 0.3)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: false, amount: 0.2 }}
                   src="https://i.ibb.co.com/4wpZ9gwc/rana.png"
                   alt=""
                 />
               </div>
               <div>
-                <motion.p className="font-Outfit text-[18px] uppercase text-[#04CE78] font-[500]"
-                         variants={fadeIn("up", 0.3)}
-                         initial="hidden"
-                         whileInView="show"
-                         viewport={{ once: false, amount: 0.2 }}
+                <motion.p
+                  className="font-Outfit text-[18px] uppercase text-[#04CE78] font-[500]"
+                  variants={fadeIn("down", 0.3)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: false, amount: 0.2 }}
                 >
                   Expert Doctors
                 </motion.p>
@@ -86,15 +91,22 @@ const DoctorProfessional = () => {
             </div>
             <div>
               {" "}
-              <p className="  text-xl   md:text-[48px] font-Outfit text-[#000D44] font-[600] text-center md:leading-[50px] mt-4 ">
+              <motion.p className="  text-xl   md:text-[30px] font-Outfit text-[#000D44] font-[600] text-center md:leading-[50px]  "
+     
+                    variants={fadeIn("down", 0.3)}
+                         initial="hidden"
+                         whileInView="show"
+                         viewport={{ once: false, amount: 0.2 }}
+              >
+                
                 Meet our professional Doctors
-              </p>
+              </motion.p>
             </div>
           </div>
         </div>
         {/* title section end */}
         {/* slider option start  */}
-        <div className="my-16">
+        <div className="my-10">
           <Swiper
             spaceBetween={30}
             slidesPerView={4}
@@ -114,7 +126,9 @@ const DoctorProfessional = () => {
                   <h3 className="mt-2 font-[600] text-[17px]  text-black font-Outfit">
                     {doctor.name}
                   </h3>
-                  <p className="text-gray-600m texty-[14px]">{doctor.specialty}</p>
+                  <p className="text-gray-600m texty-[14px]">
+                    {doctor.specialty}
+                  </p>
                 </div>
               </SwiperSlide>
             ))}

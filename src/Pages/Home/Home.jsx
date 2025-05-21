@@ -28,12 +28,13 @@ return (
       <ChooseMe></ChooseMe>
       <Counter></Counter>
       <DoctorProfessional></DoctorProfessional>
+            {
+        user   &&       <FeturedTest></FeturedTest>
+      }   
       <AppoinmentContact></AppoinmentContact>
       
  
-        {
-        user   &&       <FeturedTest></FeturedTest>
-      }   
+  
  
 
       <Footer></Footer>
