@@ -4,141 +4,139 @@ import { FaSearch } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import PaymentModal from "../../Modal/PaymentModal.jsx";
 import { useState } from "react";
+import Footer from "../../Shyerd/Footer/Footer.jsx";
 
 const TestDetails = () => {
   const { id } = useParams();
-  // console.log("alhamdulillah params is", id);
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: testDetails = [], refetch } = useQuery({
     queryKey: ["testDetails"],
     enabled: !!id,
     queryFn: () =>
-      axios(`http://localhost:5000/gettest/${id}`).then((res) => {
-        return res.data;
-      }),
+      axios(`http://localhost:5000/gettest/${id}`).then((res) => res.data),
   });
-  // console.log("alhamdulillah testdetails data is ", testDetails);
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  const closeModal = () => setIsOpen(false);
 
   return (
-    <div>
-      <div className="bg-[#EBF7F9] h-[300px] flex justify-center items-center flex-col space-y-3">
-        <p className="font-Outfit font-semibold text-4xl md:text-6xl">
-          Test Details
-        </p>
+    <div className="font-Outfit">
+      {/* Banner Section */}
+      <div className="bg-[#F1F5F9] h-[300px] flex flex-col justify-center items-center text-center space-y-3">
+        <h1 className="text-4xl md:text-5xl font-semibold">Test Details</h1>
         <div className="text-sm breadcrumbs">
-          <ul className="font-Outfit">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li className="text-green-500">
-              <a href="/details">Details</a>
-            </li>
+          <ul className="flex space-x-2">
+            <li><a href="/" className="text-gray-600 hover:text-green-600">Home</a></li>
+            <li className="text-green-600 font-medium">Details</li>
           </ul>
         </div>
       </div>
 
-      <div className="my-9 w-11/12 md:w-10/12 mx-auto flex flex-col md:flex-row gap-7">
-        <div className="md:w-1/3">
-          <div className="bg-gray-50 p-6 rounded-xl">
-            <form className="flex items-center max-w-sm mx-auto">
+      {/* Main Section */}
+      <div className="my-10 w-11/12 md:w-10/12 mx-auto flex flex-col md:flex-row gap-8">
+        {/* Left Sidebar */}
+        <div className="md:w-1/3 space-y-8">
+          {/* Search */}
+          <div className="bg-white shadow-md p-5 rounded-lg">
+            <form className="flex items-center">
               <div className="relative w-full">
                 <input
                   type="text"
-                  id="simple-search"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 pl-10"
+                  className="w-full border border-gray-300 rounded-lg py-2 px-4 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   placeholder="Search"
                 />
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <FaSearch className="text-gray-400" />
+                <div className="absolute left-3 top-2.5 text-gray-400">
+                  <FaSearch />
                 </div>
               </div>
               <button
                 type="submit"
-                className="p-2.5 ml-2 text-sm font-medium text-white bg-green-500 rounded-lg focus:ring-4 focus:outline-none"
+                className="ml-3 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg"
               >
                 <FaSearch />
               </button>
             </form>
           </div>
 
-          <div className="bg-gray-50 p-7 rounded-lg my-7 space-y-5">
-            <p className="font-Outfit font-semibold text-2xl">Neorology</p>
-            {["Exray", "Blood", "Neurology"].map((item, index) => (
-              <div key={index} className="join join-vertical w-full">
-                <div className="collapse collapse-arrow join-item">
-                  <input type="radio" name="my-accordion-4" defaultChecked />
-                  <div className="collapse-title text-lg font-Outfit font-medium bg-white rounded-full">
-                    {item}
-                  </div>
-                  <div className="collapse-content"></div>
-                </div>
+          {/* Category Filter */}
+          <div className="bg-white shadow-md p-6 rounded-lg space-y-4">
+            <h2 className="text-xl font-semibold text-gray-800">Category</h2>
+            {["Exray", "Blood", "Neurology"].map((item, i) => (
+              <div key={i} className="collapse collapse-arrow bg-gray-100 rounded-md">
+                <input type="radio" name="accordion" />
+                <div className="collapse-title text-base font-medium">{item}</div>
               </div>
             ))}
           </div>
         </div>
 
+        {/* Right Content */}
         <div className="md:w-2/3">
-          <div className="flex justify-center md:justify-start">
+          {/* Image */}
+          <div className="flex justify-center md:justify-start mb-6">
             <img
-              className="w-full md:w-9/12 h-64 md:h-96 object-cover rounded-2xl"
+              className="w-full md:w-10/12 h-64 md:h-[400px] object-cover rounded-xl shadow"
               src={testDetails?.bannerimg}
               alt="Test"
             />
           </div>
-          <div className="mt-5">
-            <p className="font-Outfit font-bold text-3xl md:text-5xl">
-              {testDetails?.testname}
-            </p>
-            <p className="font-DM text-gray-600 text-base md:text-lg mt-4">
-              {testDetails?.testdetails}
-            </p>
-            <div className="my-6 space-y-4">
-              <p className="font-Outfit font-semibold text-lg">
-                Test Price: <span>{testDetails?.testprice}</span>
+
+          {/* Test Info */}
+          <div className="space-y-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">{testDetails?.testname}</h2>
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed">{testDetails?.testdetails}</p>
+
+            <div className="space-y-2 mt-5">
+              <p className="text-lg text-gray-700 font-semibold">
+                Test Price: <span className="text-green-600">${testDetails?.testprice}</span>
               </p>
-              <p className="font-Outfit font-semibold text-lg">
+              <p className="text-lg text-gray-700 font-semibold">
                 Date:{" "}
-                <span>
+                <span className="text-green-600">
                   {testDetails.date && testDetails.date.split("T")[0]}
                 </span>
               </p>
-              <p className="font-Outfit font-semibold text-lg">
-                Slots Number: <span>{testDetails?.slotsnumber}</span>
+              <p className="text-lg text-gray-700 font-semibold">
+                Slots Available:{" "}
+                <span className="text-green-600">{testDetails?.slotsnumber}</span>
               </p>
             </div>
-            <div>
+
+            {/* Button */}
+            <div className="mt-6">
               {parseInt(testDetails.slotsnumber) > 0 ? (
                 <button
                   onClick={() => setIsOpen(true)}
-                  className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+                  className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow"
                 >
                   Book Now
                 </button>
               ) : (
-                <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                <button
+                  className="bg-gray-500 cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg"
+                  disabled
+                >
                   Not Available
                 </button>
               )}
-              <PaymentModal
-                isOpen={isOpen}
-                refetch={refetch}
-                closeModal={closeModal}
-                paymentPrice={{ price: testDetails?.testprice }}
-                paymentCollectionId={testDetails?._id}
-                testInfo={{
-                  testName: testDetails?.testname,
-                  testId: testDetails?._id,
-                }}
-              />
             </div>
+
+            {/* Modal */}
+            <PaymentModal
+              isOpen={isOpen}
+              refetch={refetch}
+              closeModal={closeModal}
+              paymentPrice={{ price: testDetails?.testprice }}
+              paymentCollectionId={testDetails?._id}
+              testInfo={{
+                testName: testDetails?.testname,
+                testId: testDetails?._id,
+              }}
+            />
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

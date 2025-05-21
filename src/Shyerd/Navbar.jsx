@@ -44,23 +44,16 @@ const Navbar = () => {
 
       <li>
         <Link
-          to={'/abouts'}
+          to={"/abouts"}
           className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition"
         >
           About
         </Link>
       </li>
+
       <li>
         <Link
-          to={'/blog'}
-          className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition"
-        >
-          Blog
-        </Link>
-      </li>
-      <li>
-        <Link
-          to={'/contact'}
+          to={"/contact"}
           className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition"
         >
           Contact
@@ -76,7 +69,6 @@ const Navbar = () => {
       })
       .catch((error) => {
         console.log(error);
-        
       });
   };
 
