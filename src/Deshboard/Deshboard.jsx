@@ -95,6 +95,21 @@ const Deshboard = () => {
                         <span>Reservation</span>
                       </Link>
                     </li>
+
+
+                    <li className="py-2 px-4 font-DM font-[600] hover:bg-white hover:text-black rounded">
+                      <Link
+                        to={"reservation"}
+                        className="flex  items-center gap-3"
+                      >
+                        <span>
+                          <FaHistory />
+                        </span>
+                        <span>Add Banner</span>
+                      </Link>
+                    </li>
+
+
                     <li className="py-2 px-4 font-DM font-[600] hover:bg-white hover:text-black rounded">
                       <Link
                         to={"addbanner"}

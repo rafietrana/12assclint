@@ -10,18 +10,12 @@ const AllUser = () => {
   const [isOpens, setIsOpens] = useState(false);
   const { data: getalluser = [], refetch } = useQuery({
     queryKey: ["getalluser"],
-    queryFn: () =>
-      axios("http://localhost:5000/getalluser").then((res) => {
-        return res?.data;
-      }),
+    queryFn: () => axios("http://localhost:5000/getalluser").then((res) => res?.data),
   });
-  // console.log("alhamdulillah getall user is", getalluser);
-  const closeModals = () => {
-    setIsOpens(false);
-  };
+
+  const closeModals = () => setIsOpens(false);
 
   const handleBlockUser = (id) => {
-    // console.log("alhamdulillah id is", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -33,14 +27,9 @@ const AllUser = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.put(`http://localhost:5000/blockuser/${id}`).then((res) => {
-          // console.log(res.data);
           if (res.data.modifiedCount > 0) {
             refetch();
-            Swal.fire({
-              title: "Blocked!",
-              text: "The user has been blocked.",
-              icon: "success",
-            });
+            Swal.fire("Blocked!", "The user has been blocked.", "success");
           }
         });
       }
@@ -48,7 +37,6 @@ const AllUser = () => {
   };
 
   const handleunBlockUser = (id) => {
-    // console.log("alhamdulillah id is", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -60,14 +48,9 @@ const AllUser = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.put(`http://localhost:5000/unBlockuser/${id}`).then((res) => {
-          // console.log(res.data);
           if (res.data.modifiedCount > 0) {
             refetch();
-            Swal.fire({
-              title: "Unblocked!",
-              text: "The user has been unblocked.",
-              icon: "success",
-            });
+            Swal.fire("Unblocked!", "The user has been unblocked.", "success");
           }
         });
       }
@@ -76,16 +59,9 @@ const AllUser = () => {
 
   const handleDownloadUserDetails = async (userId) => {
     try {
-      const userDetails = await axios.get(
-        `http://localhost:5000/userdetails/${userId}`
-      );
-      // console.log("alhamdulillah user details is", userDetails);
+      const userDetails = await axios.get(`http://localhost:5000/userdetails/${userId}`);
       const user = userDetails.data;
-
-      const testDetailsResponse = await axios.get(
-        `http://localhost:5000/testdetails/${user?.email}`
-      );
-      // console.log("alhamdulillah test details is", testDetailsResponse);
+      const testDetailsResponse = await axios.get(`http://localhost:5000/testdetails/${user?.email}`);
       const testDetails = testDetailsResponse.data;
 
       const doc = new jsPDF();
@@ -101,11 +77,7 @@ const AllUser = () => {
         testDetails.forEach((test, index) => {
           doc.text(`Test ${index + 1}: ${test?.testname || "N/A"}`, 10, yPos);
           yPos += 10;
-          doc.text(
-            `Test ${index + 1} Delivery Status: ${test.reportStatus || "N/A"}`,
-            10,
-            yPos
-          );
+          doc.text(`Test ${index + 1} Delivery Status: ${test.reportStatus || "N/A"}`, 10, yPos);
           yPos += 10;
         });
       } else {
@@ -114,48 +86,43 @@ const AllUser = () => {
 
       doc.save(`user_${user.name || "unknown"}_details.pdf`);
     } catch (error) {
-      // console.error("Error fetching user details:", error);
-      Swal.fire({
-        title: "Error",
-        text: "Failed to fetch user details. Please try again later.",
-        icon: "error",
-      });
+      Swal.fire("Error", "Failed to fetch user details. Please try again later.", "error");
     }
   };
 
   const handleMakeAdmin = async (ids) => {
     const res = await axios.patch(`http://localhost:5000/makeadmin/${ids}`);
-    // console.log("alhamdulillah make admin res is", res);
     if (res.data.modifiedCount > 0) {
       refetch();
-      toast.success("make admin sucessfully");
+      toast.success("Made admin successfully");
     }
   };
 
   return (
-    <div>
-      <div className="overflow-x-auto">
-        <table className="table">
-          <thead>
+    <div className="overflow-x-auto px-4 py-6">
+      <div className="min-w-full rounded-lg overflow-hidden">
+        <table className="table w-full">
+          <thead className="bg-gray-200 text-gray-700">
             <tr>
-              <th></th>
+              <th>#</th>
               <th>Image</th>
               <th>Name</th>
               <th>Email</th>
-              <th>User Status</th>
-              <th>Block User</th>
-              <th>View All Info</th>
-              <th>Download Details</th>
+              <th>Status</th>
+              <th>Action</th>
+              <th>Details</th>
+              <th>Download</th>
+              <th>Role</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="bg-white divide-y divide-gray-100">
             {getalluser.map((usergetall, idx) => (
-              <tr key={usergetall?._id}>
-                <th>{idx + 1}</th>
+              <tr key={usergetall?._id} className="text-center">
+                <td>{idx + 1}</td>
                 <td>
-                  <div className="avatar">
-                    <div className="w-24 rounded-full">
-                      <img src={usergetall?.image} alt="User Avatar" />
+                  <div className="avatar mx-auto">
+                    <div className="w-16 h-16 rounded-full overflow-hidden">
+                      <img src={usergetall?.image} alt="User Avatar" className="object-cover w-full h-full" />
                     </div>
                   </div>
                 </td>
@@ -166,25 +133,25 @@ const AllUser = () => {
                   {usergetall.userStatus === "active" ? (
                     <button
                       onClick={() => handleBlockUser(usergetall?._id)}
-                      className="bg-red-500 text-white rounded-lg p-2"
+                      className="bg-red-500 hover:bg-red-600 text-white font-semibold px-3 py-1 rounded-md"
                     >
-                      Block User
+                      Block
                     </button>
                   ) : (
                     <button
                       onClick={() => handleunBlockUser(usergetall?._id)}
-                      className="bg-green-500 text-white rounded-lg p-2"
+                      className="bg-green-500 hover:bg-green-600 text-white font-semibold px-3 py-1 rounded-md"
                     >
-                      Unblock User
+                      Unblock
                     </button>
                   )}
                 </td>
                 <td>
                   <button
                     onClick={() => setIsOpens(true)}
-                    className="font-Outfit px-3 py-2 bg-gray-200"
+                    className="bg-gray-200 hover:bg-gray-300 text-black font-semibold px-3 py-1 rounded-md"
                   >
-                    See Info
+                    Info
                   </button>
                   <UserDetailsModal
                     isOpens={isOpens}
@@ -195,18 +162,18 @@ const AllUser = () => {
                 <td>
                   <button
                     onClick={() => handleDownloadUserDetails(usergetall?._id)}
-                    className="bg-blue-500 text-white rounded-lg p-2"
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-1 rounded-md"
                   >
-                    Download Details
+                    Download
                   </button>
                 </td>
-                <td className="">
-                  {"role" in usergetall == true ? (
-                    <p>Admin</p>
+                <td className="whitespace-nowrap min-w-[130px]">
+                  {"role" in usergetall ? (
+                    <span className="text-green-600 font-bold">Admin</span>
                   ) : (
                     <button
                       onClick={() => handleMakeAdmin(usergetall?._id)}
-                      className="px-3 py-2  rounded-lg  bg-gray-200"
+                      className="bg-gray-300 hover:bg-gray-400 text-black font-medium text-sm px-3 py-1 rounded-md"
                     >
                       Make Admin
                     </button>
