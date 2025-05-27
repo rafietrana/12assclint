@@ -1,19 +1,15 @@
 import axios from "axios";
-// import { useState } from "react";
-import { toast } from "react-toastify";
-
-import DatePicker from "react-datepicker";
-
-import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import DatePicker from "react-datepicker";
+import { FaPlusCircle } from "react-icons/fa";
+import "react-datepicker/dist/react-datepicker.css";
 
 const AddTest = () => {
   const [startDate, setStartDate] = useState(null);
+
   const handleAddTestBtn = (e) => {
     e.preventDefault();
-    // // console.log(
-    //   "alhamdulilah add test button is now working mashallh this is veru importent"
-    // );
 
     const form = e.target;
     const testname = form.testname.value;
@@ -21,12 +17,15 @@ const AddTest = () => {
     const testprice = form.testprice.value;
     const bannerimg = form.bannerimg.value;
     const slotsnumber = form.slotsnumber.value;
-    const date = form.date.value;
 
-    const fullIsoDate = new Date(date).toISOString();
-    const localDate = new Date(date).toLocaleDateString();
-    // console.log("alhamdulillah full date formate is", fullIsoDate);
-    // console.log("date is", date);
+    if (!startDate) {
+      toast.error("Please select a date.");
+      return;
+    }
+
+    const fullIsoDate = new Date(startDate).toISOString();
+    const localDate = new Date(startDate).toLocaleDateString();
+
     const addTestData = {
       testname,
       testdetails,
@@ -38,105 +37,106 @@ const AddTest = () => {
       count: 0,
     };
 
-    // console.log("alhamdulillah add test data is ", addTestData);
-
     axios
       .post("http://localhost:5000/posttestdata", addTestData)
       .then((res) => {
-        // console.log("alhamdulillah", res);
-        if (res.status == 200) {
-          toast.success("sucessfully added data");
+        if (res.status === 200) {
+          toast.success("Successfully added test!");
+          form.reset();
+          setStartDate(null);
         }
+      })
+      .catch(() => {
+        toast.error("Failed to add test. Try again.");
       });
   };
+
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="w-9/12 ">
-        <div>
-          <p className="font-DM font-[600] text-[30px] text-center">
-            Add Test Data
-          </p>
-          <div className="border-2 p-5 ">
-            <form onSubmit={handleAddTestBtn}>
-              <div>
-                <div className="space-y-2">
-                  <label className="font-DM font-[400] text-[17px] ">
-                    Test Name
-                  </label>
-                  <input
-                    name="testname"
-                    type="text"
-                    className="w-full px-3 py-2 rounded-lg border outline-none "
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="font-DM font-[400] text-[17px] ">
-                    Test Details
-                  </label>
-                  <input
-                    name="testdetails"
-                    type="text"
-                    className="w-full px-3 py-2 rounded-lg border outline-none "
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="font-DM font-[400] text-[17px] ">
-                    Test Price
-                  </label>
-                  <input
-                    name="testprice"
-                    type="text"
-                    className="w-full px-3 py-2 rounded-lg border outline-none "
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="font-DM font-[400] text-[17px] ">
-                    Banner Image
-                  </label>
-                  <input
-                    name="bannerimg"
-                    type="text"
-                    className="w-full px-3 py-2 rounded-lg border outline-none "
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="font-DM font-[400] text-[17px] ">
-                    Slots Number
-                  </label>
-                  <input
-                    name="slotsnumber"
-                    type="text"
-                    className="w-full px-3 py-2 rounded-lg border outline-none "
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="font-DM font-[400] text-[17px] ">
-                    Select Date
-                  </label>
-                  <br />
-
-                  <DatePicker
-                    selected={startDate}
-                    name="date"
-                    className="  px-3 py-2 rounded-lg border outline-none w-full "
-                    onChange={(date) => setStartDate(date)}
-                    dateFormat="yyyy-MM-dd"
-                  />
-                </div>
-              </div>
-              <button className="bg-gradient-to-b my-5 from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  ">
-                Add Test
-              </button>
-            </form>
+    <div className="flex justify-center items-center py-10 px-4">
+      <div className="w-full max-w-3xl bg-white border rounded-xl p-6 md:p-10">
+        <form onSubmit={handleAddTestBtn} className="space-y-5">
+          {/* Test Name */}
+          <div>
+            <label className="block text-gray-700 mb-2">Test Name</label>
+            <input
+              name="testname"
+              type="text"
+              placeholder="Enter test name"
+              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+              required
+            />
           </div>
-        </div>
+
+          {/* Test Details */}
+          <div>
+            <label className="block text-gray-700 mb-2">Test Details</label>
+            <textarea
+              name="testdetails"
+              placeholder="Enter test details"
+              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400 resize-none"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+
+          {/* Test Price */}
+          <div>
+            <label className="block text-gray-700 mb-2">Test Price</label>
+            <input
+              name="testprice"
+              type="number"
+              placeholder="Enter price (e.g., 500)"
+              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+              required
+            />
+          </div>
+
+          {/* Banner Image */}
+          <div>
+            <label className="block text-gray-700 mb-2">Banner Image URL</label>
+            <input
+              name="bannerimg"
+              type="text"
+              placeholder="Enter image URL"
+              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+              required
+            />
+          </div>
+
+          {/* Slots Number */}
+          <div>
+            <label className="block text-gray-700 mb-2">Number of Slots</label>
+            <input
+              name="slotsnumber"
+              type="number"
+              placeholder="Enter total slots"
+              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+              required
+            />
+          </div>
+
+          {/* Date Picker */}
+          <div>
+            <label className="block text-gray-700 mb-2">Select Date</label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              dateFormat="yyyy-MM-dd"
+              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+              placeholderText="Select date"
+              required
+            />
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold text-lg py-3 rounded-full transition-all duration-300"
+          >
+            <FaPlusCircle className="text-xl" />
+            Add Test
+          </button>
+        </form>
       </div>
     </div>
   );

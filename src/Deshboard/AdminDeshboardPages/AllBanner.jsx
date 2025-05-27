@@ -9,82 +9,93 @@ const AllBanner = () => {
   const { user } = useAuth();
   const { data: allBannerData = [], refetch } = useQuery({
     queryKey: ["getBanner"],
-    queryFn: () =>
-      axiosSecure(`/getbanner?email=${user?.email}`).then((res) => {
-        return res.data;
-      }),
+    queryFn: () => axiosSecure(`/getbanner?email=${user?.email}`).then(res => res.data),
   });
 
-  // console.log("alhamdulillah bannerData is", allBannerData);
-
-  const handleActiveBtn = (bannerData) => {
-    // console.log("alhamdulillah is active is id is", bannerData._id);
-
-    axios
-      .put(`http://localhost:5000/updateisactive/${bannerData._id}`)
+  const handleActiveBtn = (banner) => {
+    axios.put(`http://localhost:5000/updateisactive/${banner._id}`)
       .then(() => {
-        // console.log("alhamdulillah this is", res.status);
-
-        toast.success("This is Updated");
+        toast.success("Status Updated");
         refetch();
-      });
+      })
+      .catch(() => toast.error("Update failed"));
   };
-  return (
-    <div className="fle  flex-col w-full">
-      <div>
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
-                <th></th>
 
-                <th>Banner Image</th>
-                <th>Name</th>
-                <th>Banner Title</th>
-                <th>Description</th>
-                <th>Coupon Code</th>
-                <th>Coupon Rate</th>
-                <th>IsActive</th>
+  return (
+    <div className="flex flex-col w-full p-4">
+      <div className="overflow-x-auto">
+        <table className="min-w-full border border-gray-300 rounded-lg overflow-hidden">
+          <thead className="bg-gray-200 text-gray-700">
+            <tr>
+              <th className="p-3 text-left whitespace-nowrap">#</th>
+              <th className="p-3 text-left whitespace-nowrap">Banner</th>
+              <th className="p-3 text-left whitespace-nowrap max-w-[120px]">Name</th>
+              <th className="p-3 text-left whitespace-nowrap max-w-[150px]">Title</th>
+              <th className="p-3 text-left whitespace-nowrap hidden md:table-cell max-w-[120px]">Coupon Code</th>
+              <th className="p-3 text-left whitespace-nowrap hidden md:table-cell max-w-[100px]">Coupon Rate</th>
+              <th className="p-3 text-center whitespace-nowrap">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allBannerData.length === 0 ? (
+              <tr>
+                <td colSpan={7} className="text-center p-6 text-gray-500">No Banners Found</td>
               </tr>
-            </thead>
-            <tbody>
-              {allBannerData.map((dataAllBanner, idx) => (
-                <tr key={dataAllBanner._id}>
-                  <th>{idx + 1}</th>
-                  <td>
-                    <div className="avatar">
-                      <div className="w-24 rounded">
-                        <img src={dataAllBanner.bannerimg} />
-                      </div>
-                    </div>
+            ) : (
+              allBannerData.map((banner, idx) => (
+                <tr key={banner._id} className="border-b border-gray-200 hover:bg-gray-50 transition">
+                  <td className="p-3 whitespace-nowrap">{idx + 1}</td>
+                  <td className="p-3">
+                    <img
+                      src={banner.bannerimg}
+                      alt={banner.bannername}
+                      className="w-24 h-16 object-cover rounded-md"
+                      loading="lazy"
+                    />
                   </td>
-                  <td>{dataAllBanner?.bannername}</td>
-                  <td>{dataAllBanner?.bannertitle}</td>
-                  <td className="">
-                    {dataAllBanner?.description.slice(0, 40)}....
+                  <td
+                    className="p-3 max-w-[120px] truncate"
+                    title={banner.bannername}
+                  >
+                    {banner.bannername}
                   </td>
-                  <td>{dataAllBanner?.couponcode}</td>
-                  <td>{dataAllBanner?.couponrate}</td>
-                  <td>
-                    {!dataAllBanner?.isActive ? (
+                  <td
+                    className="p-3 max-w-[150px] truncate"
+                    title={banner.bannertitle}
+                  >
+                    {banner.bannertitle}
+                  </td>
+                  <td
+                    className="p-3 hidden md:table-cell max-w-[120px] truncate"
+                    title={banner.couponcode || "-"}
+                  >
+                    {banner.couponcode || "-"}
+                  </td>
+                  <td className="p-3 hidden md:table-cell whitespace-nowrap">
+                    {banner.couponrate || "-"}
+                  </td>
+                  <td className="p-3 text-center whitespace-nowrap">
+                    {!banner.isActive ? (
                       <button
-                        onClick={() => handleActiveBtn(dataAllBanner)}
-                        className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out  "
+                        onClick={() => handleActiveBtn(banner)}
+                        className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-5 rounded-full shadow-md transition duration-300"
                       >
-                        Active Now
+                        Activate
                       </button>
                     ) : (
-                      <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                      <button
+                        disabled
+                        className="bg-blue-600 cursor-not-allowed text-white font-semibold py-2 px-5 rounded-full shadow"
+                      >
                         Activated
                       </button>
                     )}
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
