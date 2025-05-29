@@ -3,10 +3,10 @@ import { FaNoteSticky } from "react-icons/fa6";
 import { PiFlagBannerFoldFill, PiTestTubeFill } from "react-icons/pi";
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "./../Hooks/UseAdmin";
+import { AiFillBank } from "react-icons/ai";
+import { AiFillApi } from "react-icons/ai";
 
 const Deshboard = () => {
-
-
   const [data] = useAdmin();
   // console.log("data from deshboard", data);
   const admin = data?.admin;
@@ -90,16 +90,15 @@ const Deshboard = () => {
                         className="flex  items-center gap-3"
                       >
                         <span>
-                          <FaHistory />
+                          <AiFillApi />
                         </span>
                         <span>Reservation</span>
                       </Link>
                     </li>
 
-
                     <li className="py-2 px-4 font-DM font-[600] hover:bg-white hover:text-black rounded">
                       <Link
-                        to={"reservation"}
+                        to={"addBanner"}
                         className="flex  items-center gap-3"
                       >
                         <span>
@@ -109,16 +108,15 @@ const Deshboard = () => {
                       </Link>
                     </li>
 
-
                     <li className="py-2 px-4 font-DM font-[600] hover:bg-white hover:text-black rounded">
                       <Link
-                        to={"addbanner"}
+                        to={"addproduct"}
                         className="flex  items-center gap-3"
                       >
                         <span>
-                          <PiFlagBannerFoldFill />
+                          <AiFillBank />
                         </span>
-                        <span>Add Banner</span>
+                        <span>Add Product</span>
                       </Link>
                     </li>
                     <li className="py-2 px-4 font-DM font-[600] hover:bg-white hover:text-black rounded">

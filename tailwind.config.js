@@ -8,5 +8,8 @@ export default {
       Outfit: ["Outfit", "sans-serif"],
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('daisyui')
+  ],
 };

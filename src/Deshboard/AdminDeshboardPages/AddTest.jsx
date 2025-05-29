@@ -53,85 +53,87 @@ const AddTest = () => {
 
   return (
     <div className="flex justify-center items-center py-10 px-4">
-      <div className="w-full max-w-3xl bg-white border rounded-xl p-6 md:p-10">
-        <form onSubmit={handleAddTestBtn} className="space-y-5">
-          {/* Test Name */}
-          <div>
-            <label className="block text-gray-700 mb-2">Test Name</label>
-            <input
-              name="testname"
-              type="text"
-              placeholder="Enter test name"
-              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
-              required
-            />
-          </div>
+      <div className="w-full max-w-4xl bg-white border rounded-xl p-6 md:p-10">
+        <form onSubmit={handleAddTestBtn}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Test Name */}
+            <div>
+              <label className="block text-gray-700 mb-2">Test Name</label>
+              <input
+                name="testname"
+                type="text"
+                placeholder="Enter test name"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                required
+              />
+            </div>
 
-          {/* Test Details */}
-          <div>
-            <label className="block text-gray-700 mb-2">Test Details</label>
-            <textarea
-              name="testdetails"
-              placeholder="Enter test details"
-              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400 resize-none"
-              rows="3"
-              required
-            ></textarea>
-          </div>
+            {/* Test Price */}
+            <div>
+              <label className="block text-gray-700 mb-2">Test Price</label>
+              <input
+                name="testprice"
+                type="number"
+                placeholder="Enter price (e.g., 500)"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                required
+              />
+            </div>
 
-          {/* Test Price */}
-          <div>
-            <label className="block text-gray-700 mb-2">Test Price</label>
-            <input
-              name="testprice"
-              type="number"
-              placeholder="Enter price (e.g., 500)"
-              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
-              required
-            />
-          </div>
+            {/* Banner Image */}
+            <div>
+              <label className="block text-gray-700 mb-2">Banner Image URL</label>
+              <input
+                name="bannerimg"
+                type="text"
+                placeholder="Enter image URL"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                required
+              />
+            </div>
 
-          {/* Banner Image */}
-          <div>
-            <label className="block text-gray-700 mb-2">Banner Image URL</label>
-            <input
-              name="bannerimg"
-              type="text"
-              placeholder="Enter image URL"
-              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
-              required
-            />
-          </div>
+            {/* Slots Number */}
+            <div>
+              <label className="block text-gray-700 mb-2">Number of Slots</label>
+              <input
+                name="slotsnumber"
+                type="number"
+                placeholder="Enter total slots"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                required
+              />
+            </div>
 
-          {/* Slots Number */}
-          <div>
-            <label className="block text-gray-700 mb-2">Number of Slots</label>
-            <input
-              name="slotsnumber"
-              type="number"
-              placeholder="Enter total slots"
-              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
-              required
-            />
-          </div>
+            {/* Date Picker */}
+            <div>
+              <label className="block text-gray-700 mb-2">Select Date</label>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                dateFormat="yyyy-MM-dd"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                placeholderText="Select date"
+                required
+              />
+            </div>
 
-          {/* Date Picker */}
-          <div>
-            <label className="block text-gray-700 mb-2">Select Date</label>
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              dateFormat="yyyy-MM-dd"
-              className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
-              placeholderText="Select date"
-              required
-            />
+            {/* Test Details */}
+            <div className="md:col-span-2">
+              <label className="block text-gray-700 mb-2">Test Details</label>
+              <textarea
+                name="testdetails"
+                placeholder="Enter test details"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400 resize-none"
+                rows="4"
+                required
+              ></textarea>
+            </div>
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold text-lg py-3 rounded-full transition-all duration-300"
+            className="mt-8 w-full flex items-center justify-center gap-3 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold text-lg py-3 rounded-full transition-all duration-300"
           >
             <FaPlusCircle className="text-xl" />
             Add Test

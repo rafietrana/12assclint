@@ -26,6 +26,7 @@ import Blog from "../Pages/Blog/Blog";
 import ContactPage from "../Pages/ContactPage/ContactPage";
 import PrivetRoutes from "../PrivetRoutes/PrivetRoutes";
 import SingleReservation from "../Deshboard/AdminDeshboardPages/SingleReservation/SingleReservation";
+import AddProduct from "../Deshboard/AdminDeshboardPages/AddProduct/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
       {
         path: "reservation",
         element: <Reservation></Reservation>,
+      },
+      {
+        path: "addproduct",
+        element:  <AddProduct></AddProduct>,
       },
       {
         path: "addbanner",

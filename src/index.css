@@ -4,3 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.placeholder-div:empty::before {
+  content: 'Write something...';
+  color: #9ca3af; /* Tailwind's text-gray-400 */
+  position: absolute;
+  pointer-events: none;
+}
+
+
