@@ -41,6 +41,16 @@ const Navbar = () => {
           </Link>
         </li>
       )}
+      {user && (
+        <li>
+          <Link
+            to={"/products"}
+            className="font-DM font-medium text-lg text-gray-800 hover:text-blue-600 transition"
+          >
+            Products
+          </Link>
+        </li>
+      )}
 
       <li>
         <Link

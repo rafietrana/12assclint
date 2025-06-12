@@ -27,6 +27,7 @@ import ContactPage from "../Pages/ContactPage/ContactPage";
 import PrivetRoutes from "../PrivetRoutes/PrivetRoutes";
 import SingleReservation from "../Deshboard/AdminDeshboardPages/SingleReservation/SingleReservation";
 import AddProduct from "../Deshboard/AdminDeshboardPages/AddProduct/AddProduct";
+import ViewProduct from "../Component/ViewProduct/ViewProduct";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactPage></ContactPage>,
+      },
+      {
+        path: "/products",
+        element:  <ViewProduct></ViewProduct>,
       },
       {
         path: "/blog",
