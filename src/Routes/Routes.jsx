@@ -28,6 +28,7 @@ import PrivetRoutes from "../PrivetRoutes/PrivetRoutes";
 import SingleReservation from "../Deshboard/AdminDeshboardPages/SingleReservation/SingleReservation";
 import AddProduct from "../Deshboard/AdminDeshboardPages/AddProduct/AddProduct";
 import ViewProduct from "../Component/ViewProduct/ViewProduct";
+import ProductDetails from "../Component/ViewProduct/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,11 @@ const router = createBrowserRouter([
         path: "/testdetails/:id",
         element: <TestDetails></TestDetails>,
       },
+      {
+        path: "/productDetails/:id",
+        element: <ProductDetails></ProductDetails>,
+   
+      }
     ],
   },
   {

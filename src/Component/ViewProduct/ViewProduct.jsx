@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
+import Footer from "../../Shyerd/Footer/Footer";
+import { Link } from 'react-router-dom';
 
 const ViewProduct = () => {
   const [rating, setRating] = useState(5);
@@ -41,7 +43,7 @@ const ViewProduct = () => {
       </div>
 
       {/* product view section */}
-      <div className="w-11/12 mx-auto grid grid-cols-4 gap-5   my-28 ">{productData?.map((dataProduct, idx) =>(
+      <div className="w-11/12 mx-auto grid grid-cols-4 gap-5  mt-10  mb-28 ">{productData?.map((dataProduct, idx) =>(
           <div key={idx} className="border dark:border-slate-700 border-gray-300 rounded-md p-5">
         {/* product image */}
         <img
@@ -88,10 +90,10 @@ const ViewProduct = () => {
               </p>
             </div>
 
-            <button className="py-2 px-4 bg-[#0FABCA] text-white rounded-md flex items-center gap-[0.5rem] text-[0.9rem] hover:bg-[#0195af] transition-all duration-200">
+            <Link to={`/productDetails/${dataProduct?._id}`} className="py-2 px-4 bg-[#0FABCA] text-white rounded-md flex items-center gap-[0.5rem] text-[0.9rem] hover:bg-[#0195af] transition-all duration-200">
               Add to Cart
               <FaPlus />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -99,7 +101,7 @@ const ViewProduct = () => {
 
       {/* product section */}
 
-    
+        <Footer></Footer>
     </div>
   );
 };
