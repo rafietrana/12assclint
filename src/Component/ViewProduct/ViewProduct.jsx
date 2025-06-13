@@ -25,22 +25,7 @@ const ViewProduct = () => {
 
   return (
     <div>
-      {/* Banner Section */}
-      <div className="bg-[#F1F5F9] h-[300px] flex flex-col justify-center items-center text-center space-y-3">
-        <h1 className="text-4xl md:text-5xl font-semibold font-Outfit">
-          View Product
-        </h1>
-        <div className="text-sm breadcrumbs">
-          <ul className="flex space-x-2">
-            <li>
-              <a href="/" className="text-gray-600 hover:text-green-600">
-                Home
-              </a>
-            </li>
-            <li className="text-green-600 font-medium">Products</li>
-          </ul>
-        </div>
-      </div>
+
 
       {/* product view section */}
       <div className="w-11/12 mx-auto grid grid-cols-4 gap-5  mt-10  mb-28 ">{productData?.map((dataProduct, idx) =>(

@@ -29,6 +29,7 @@ import SingleReservation from "../Deshboard/AdminDeshboardPages/SingleReservatio
 import AddProduct from "../Deshboard/AdminDeshboardPages/AddProduct/AddProduct";
 import ViewProduct from "../Component/ViewProduct/ViewProduct";
 import ProductDetails from "../Component/ViewProduct/ProductDetails";
+import CheckoutPage from "../Component/CheckoutPage/CheckoutPage";
 
 const router = createBrowserRouter([
   {
@@ -49,11 +50,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        element:  <ViewProduct></ViewProduct>,
+        element: <ViewProduct></ViewProduct>,
       },
       {
         path: "/blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "/checkouts",
+        element: <CheckoutPage></CheckoutPage>
       },
       {
         path: "/singup",
@@ -79,8 +84,9 @@ const router = createBrowserRouter([
       {
         path: "/productDetails/:id",
         element: <ProductDetails></ProductDetails>,
-   
-      }
+        loader: ({params}) =>
+          fetch(`http://localhost:5000/getOneProduct/${params?.id}`),
+      },
     ],
   },
   {
@@ -126,7 +132,7 @@ const router = createBrowserRouter([
       },
       {
         path: "addproduct",
-        element:  <AddProduct></AddProduct>,
+        element: <AddProduct></AddProduct>,
       },
       {
         path: "addbanner",
