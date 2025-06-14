@@ -2,12 +2,13 @@ import { Link, useLoaderData } from "react-router-dom";
 import Footer from "../../Shyerd/Footer/Footer";
 import { Button } from "@headlessui/react";
 import {FiMinus, FiPlus} from "react-icons/fi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from './../../Hooks/useAuth';
+import { saveToLocalStorage } from "../Utilitis/LocalStorageUtil";
 
 const ProductDetails = () => {
   const productData = useLoaderData();
-  const {getFinalPayment, FinalPayment} = useAuth();
+  const {getFinalPayment } = useAuth();
   console.log("alhamdulilllah one product data is ", productData);
   const {
     medicineName,
@@ -39,14 +40,24 @@ const ProductDetails = () => {
     const handleInputChange = (e) =>{
      setCountValue(Number(e.target.value))
     }
-    // FinalPayment Price
-      const finalPaymenPrice = countValue * price;
-      getFinalPayment(finalPaymenPrice);
+  // FinalPayment Price
+      const finalPaymentPrice = countValue * price;
+      
+        // store this finalPayment and FinalPaymentNumber on Localstoreage
+        saveToLocalStorage("totalmony", finalPaymentPrice),
+          saveToLocalStorage("productnumber",  countValue);
+
+
+      useEffect(()=>{
+    getFinalPayment(finalPaymentPrice, countValue);
+      },[finalPaymentPrice, getFinalPayment, countValue])
+  
 
 
 
 
-      console.log('alhamdulillah Final Payment is from context', FinalPayment);
+ 
+      
       
      
     

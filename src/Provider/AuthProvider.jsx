@@ -9,6 +9,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import auth from "../Firebase/Firebase";
+ 
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -35,12 +36,13 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-
-const  [FinalPayment, setFinalPayment]  = useState(0)
+  const [FinalPayment, setFinalPayment] = useState(0);
+  const [FinalPaymentNumber, setFinalPaymentNumber] = useState(0);
   // getFinalProduct Payment
-  const getFinalPayment  = (dollar) =>{
-       setFinalPayment(dollar)
-  }
+  const getFinalPayment = (dollar, number) => {
+    setFinalPayment(dollar);
+    setFinalPaymentNumber(number);
+  };
 
 
   useEffect(() => {
@@ -70,6 +72,7 @@ const  [FinalPayment, setFinalPayment]  = useState(0)
     updateUserProfile,
     getFinalPayment,
     FinalPayment,
+    FinalPaymentNumber,
     loading,
     logout,
     user,

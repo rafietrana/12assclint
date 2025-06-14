@@ -11,9 +11,20 @@ import Select from "./Select.jsx";
 import Footer from "../../Shyerd/Footer/Footer.jsx";
 import { useLoaderData } from "react-router-dom";
 
+import { getFromLocalStorage } from "../Utilitis/LocalStorageUtil.js";
+
 const CheckoutPage = () => {
   const [selectedPayment, setSelectedPayment] = useState("credit-card");
   const [isChecked, setIsChecked] = useState(false);
+
+  const localStoreageFinalPayment = getFromLocalStorage("totalmony");
+  const localStoreageFinalPaymentNumber = getFromLocalStorage("productnumber");
+
+  console.log(
+    "alhamdulillah localstoreage data is",
+    localStoreageFinalPayment,
+    localStoreageFinalPaymentNumber
+  );
 
   const handleCheckboxChange = (event) => {
     if (event.target.checked) {
@@ -23,20 +34,20 @@ const CheckoutPage = () => {
     }
   };
 
-    const productDatas = useLoaderData();
- 
-    // const {
-    //   medicineName,
-    //   brand,
-    //   price,
-    //   category,
-    //   stock,
-    //   _id,
-    //   imageUrl,
-    //   description,
-    // } = productDatas;
-  
-    console.log("alhamdulillah productDatas is from checkoutpage", productDatas);
+  const productDatas = useLoaderData();
+
+  const {
+    medicineName,
+    // brand,
+    // price,
+    // category,
+    // stock,
+    // _id,
+    imageUrl,
+    // description,
+  } = productDatas;
+
+  console.log("alhamdulillah productDatas is from checkoutpage", productDatas);
 
   return (
     <div>
@@ -263,6 +274,7 @@ const CheckoutPage = () => {
                   Ship to a different address
                 </span>
               </label>
+              -
             </div>
           </div>
 
@@ -413,20 +425,22 @@ const CheckoutPage = () => {
               <div className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
                   <img
-                    src="https://i.ibb.co.com/F0bn52F/Image-25.png"
+                    src={imageUrl}
                     alt="product/image"
                     className="w-[50px] h-[50px] object-cover"
                   />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm dark:text-[#abc2d3] font-medium text-gray-900 line-clamp-1">
-                    Wired Over-Ear Gaming Headphones with U
+                    {medicineName}
                   </p>
                   <div className="flex items-center gap-[5px] mt-0.5">
                     <p className="text-sm text-gray-500 dark:text-slate-400">
-                      1 x{" "}
+                      {localStoreageFinalPaymentNumber} x{" "}
                     </p>
-                    <p className="text-sm text-[#0FABCA] font-[600]">$100</p>
+                    <p className="text-sm text-[#0FABCA] font-[600]">
+                      ${localStoreageFinalPayment}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -437,7 +451,7 @@ const CheckoutPage = () => {
                     Sub-total
                   </span>
                   <span className="font-medium text-gray-800 dark:text-[#abc2d3]">
-                    $670
+                    ${localStoreageFinalPayment}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
@@ -451,13 +465,13 @@ const CheckoutPage = () => {
                     Discount
                   </span>
                   <span className="font-medium text-gray-800 dark:text-[#abc2d3]">
-                    $20
+                    $0
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600 dark:text-[#abc2d3]">Tax</span>
                   <span className="font-medium text-gray-800 dark:text-[#abc2d3]">
-                    $650
+                    $0
                   </span>
                 </div>
               </div>
