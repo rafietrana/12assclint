@@ -76,7 +76,7 @@ const ViewProduct = () => {
             </div>
 
             <Link to={`/productDetails/${dataProduct?._id}`} className="py-2 px-4 bg-[#0FABCA] text-white rounded-md flex items-center gap-[0.5rem] text-[0.9rem] hover:bg-[#0195af] transition-all duration-200">
-              Add to Cart
+              Buy Now
               <FaPlus />
             </Link>
           </div>

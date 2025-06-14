@@ -56,10 +56,7 @@ const router = createBrowserRouter([
         path: "/blog",
         element: <Blog></Blog>,
       },
-      {
-        path: "/checkouts",
-        element: <CheckoutPage></CheckoutPage>
-      },
+ 
       {
         path: "/singup",
         element: <Singup></Singup>,
@@ -81,6 +78,14 @@ const router = createBrowserRouter([
         path: "/testdetails/:id",
         element: <TestDetails></TestDetails>,
       },
+      {
+       path: "/checkoutPage/:id",
+       element: <CheckoutPage></CheckoutPage>,
+            loader: ({params}) =>
+          fetch(`http://localhost:5000/getOneProduct/${params?.id}`),
+      },
+
+ 
       {
         path: "/productDetails/:id",
         element: <ProductDetails></ProductDetails>,

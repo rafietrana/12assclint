@@ -183,7 +183,7 @@ const Navbar = () => {
                 <>
                   <button
                     onClick={handleLogoutBtn}
-                    className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+                    className="bg-gradient-to-b hidden md:block from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out"
                   >
                     Logout
                   </button>
@@ -191,7 +191,7 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link to={"/login"}>
-                    <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                    <button className="bg-gradient-to-b hidden md:block from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">
                       Login
                     </button>
                   </Link>

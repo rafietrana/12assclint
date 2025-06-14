@@ -35,6 +35,14 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+
+const  [FinalPayment, setFinalPayment]  = useState(0)
+  // getFinalProduct Payment
+  const getFinalPayment  = (dollar) =>{
+       setFinalPayment(dollar)
+  }
+
+
   useEffect(() => {
     setLoading(true);
     const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
@@ -60,6 +68,8 @@ const AuthProvider = ({ children }) => {
     singUpUser,
     loginUser,
     updateUserProfile,
+    getFinalPayment,
+    FinalPayment,
     loading,
     logout,
     user,
