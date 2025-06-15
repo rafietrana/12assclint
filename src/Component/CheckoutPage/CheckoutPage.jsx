@@ -23,6 +23,7 @@ const CheckoutPage = () => {
 
 
 const [countrySelectValue, setCountrySelectValue] = useState("");
+   console.log("alhamdulillah user selected value is form parant component:", countrySelectValue);
   
 
 
@@ -63,7 +64,7 @@ const [countrySelectValue, setCountrySelectValue] = useState("");
 
   const handleSelectChange = (value) => {
     setCountrySelectValue(value);    
-    console.log("alhamdulillah user selected value is form parant component:", value);
+ 
   };
  
 
