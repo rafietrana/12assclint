@@ -20,6 +20,12 @@ const CheckoutPage = () => {
   const localStoreageFinalPayment = getFromLocalStorage("totalmony");
   const localStoreageFinalPaymentNumber = getFromLocalStorage("productnumber");
 
+
+
+const [countrySelectValue, setCountrySelectValue] = useState("");
+  
+
+
   console.log(
     "alhamdulillah localstoreage data is",
     localStoreageFinalPayment,
@@ -47,7 +53,19 @@ const CheckoutPage = () => {
     // description,
   } = productDatas;
 
-  console.log("alhamdulillah productDatas is from checkoutpage", productDatas);
+ const handleFormSubmitButton = (e) =>{
+ e.preventDefault();
+ 
+ 
+ 
+ 
+ }
+
+  const handleSelectChange = (value) => {
+    setCountrySelectValue(value);    
+    console.log("alhamdulillah user selected value is form parant component:", value);
+  };
+ 
 
   return (
     <div>
@@ -67,10 +85,11 @@ const CheckoutPage = () => {
           </ul>
         </div>
       </div>
-
+   <form onSubmit={handleFormSubmitButton} action="">
       <div className="grid mt-10 mb-28 gap-8 grid-cols-1 w-10/12 mx-auto md:grid-cols-3  ">
         {/* Billing and Payment Form */}
         <div className="md:col-span-2 space-y-8 w-full">
+ 
           {/* Billing Information */}
           <div className="w-full">
             <h2 className="text-[1.5rem] dark:text-[#abc2d3] font-medium text-gray-700 mb-6">
@@ -90,6 +109,7 @@ const CheckoutPage = () => {
                     placeholder="First name"
                     type="text"
                     id="firstName"
+                    name="firstName"
                     className={`${globalStyles.inputStyles}`}
                   />
                 </div>
@@ -104,6 +124,7 @@ const CheckoutPage = () => {
                     placeholder="Last name"
                     type="text"
                     id="lastName"
+                    name="lastName"
                     className={`${globalStyles.inputStyles}`}
                   />
                 </div>
@@ -111,6 +132,7 @@ const CheckoutPage = () => {
               <div className="sm:col-span-2">
                 <label
                   htmlFor="company"
+                  
                   className={`${globalStyles.labelStyles}`}
                 >
                   Company Name (Optional)
@@ -119,6 +141,7 @@ const CheckoutPage = () => {
                   placeholder="Company name"
                   type="text"
                   id="company"
+                  name="company"
                   className={`${globalStyles.inputStyles}`}
                 />
               </div>
@@ -131,6 +154,7 @@ const CheckoutPage = () => {
                 </label>
                 <input
                   placeholder="Address"
+                  name="Address"
                   type="text"
                   id="address"
                   className={`${globalStyles.inputStyles}`}
@@ -144,8 +168,9 @@ const CheckoutPage = () => {
                     className={`${globalStyles.labelStyles}`}
                   >
                     Country
+                    
                   </label>
-                  <Select items={countries} />
+                  <Select  onChange={handleSelectChange}    items={countries} />
                 </div>
                 <div className="w-full md:w-[50%]">
                   <label
@@ -393,7 +418,13 @@ const CheckoutPage = () => {
               />
             </div>
           </div>
+          <input type="submit" />
+   
+
         </div>
+
+
+        
 
         {/* Order Summary */}
         <div className="w-full">
@@ -402,26 +433,7 @@ const CheckoutPage = () => {
               Order Summary
             </h2>
             <div className="space-y-4">
-              {/* <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  <img
-                    src="https://i.ibb.co.com/VNM4dX6/Image-24.png"
-                    alt="product/image"
-                    className="w-[50px] h-[50px] object-cover"
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm dark:text-[#abc2d3] font-medium text-gray-900 line-clamp-1">
-                    Canon EOS 1500D DSLR Camera Body+ 18
-                  </p>
-                  <div className="flex items-center gap-[5px] mt-0.5">
-                    <p className="text-sm text-gray-500 dark:text-slate-400">
-                      2 x{" "}
-                    </p>
-                    <p className="text-sm text-[#0FABCA] font-[600]">$570</p>
-                  </div>
-                </div>
-              </div> */}
+      
               <div className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
                   <img
@@ -490,10 +502,13 @@ const CheckoutPage = () => {
               <button className="w-full bg-[#0FABCA] text-white py-3 px-4 rounded-lg hover:bg-[#0FABCA]/90 transition-colors">
                 PLACE ORDER
               </button>
+              
             </div>
           </div>
         </div>
       </div>
+   </form>
+
 
       <Footer></Footer>
     </div>

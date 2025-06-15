@@ -3,7 +3,7 @@ import   {useState} from "react";
 // react icons
 import {IoChevronDown} from "react-icons/io5";
 
-const Select = ({items}) => {
+const Select = ({items, onChange}) => {
 
     // close the dropdown is clicked outside
     document.addEventListener("click", function (event) {
@@ -16,14 +16,22 @@ const Select = ({items}) => {
 
     // actions
     const [isActive, setIsActive] = useState(false);
-    const [content, setContent] = useState("Select");
+    const [content, setContent] = useState("Select Option");
+
+
+
+    const handleSelect =(value) =>{
+         setContent(value);
+         onChange(value);
+         setIsActive(false)
+    }
 
     return (
         <button
             className="bg-[#fff] border dark:border-slate-700 dark:bg-slate-900 border-gray-200 rounded-md mt-1 justify-between px-3 py-2 flex items-center gap-8  relative cursor-pointer dropdown w-full"
             onClick={() => setIsActive(!isActive)}
         >
-            <p className={`${content === "Select" ? "text-gray-400 dark:text-slate-500": "dark:text-[#abc2d3]"}`}>{content}</p>
+            <p className={`${content === "Select Option" ? "text-gray-400 dark:text-slate-500": "dark:text-[#abc2d3]"}`}>{content}</p>
             <IoChevronDown
                 className={`${
                     isActive ? " rotate-[180deg]" : " rotate-0"
@@ -38,13 +46,15 @@ const Select = ({items}) => {
                 }}
             >
                 {items?.map((option, index) => (
-                    <p
+                    <option
                         className="py-2 px-4 text-left text-gray-800 dark:text-[#abc2d3] dark:hover:bg-slate-900/50 hover:bg-gray-50 transition-all duration-200"
                         key={index}
-                        onClick={(e) => setContent(e.target.textContent)}
+                   
+                        value={option}
+                        onClick={()=> handleSelect(option)}
                     >
                         {option}
-                    </p>
+                    </option>
                 ))}
             </div>
         </button>
@@ -52,4 +62,3 @@ const Select = ({items}) => {
 };
 
 export default Select;
-
