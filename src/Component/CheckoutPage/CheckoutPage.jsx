@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {   useState } from "react";
 
 // data
 import { countries, regions, cities } from "./Data.js";
@@ -24,6 +24,22 @@ const CheckoutPage = () => {
   const [regionsSelectedValue, setRegionsSelectedValue] = useState("");
   const [citiesSelectedValue, setCitiesSelectedValue] = useState("");
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const shippingPayment  = isChecked ? 70 : 0;
+
+  const finalStripeAddPayemnt = shippingPayment   + localStoreageFinalPayment;
  
 
   const handleCheckboxChange = (event) => {
@@ -61,6 +77,14 @@ const CheckoutPage = () => {
     const email = forms.email.value;
     const phoneNumber = forms.phoneNumber.value;
     const shipToDifferentAddress = isChecked;
+    const cardName = forms.cardName.value;
+    const cardNumber = forms.cardNumber.value;
+    const expireDate = forms.expire.value;
+    const cvc = forms.cvs.value;
+    const additionalInformation = forms.additionalInformation.value;
+    
+
+ 
 
     const clintInformationData = {
       firstName,
@@ -78,6 +102,12 @@ const CheckoutPage = () => {
       regionsSelectedValue,
       citiesSelectedValue,
       selectedPayment,
+      cardName,
+      cardNumber,
+      expireDate,
+      cvc,
+      additionalInformation,
+ 
     };
     console.log("alhamdulillah clint information is ", clintInformationData);
   };
@@ -192,8 +222,12 @@ const CheckoutPage = () => {
                     >
                       Country
                     </label>
-                    
-                    <Select type="submit" onChange={handleSelectChange} items={countries} />
+
+                    <Select
+                      type="submit"
+                      onChange={handleSelectChange}
+                      items={countries}
+                    />
                   </div>
                   <div className="w-full md:w-[50%]">
                     <label
@@ -202,7 +236,11 @@ const CheckoutPage = () => {
                     >
                       Region/State
                     </label>
-                    <Select type="button" onChange={handleSelectChange} items={regions} />
+                    <Select
+                      type="button"
+                      onChange={handleSelectChange}
+                      items={regions}
+                    />
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-4 w-full">
@@ -213,7 +251,11 @@ const CheckoutPage = () => {
                     >
                       City
                     </label>
-                    <Select type="button" onChange={handleSelectChange} items={cities} />
+                    <Select
+                      type="button"
+                      onChange={handleSelectChange}
+                      items={cities}
+                    />
                   </div>
                   <div className="w-full md:w-[50%]">
                     <label
@@ -336,7 +378,7 @@ const CheckoutPage = () => {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-5">
                 <button
-                type="button"
+                  type="button"
                   onClick={() => setSelectedPayment("cash")}
                   className={`flex flex-col items-center justify-center p-4 border rounded-lg ${
                     selectedPayment === "cash"
@@ -350,7 +392,7 @@ const CheckoutPage = () => {
                   </span>
                 </button>
                 <button
-                type="button"
+                  type="button"
                   onClick={() => setSelectedPayment("credit-card")}
                   className={`flex flex-col items-center justify-center p-4 border rounded-lg ${
                     selectedPayment === "credit-card"
@@ -376,6 +418,7 @@ const CheckoutPage = () => {
                     </label>
                     <input
                       placeholder="Name on card"
+                      name="cardName"
                       type="text"
                       id="cardName"
                       className={`${globalStyles.inputStyles}`}
@@ -390,6 +433,7 @@ const CheckoutPage = () => {
                     </label>
                     <input
                       placeholder="Card number"
+                      name="cardNumber"
                       type="text"
                       id="cardNumber"
                       className={`${globalStyles.inputStyles}`}
@@ -405,6 +449,7 @@ const CheckoutPage = () => {
                       </label>
                       <input
                         type="text"
+                        name="expire"
                         id="expireDate"
                         placeholder="MM/YY"
                         className={`${globalStyles.inputStyles}`}
@@ -420,6 +465,7 @@ const CheckoutPage = () => {
                       <input
                         placeholder="CVC"
                         type="text"
+                        name="cvs"
                         id="cvc"
                         className={`${globalStyles.inputStyles}`}
                       />
@@ -444,6 +490,7 @@ const CheckoutPage = () => {
                 <textarea
                   id="notes"
                   rows={4}
+                  name="additionalInformation"
                   placeholder="Notes about your order e.g. special notes for delivery"
                   className={`${globalStyles.inputStyles} py-3`}
                 />
@@ -494,7 +541,9 @@ const CheckoutPage = () => {
                     <span className="text-gray-600 dark:text-[#abc2d3]">
                       Shipping
                     </span>
-                    <span className="font-medium text-green-500">Free</span>
+                    <span className="font-medium text-green-500">
+                      {isChecked == true ? <span>$70</span> : "Free"}
+                    </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600 dark:text-[#abc2d3]">
@@ -520,7 +569,7 @@ const CheckoutPage = () => {
                       Total
                     </span>
                     <span className="text-base font-medium dark:text-[#abc2d3] text-gray-800">
-                      $357.99 USD
+                      ${finalStripeAddPayemnt   }USD
                     </span>
                   </div>
                 </div>
