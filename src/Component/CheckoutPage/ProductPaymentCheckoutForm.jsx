@@ -1,15 +1,15 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { globalStyles } from "./GlobalStyles";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 
-const ProductPaymentCheckoutForm = () => {
+const ProductPaymentCheckoutForm = forwardRef((props, ref) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [name, setName]  = useState("")
+  const [name, setName] = useState("");
+
   const handleProductPayment = async () => {
     if (!stripe || !elements) return;
-
 
     const cardElement = elements.getElement(CardElement);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -21,28 +21,36 @@ const ProductPaymentCheckoutForm = () => {
     });
 
     if (error) {
-      toast.error(error);
-      console.log("goted error after  createdPaymentMethod ");
+      toast.error(error.message); // error.message ব্যবহার করো
+      console.log("Got error after createPaymentMethod");
     } else {
-      toast.success("alhamdulillah sucessfully payment method create");
-      console.log("alhamdulillah payment method is ", paymentMethod);
+      toast.success("Alhamdulillah! Successfully created payment method");
+      console.log("Payment method is:", paymentMethod);
     }
   };
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      runPayment: handleProductPayment,
+    }),
+    [stripe, elements, name]
+  );
+
   return (
-    <div className=" px-5 pb-5 space-y-[16px]">
+    <div className="px-5 pb-5 space-y-[16px]">
       <div>
-        <label htmlFor="cardName" className={`${globalStyles.labelStyles}`}>
+        <label htmlFor="cardName" className={globalStyles.labelStyles}>
           Name on Card
         </label>
-
         <input
           required
           placeholder="Name on card"
           name="cardNames"
           type="text"
-          onChange={(e)=>setName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
           id="cardName"
-          className={`${globalStyles.inputStyles}`}
+          className={globalStyles.inputStyles}
         />
       </div>
 
@@ -52,14 +60,9 @@ const ProductPaymentCheckoutForm = () => {
           <CardElement options={{ hidePostalCode: true }} />
         </div>
       </div>
-      <button
-        onClick={handleProductPayment}
-        className="w-full bg-[#0FABCA] text-white py-3 px-4 rounded-lg hover:bg-[#0FABCA]/90 transition-colors"
-      >
-        PLACE ORDER
-      </button>
     </div>
   );
-};
+});
 
+ProductPaymentCheckoutForm.displayName = ProductPaymentCheckoutForm;
 export default ProductPaymentCheckoutForm;

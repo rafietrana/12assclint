@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 // data
 import { countries, regions, cities } from "./Data.js";
@@ -35,6 +35,17 @@ const CheckoutPage = () => {
   const shippingPayment = isChecked ? 70 : 0;
 
   const finalStripeAddPayemnt = shippingPayment + localStoreageFinalPayment;
+
+
+
+  const formRef = useRef(null);
+
+
+  const handlePlaceOrder = () =>{
+    if(formRef.current){
+      formRef.current.runPayment();
+    }
+  }
 
   const handleCheckboxChange = (event) => {
     if (event.target.checked) {
@@ -74,6 +85,10 @@ const CheckoutPage = () => {
     const cardName = forms.cardName.value;
 
     const additionalInformation = forms.additionalInformation.value;
+
+
+
+ 
     
 
  
@@ -428,7 +443,7 @@ const CheckoutPage = () => {
               {selectedPayment === "credit-card" && (
                 <div className=" px-5 pb-5 space-y-[16px]">
                   <Elements stripe={stripePromise}>
-                    <ProductPaymentCheckoutForm />
+                    <ProductPaymentCheckoutForm  ref={formRef}  />
                   </Elements>
                 </div>
               )}
@@ -532,6 +547,12 @@ const CheckoutPage = () => {
                     </span>
                   </div>
                 </div>
+                      <button
+        onClick={handlePlaceOrder}
+        className="w-full bg-[#0FABCA] text-white py-3 px-4 rounded-lg hover:bg-[#0FABCA]/90 transition-colors"
+      >
+        PLACE ORDER
+      </button>
               </div>
             </div>
           </div>
