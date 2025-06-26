@@ -1,4 +1,4 @@
-import {   useState } from "react";
+import { useState } from "react";
 
 // data
 import { countries, regions, cities } from "./Data.js";
@@ -12,6 +12,10 @@ import Footer from "../../Shyerd/Footer/Footer.jsx";
 import { useLoaderData } from "react-router-dom";
 
 import { getFromLocalStorage } from "../Utilitis/LocalStorageUtil.js";
+import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import ProductPaymentCheckoutForm from "./ProductPaymentCheckoutForm.jsx";
 
 const CheckoutPage = () => {
   const [selectedPayment, setSelectedPayment] = useState("credit-card");
@@ -23,24 +27,14 @@ const CheckoutPage = () => {
   const [countrySelectValue, setCountrySelectValue] = useState("");
   const [regionsSelectedValue, setRegionsSelectedValue] = useState("");
   const [citiesSelectedValue, setCitiesSelectedValue] = useState("");
+  const [checkoutPageClintSecrect, setCheckoutPageClintSecret] =
+    useState("null");
+  console.log(checkoutPageClintSecrect);
+  const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
+  const shippingPayment = isChecked ? 70 : 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-  const shippingPayment  = isChecked ? 70 : 0;
-
-  const finalStripeAddPayemnt = shippingPayment   + localStoreageFinalPayment;
- 
+  const finalStripeAddPayemnt = shippingPayment + localStoreageFinalPayment;
 
   const handleCheckboxChange = (event) => {
     if (event.target.checked) {
@@ -63,7 +57,7 @@ const CheckoutPage = () => {
     // description,
   } = productDatas;
 
-  const handleFormSubmitButton = (e) => {
+  const handleFormSubmitButton = async (e) => {
     e.preventDefault();
     const forms = e.target;
     const firstName = forms.firstName.value;
@@ -78,9 +72,7 @@ const CheckoutPage = () => {
     const phoneNumber = forms.phoneNumber.value;
     const shipToDifferentAddress = isChecked;
     const cardName = forms.cardName.value;
-    const cardNumber = forms.cardNumber.value;
-    const expireDate = forms.expire.value;
-    const cvc = forms.cvs.value;
+
     const additionalInformation = forms.additionalInformation.value;
     
 
@@ -103,13 +95,23 @@ const CheckoutPage = () => {
       citiesSelectedValue,
       selectedPayment,
       cardName,
-      cardNumber,
-      expireDate,
-      cvc,
+ 
       additionalInformation,
  
     };
     console.log("alhamdulillah clint information is ", clintInformationData);
+
+    // stripe functionality
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/create-payment-intent",
+        finalStripeAddPayemnt
+      );
+      setCheckoutPageClintSecret(data.clientSecret);
+    } catch (error) {
+      console.error("so sadly we have got error error is", error);
+    }
   };
   // get select value from child component
   const handleSelectChange = (value) => {
@@ -160,6 +162,7 @@ const CheckoutPage = () => {
                       First name
                     </label>
                     <input
+                      required
                       placeholder="First name"
                       type="text"
                       id="firstName"
@@ -175,6 +178,7 @@ const CheckoutPage = () => {
                       Last name
                     </label>
                     <input
+                      required
                       placeholder="Last name"
                       type="text"
                       id="lastName"
@@ -190,7 +194,9 @@ const CheckoutPage = () => {
                   >
                     Company Name (Optional)
                   </label>
+
                   <input
+                    required
                     placeholder="Company name"
                     type="text"
                     id="company"
@@ -205,7 +211,9 @@ const CheckoutPage = () => {
                   >
                     Address
                   </label>
+
                   <input
+                    required
                     placeholder="Address"
                     name="Address"
                     type="text"
@@ -224,6 +232,7 @@ const CheckoutPage = () => {
                     </label>
 
                     <Select
+                      required
                       type="submit"
                       onChange={handleSelectChange}
                       items={countries}
@@ -237,6 +246,7 @@ const CheckoutPage = () => {
                       Region/State
                     </label>
                     <Select
+                      required
                       type="button"
                       onChange={handleSelectChange}
                       items={regions}
@@ -252,6 +262,7 @@ const CheckoutPage = () => {
                       City
                     </label>
                     <Select
+                      required
                       type="button"
                       onChange={handleSelectChange}
                       items={cities}
@@ -264,7 +275,9 @@ const CheckoutPage = () => {
                     >
                       Zip Code
                     </label>
+
                     <input
+                      required
                       placeholder="Zip code"
                       type="text"
                       id="zipCode"
@@ -282,7 +295,9 @@ const CheckoutPage = () => {
                     >
                       Email
                     </label>
+
                     <input
+                      required
                       placeholder="Email address"
                       type="email"
                       id="email"
@@ -297,7 +312,9 @@ const CheckoutPage = () => {
                     >
                       Phone Number
                     </label>
+
                     <input
+                      required
                       placeholder="Phone number"
                       type="tel"
                       id="phone"
@@ -310,6 +327,7 @@ const CheckoutPage = () => {
               <div className="mt-4">
                 <label className="flex items-center gap-[10px] cursor-pointer">
                   <input
+                    required
                     type="checkbox"
                     className="hidden"
                     onChange={handleCheckboxChange}
@@ -409,68 +427,9 @@ const CheckoutPage = () => {
 
               {selectedPayment === "credit-card" && (
                 <div className=" px-5 pb-5 space-y-[16px]">
-                  <div>
-                    <label
-                      htmlFor="cardName"
-                      className={`${globalStyles.labelStyles}`}
-                    >
-                      Name on Card
-                    </label>
-                    <input
-                      placeholder="Name on card"
-                      name="cardName"
-                      type="text"
-                      id="cardName"
-                      className={`${globalStyles.inputStyles}`}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="cardNumber"
-                      className={`${globalStyles.labelStyles}`}
-                    >
-                      Card Number
-                    </label>
-                    <input
-                      placeholder="Card number"
-                      name="cardNumber"
-                      type="text"
-                      id="cardNumber"
-                      className={`${globalStyles.inputStyles}`}
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="expireDate"
-                        className={`${globalStyles.labelStyles}`}
-                      >
-                        Expire Date
-                      </label>
-                      <input
-                        type="text"
-                        name="expire"
-                        id="expireDate"
-                        placeholder="MM/YY"
-                        className={`${globalStyles.inputStyles}`}
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="cvc"
-                        className={`${globalStyles.labelStyles}`}
-                      >
-                        CVC
-                      </label>
-                      <input
-                        placeholder="CVC"
-                        type="text"
-                        name="cvs"
-                        id="cvc"
-                        className={`${globalStyles.inputStyles}`}
-                      />
-                    </div>
-                  </div>
+                  <Elements stripe={stripePromise}>
+                    <ProductPaymentCheckoutForm />
+                  </Elements>
                 </div>
               )}
             </div>
@@ -569,14 +528,10 @@ const CheckoutPage = () => {
                       Total
                     </span>
                     <span className="text-base font-medium dark:text-[#abc2d3] text-gray-800">
-                      ${finalStripeAddPayemnt   }USD
+                      ${finalStripeAddPayemnt}USD
                     </span>
                   </div>
                 </div>
-
-                <button className="w-full bg-[#0FABCA] text-white py-3 px-4 rounded-lg hover:bg-[#0FABCA]/90 transition-colors">
-                  PLACE ORDER
-                </button>
               </div>
             </div>
           </div>

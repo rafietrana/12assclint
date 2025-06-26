@@ -21,6 +21,7 @@ const TestDetails = () => {
 
   return (
     <div className="font-Outfit">
+    
       {/* Banner Section */}
       <div className="bg-[#F1F5F9] h-[300px] flex flex-col justify-center items-center text-center space-y-3">
         <h1 className="text-4xl md:text-5xl font-semibold">Test Details</h1>
