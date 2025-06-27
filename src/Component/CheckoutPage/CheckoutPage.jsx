@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { AiOutlineLoading } from "react-icons/ai";
 
 // data
 import { countries, regions, cities } from "./Data.js";
@@ -35,6 +36,8 @@ const CheckoutPage = () => {
   const shippingPayment = isChecked ? 70 : 0;
 
   const finalStripeAddPayemnt = shippingPayment + localStoreageFinalPayment;
+  const [isProcassing, setIsProcassing] = useState(false);
+  const [isSusessed, setIsSucessed] = useState(false)
 
 
 
@@ -68,6 +71,22 @@ const CheckoutPage = () => {
     // description,
   } = productDatas;
 
+
+
+
+
+
+console.log('alhamdulillah sucess value is', isSusessed);
+
+if(isSusessed){
+  window.location.reload();
+}
+
+
+
+
+  
+
   const handleFormSubmitButton = async (e) => {
     e.preventDefault();
     const forms = e.target;
@@ -85,6 +104,12 @@ const CheckoutPage = () => {
     const cardName = forms.cardName.value;
 
     const additionalInformation = forms.additionalInformation.value;
+
+
+
+ 
+    
+
 
 
 
@@ -137,6 +162,10 @@ const CheckoutPage = () => {
     } else if (cities.includes(value)) {
       setCitiesSelectedValue(value);
     }
+
+
+
+ 
   };
 
   return (
@@ -443,7 +472,11 @@ const CheckoutPage = () => {
               {selectedPayment === "credit-card" && (
                 <div className=" px-5 pb-5 space-y-[16px]">
                   <Elements stripe={stripePromise}>
-                    <ProductPaymentCheckoutForm  ref={formRef}  />
+                    <ProductPaymentCheckoutForm 
+                     ref={formRef} 
+                     onProcassingChange={setIsProcassing}
+                     onSucessCheck={setIsSucessed}
+                     />
                   </Elements>
                 </div>
               )}
@@ -547,12 +580,19 @@ const CheckoutPage = () => {
                     </span>
                   </div>
                 </div>
-                      <button
-        onClick={handlePlaceOrder}
-        className="w-full bg-[#0FABCA] text-white py-3 px-4 rounded-lg hover:bg-[#0FABCA]/90 transition-colors"
-      >
-        PLACE ORDER
-      </button>
+      <button
+  onClick={handlePlaceOrder}
+  className="w-full bg-[#0FABCA] text-white py-3 px-4 rounded-lg hover:bg-[#0FABCA]/90 transition-colors outline-none"
+>
+  <span className="flex items-center justify-center gap-2">
+    {isProcassing && (
+      <span className="animate-spin text-lg">
+        <AiOutlineLoading />
+      </span>
+    )}
+    PLACE ORDER
+  </span>
+</button>
               </div>
             </div>
           </div>
