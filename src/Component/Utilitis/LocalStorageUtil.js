@@ -14,6 +14,7 @@ export function saveToLocalStorage(key, value) {
 
 
 export function getFromLocalStorage(key){
+
    try{
    const storedValue = localStorage.getItem(key);
    return storedValue ? JSON.parse(storedValue) : null

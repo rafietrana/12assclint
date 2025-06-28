@@ -19,7 +19,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import ProductPaymentCheckoutForm from "./ProductPaymentCheckoutForm.jsx";
 
 const CheckoutPage = () => {
-  const [selectedPayment, setSelectedPayment] = useState("credit-card");
+
   const [isChecked, setIsChecked] = useState(false);
 
   const localStoreageFinalPayment = getFromLocalStorage("totalmony");
@@ -37,7 +37,14 @@ const CheckoutPage = () => {
 
   const finalStripeAddPayemnt = shippingPayment + localStoreageFinalPayment;
   const [isProcassing, setIsProcassing] = useState(false);
-  const [isSusessed, setIsSucessed] = useState(false)
+  const [isSusessed, setIsSucessed] = useState(false);
+
+
+
+  const  checkoutPageData = useLoaderData();
+
+  console.log('alhamdulillah data is from checkouotPage', checkoutPageData);
+  
 
 
 
@@ -101,9 +108,9 @@ if(isSusessed){
     const email = forms.email.value;
     const phoneNumber = forms.phoneNumber.value;
     const shipToDifferentAddress = isChecked;
-    const cardName = forms.cardName.value;
+ 
 
-    const additionalInformation = forms.additionalInformation.value;
+ 
 
 
 
@@ -133,10 +140,10 @@ if(isSusessed){
       countrySelectValue,
       regionsSelectedValue,
       citiesSelectedValue,
-      selectedPayment,
-      cardName,
  
-      additionalInformation,
+   
+ 
+ 
  
     };
     console.log("alhamdulillah clint information is ", clintInformationData);
@@ -168,7 +175,7 @@ if(isSusessed){
  
   };
 
-  return (
+  return (  
     <div>
       {/* Banner Section */}
       <div className="bg-[#F1F5F9] h-[300px] flex flex-col justify-center items-center text-center space-y-3">
@@ -435,10 +442,10 @@ if(isSusessed){
 
             {/* Payment Options */}
             <div className="border border-gray-200 dark:border-slate-700 rounded-md">
-              <h2 className="text-[1.2rem] font-medium text-gray-700 dark:border-slate-700 border-b border-gray-200 px-5 py-3 dark:text-[#abc2d3]">
+              <h2 className="text-[1.2rem] font-medium text-gray-700  border-b   px-5 py-3 dark:text-[#abc2d3]">
                 Payment Option
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-5">
+              {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-5">
                 <button
                   type="button"
                   onClick={() => setSelectedPayment("cash")}
@@ -467,42 +474,23 @@ if(isSusessed){
                     Debit/Credit Card
                   </span>
                 </button>
-              </div>
+              </div> */}
 
-              {selectedPayment === "credit-card" && (
+      
                 <div className=" px-5 pb-5 space-y-[16px]">
                   <Elements stripe={stripePromise}>
                     <ProductPaymentCheckoutForm 
                      ref={formRef} 
                      onProcassingChange={setIsProcassing}
                      onSucessCheck={setIsSucessed}
+                     checkoutPageData={checkoutPageData}
                      />
                   </Elements>
                 </div>
-              )}
+     
             </div>
 
-            {/* Additional Information */}
-            <div>
-              <h2 className="text-[1.2rem] dark:text-[#abc2d3] font-medium text-gray-700 mb-4">
-                Additional Information
-              </h2>
-              <div>
-                <label
-                  htmlFor="notes"
-                  className={`${globalStyles.labelStyles}`}
-                >
-                  Order Notes (Optional)
-                </label>
-                <textarea
-                  id="notes"
-                  rows={4}
-                  name="additionalInformation"
-                  placeholder="Notes about your order e.g. special notes for delivery"
-                  className={`${globalStyles.inputStyles} py-3`}
-                />
-              </div>
-            </div>
+  
           </div>
 
           {/* Order Summary */}
