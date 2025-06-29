@@ -57,7 +57,7 @@ const DoctorProfessional = () => {
     },
   ];
 
-  console.log(doctors);
+  // $&
 
   return (
     <div>
@@ -91,14 +91,13 @@ const DoctorProfessional = () => {
             </div>
             <div>
               {" "}
-              <motion.p className="  text-xl   md:text-[30px] font-Outfit text-[#000D44] font-[600] text-center md:leading-[50px]  "
-     
-                    variants={fadeIn("down", 0.3)}
-                         initial="hidden"
-                         whileInView="show"
-                         viewport={{ once: false, amount: 0.2 }}
+              <motion.p
+                className="  text-xl   md:text-[30px] font-Outfit text-[#000D44] font-[600] text-center md:leading-[50px]  "
+                variants={fadeIn("down", 0.3)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.2 }}
               >
-                
                 Meet our professional Doctors
               </motion.p>
             </div>

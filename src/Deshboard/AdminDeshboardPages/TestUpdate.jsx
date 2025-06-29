@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 const TestUpdate = () => {
   const params = useParams();
-  // console.log("Alhamdulillah param is ", params.id);
+  // // $&
 
   const { data: testPageData = {}, isSuccess } = useQuery({
     queryKey: ["gettest", params?.id],
@@ -26,7 +26,7 @@ const TestUpdate = () => {
     }
   }, [isSuccess, testPageData]);
 
-  // console.log("Alhamdulillah test page data is", testPageData);
+  // // $&
 
   const handleTestUpdate = (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ const TestUpdate = () => {
       slotsnumber: parseInt(slotsnumber),
       date,
     };
-    // console.log("updatetestdata is", updateTestBtn);
+    // // $&
 
     axios
       .patch(
@@ -56,7 +56,7 @@ const TestUpdate = () => {
         updateTestBtn
       )
       .then((res) => {
-        // console.log("Alhamdulillah update response is ", res.data);
+        // // $&
         if (res.data.matchedCount > 0) {
           toast.success("Successfully updated test data");
         }

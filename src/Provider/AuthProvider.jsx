@@ -9,13 +9,12 @@ import {
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import auth from "../Firebase/Firebase";
- 
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  // console.log("alhamdulillah current user is form authprovider", user);
+  // // $&
   const singUpUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -44,7 +43,6 @@ const AuthProvider = ({ children }) => {
     setFinalPaymentNumber(number);
   };
 
-
   useEffect(() => {
     setLoading(true);
     const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
@@ -52,7 +50,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         const userInfo = { email: currentUser.email };
         axios.post("http://localhost:5000/jwt", userInfo).then((res) => {
-          // console.log("alhamdulillah token is", res.data.token);
+          // // $&
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
             setLoading(false);

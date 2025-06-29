@@ -16,7 +16,7 @@ const UserProfile = () => {
       }),
   });
 
-  console.log(getUserInfo);
+  // $&
 
   const handleUserProfileUpdate = async (e) => {
     e.preventDefault();
@@ -34,16 +34,16 @@ const UserProfile = () => {
       district,
       bloodGroup,
     };
-    // console.log("alhamdulillah update user info is", updateUserInfo);
+    // // $&
 
     updateUserProfile(name, image)
       .then(() => {
-        // console.log(result);
+        // // $&
 
         axiosSecure
           .put(`/updateuserinfo/${getUserInfo._id}`, updateUserInfo)
           .then((res) => {
-            // console.log(res.data);
+            // // $&
             if (res.data.modifiedCount > 0) {
               refetch();
               toast.success("sucessfully updated User Information");
@@ -56,7 +56,7 @@ const UserProfile = () => {
       })
       .catch(() => {
         // console.error(error);
-        // console.log("i found error in your code");
+        // // $&
       });
   };
 

@@ -8,17 +8,17 @@ const UpdateTestResult = () => {
     e.preventDefault();
 
     const link = e.target.doclink.value;
-    // console.log("alhamdulillah link is", link);
+    // // $&
 
     const resultLink = {
       link,
     };
-    // console.log("client side result link is", resultLink);
+    // // $&
 
     axios
       .patch(`http://localhost:5000/updateField/${id}`, resultLink)
       .then((res) => {
-        // console.log("alhamdulillah response is", res.status);
+        // // $&
         if (res.status === 200) {
           toast.success("Successfully added");
         }

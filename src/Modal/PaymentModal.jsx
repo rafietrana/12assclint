@@ -41,26 +41,26 @@ const PaymentModal = ({
 
   const handleApplyCouponBtn = (e) => {
     e.preventDefault();
-    // console.log("Applying Coupon Code");
+    // // $&
 
     const couponCode = e.target.couponname.value.trim();
     const bannerCouponCode = getTrueBanner?.couponcode?.trim();
 
-    // console.log("Entered Coupon Code:", couponCode);
-    // console.log("Banner Coupon Code:", bannerCouponCode);
+    // // $&
+    // // $&
 
     if (couponCode === bannerCouponCode) {
-      // console.log("Coupon is valid");
+      // // $&
 
       const intPrice = parseFloat(price);
       const intCouponRate = parseFloat(getTrueBanner.couponrate);
 
       const discount = (intPrice * intCouponRate) / 100;
       const finalPrice = intPrice - discount;
-      // console.log("Final price with discount:", finalPrice);
+      // // $&
       setFinalPaymentPrice(finalPrice);
     } else {
-      // console.log("Invalid coupon code");
+      // // $&
     }
   };
 

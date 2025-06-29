@@ -1,15 +1,15 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Footer from "../../Shyerd/Footer/Footer";
 import { Button } from "@headlessui/react";
-import {FiMinus, FiPlus} from "react-icons/fi";
+import { FiMinus, FiPlus } from "react-icons/fi";
 import { useEffect, useState } from "react";
-import useAuth from './../../Hooks/useAuth';
+import useAuth from "./../../Hooks/useAuth";
 import { saveToLocalStorage } from "../Utilitis/LocalStorageUtil";
 
 const ProductDetails = () => {
   const productData = useLoaderData();
-  const {getFinalPayment } = useAuth();
-  console.log("alhamdulilllah one product data is ", productData);
+  const { getFinalPayment } = useAuth();
+  // $&
   const {
     medicineName,
     brand,
@@ -21,46 +21,34 @@ const ProductDetails = () => {
     description,
   } = productData;
 
-
-  console.log("alhamdulillah productData is", productData);
+  // $&
   // increment Decrement functionality
   const [countValue, setCountValue] = useState(1);
 
-    const handleIncrement = () => {
-        setCountValue((prevValue) => prevValue + 1);
-    };
+  const handleIncrement = () => {
+    setCountValue((prevValue) => prevValue + 1);
+  };
 
-    const handleDecrement = () => {
-      if(countValue == 1){
-        return;
-      }
-        setCountValue((prevValue) => prevValue - 1);
-    };
-
-    const handleInputChange = (e) =>{
-     setCountValue(Number(e.target.value))
+  const handleDecrement = () => {
+    if (countValue == 1) {
+      return;
     }
+    setCountValue((prevValue) => prevValue - 1);
+  };
+
+  const handleInputChange = (e) => {
+    setCountValue(Number(e.target.value));
+  };
   // FinalPayment Price
-      const finalPaymentPrice = countValue * price;
-      
-        // store this finalPayment and FinalPaymentNumber on Localstoreage
-        saveToLocalStorage("totalmony", finalPaymentPrice),
-          saveToLocalStorage("productnumber",  countValue);
+  const finalPaymentPrice = countValue * price;
 
+  // store this finalPayment and FinalPaymentNumber on Localstoreage
+  saveToLocalStorage("totalmony", finalPaymentPrice),
+    saveToLocalStorage("productnumber", countValue);
 
-      useEffect(()=>{
+  useEffect(() => {
     getFinalPayment(finalPaymentPrice, countValue);
-      },[finalPaymentPrice, getFinalPayment, countValue])
-  
-
-
-
-
- 
-      
-      
-     
-    
+  }, [finalPaymentPrice, getFinalPayment, countValue]);
 
   return (
     <div>
@@ -100,34 +88,34 @@ const ProductDetails = () => {
             </p>
             <div className=" flex gap-5 items-center ">
               <div>
-  <p className="text-xl font-semibold text-green-600">${price * countValue}</p>
+                <p className="text-xl font-semibold text-green-600">
+                  ${price * countValue}
+                </p>
               </div>
               <div>
-          <div className="flex items-center mx-auto border dark:border-slate-700 border-gray-200 rounded-md">
-            <button
-                className="bg-gray-100 p-[15px] dark:bg-slate-800 dark:text-[#abc2d3] rounded-l-md text-gray-700 text-[1.1rem]"
-                onClick={handleDecrement}
-            >
-                <FiMinus/>
-            </button>
-            <input
-                type="number"
-                value={countValue}
-                className="w-[70px] py-2.5 dark:bg-transparent dark:text-[#abc2d3] outline-none focus:ring-0 border-none text-center text-[1.1rem]"
-                onInput={handleInputChange}
-            />
-            <button
-                className="bg-gray-100 p-[15px] dark:bg-slate-800 dark:text-[#abc2d3] rounded-r-md text-gray-700 text-[1.1rem]"
-                onClick={handleIncrement}
-            >
-                <FiPlus/>
-            </button>
-        </div>
+                <div className="flex items-center mx-auto border dark:border-slate-700 border-gray-200 rounded-md">
+                  <button
+                    className="bg-gray-100 p-[15px] dark:bg-slate-800 dark:text-[#abc2d3] rounded-l-md text-gray-700 text-[1.1rem]"
+                    onClick={handleDecrement}
+                  >
+                    <FiMinus />
+                  </button>
+                  <input
+                    type="number"
+                    value={countValue}
+                    className="w-[70px] py-2.5 dark:bg-transparent dark:text-[#abc2d3] outline-none focus:ring-0 border-none text-center text-[1.1rem]"
+                    onInput={handleInputChange}
+                  />
+                  <button
+                    className="bg-gray-100 p-[15px] dark:bg-slate-800 dark:text-[#abc2d3] rounded-r-md text-gray-700 text-[1.1rem]"
+                    onClick={handleIncrement}
+                  >
+                    <FiPlus />
+                  </button>
+                </div>
               </div>
-          
-
             </div>
-           
+
             <p className="text-sm text-gray-500">Category: {category}</p>
             <p className="text-sm text-gray-500">In Stock: {stock}</p>
 
@@ -135,7 +123,6 @@ const ProductDetails = () => {
               className="prose prose-blue max-w-full mt-4"
               dangerouslySetInnerHTML={{ __html: description }}
             ></div>
-
 
             <Link to={`/checkoutPage/${_id}`}>
               <Button className="mt-6 px-6 py-2 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition duration-300">

@@ -1,10 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser } = useAuth();
-  const navigate = useNavigate();
 
   const handleLoginBtn = (e) => {
     e.preventDefault();
@@ -15,13 +14,18 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         toast.success("Successfully logged in!");
-        navigate("/dashboard");
+
+
         console.log(result);
         
+
+        // $&
       })
       .catch((error) => {
+        // $&
         console.log(error);
         
+
         toast.error("Login failed, please try again.");
       });
   };
@@ -31,13 +35,20 @@ const Login = () => {
       <div className="w-full max-w-md bg-white shadow-xl rounded-lg p-8">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-gray-800">Login</h2>
-          <p className="text-sm text-gray-600 mt-3">Welcome back, please login to continue.</p>
+          <p className="text-sm text-gray-600 mt-3">
+            Welcome back, please login to continue.
+          </p>
         </div>
 
         <form onSubmit={handleLoginBtn} className="space-y-5">
           {/* Email Input */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -50,7 +61,12 @@ const Login = () => {
 
           {/* Password Input */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -76,7 +92,9 @@ const Login = () => {
         <div className="mt-5 text-center">
           <p className="text-sm text-gray-600">
             Dont have an account?{" "}
-            <Link to="/singup" className="text-red-500 font-semibold">Sign Up</Link>
+            <Link to="/singup" className="text-red-500 font-semibold">
+              Sign Up
+            </Link>
           </p>
         </div>
       </div>

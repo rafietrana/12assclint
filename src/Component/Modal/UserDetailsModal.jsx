@@ -10,7 +10,7 @@ import axios from "axios";
 
 import { Fragment } from "react";
 const UserDetailsModal = ({ isOpens, closeModals, userId }) => {
-  // console.log("user id is", userId);
+  // // $&
 
   const { data: singleuserdata = [] } = useQuery({
     queryKey: ["singleuserdata"],
@@ -20,7 +20,7 @@ const UserDetailsModal = ({ isOpens, closeModals, userId }) => {
       }),
   });
 
-  // console.log("alhamdulillah single user information is", singleuserdata);
+  // // $&
   return (
     <Transition appear show={isOpens} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModals}>

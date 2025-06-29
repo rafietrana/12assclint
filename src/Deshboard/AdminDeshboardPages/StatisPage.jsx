@@ -21,7 +21,7 @@ const StatisPage = () => {
       }),
   });
 
-  // console.log("alhamdulillah this is sort booking data", sortBookingData);
+  // // $&
 
   return (
     <div>

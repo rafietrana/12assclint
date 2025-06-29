@@ -28,9 +28,8 @@ const CheckoutPage = () => {
   const [countrySelectValue, setCountrySelectValue] = useState("");
   const [regionsSelectedValue, setRegionsSelectedValue] = useState("");
   const [citiesSelectedValue, setCitiesSelectedValue] = useState("");
-  const [checkoutPageClintSecrect, setCheckoutPageClintSecret] =
-    useState("null");
-  console.log(checkoutPageClintSecrect);
+ 
+  // $&
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
   const shippingPayment = isChecked ? 70 : 0;
@@ -38,24 +37,27 @@ const CheckoutPage = () => {
   const finalStripeAddPayemnt = shippingPayment + localStoreageFinalPayment;
   const [isProcassing, setIsProcassing] = useState(false);
   const [isSusessed, setIsSucessed] = useState(false);
+  const [outsideClintInformationDate, setOutsideClintInformationData] =
+    useState(null);
 
-
-
-  const  checkoutPageData = useLoaderData();
-
-  console.log('alhamdulillah data is from checkouotPage', checkoutPageData);
+  // $&
+  console.log(isSusessed);
+ 
   
 
+  const checkoutPageData = useLoaderData();
 
+  // $&
 
   const formRef = useRef(null);
 
-
-  const handlePlaceOrder = () =>{
-    if(formRef.current){
-      formRef.current.runPayment();
+  const handlePlaceOrder = () => {
+    if (formRef.current) {
+      setTimeout(() => {
+        formRef.current.runPayment();
+      }, 0);
     }
-  }
+  };
 
   const handleCheckboxChange = (event) => {
     if (event.target.checked) {
@@ -78,21 +80,11 @@ const CheckoutPage = () => {
     // description,
   } = productDatas;
 
+  // $&
 
-
-
-
-
-console.log('alhamdulillah sucess value is', isSusessed);
-
-if(isSusessed){
-  window.location.reload();
-}
-
-
-
-
-  
+  // if(isSusessed){
+  //   window.location.reload();
+  // }
 
   const handleFormSubmitButton = async (e) => {
     e.preventDefault();
@@ -108,22 +100,6 @@ if(isSusessed){
     const email = forms.email.value;
     const phoneNumber = forms.phoneNumber.value;
     const shipToDifferentAddress = isChecked;
- 
-
- 
-
-
-
- 
-    
-
-
-
-
- 
-    
-
- 
 
     const clintInformationData = {
       firstName,
@@ -140,22 +116,19 @@ if(isSusessed){
       countrySelectValue,
       regionsSelectedValue,
       citiesSelectedValue,
- 
-   
- 
- 
- 
     };
-    console.log("alhamdulillah clint information is ", clintInformationData);
+    // $&
+    setOutsideClintInformationData(clintInformationData);
 
     // stripe functionality
 
     try {
-      const { data } = await axios.post(
+     await axios.post(
         "http://localhost:5000/create-payment-intent",
         finalStripeAddPayemnt
       );
-      setCheckoutPageClintSecret(data.clientSecret);
+
+     
     } catch (error) {
       console.error("so sadly we have got error error is", error);
     }
@@ -169,13 +142,9 @@ if(isSusessed){
     } else if (cities.includes(value)) {
       setCitiesSelectedValue(value);
     }
-
-
-
- 
   };
 
-  return (  
+  return (
     <div>
       {/* Banner Section */}
       <div className="bg-[#F1F5F9] h-[300px] flex flex-col justify-center items-center text-center space-y-3">
@@ -476,21 +445,18 @@ if(isSusessed){
                 </button>
               </div> */}
 
-      
-                <div className=" px-5 pb-5 space-y-[16px]">
-                  <Elements stripe={stripePromise}>
-                    <ProductPaymentCheckoutForm 
-                     ref={formRef} 
-                     onProcassingChange={setIsProcassing}
-                     onSucessCheck={setIsSucessed}
-                     checkoutPageData={checkoutPageData}
-                     />
-                  </Elements>
-                </div>
-     
+              <div className=" px-5 pb-5 space-y-[16px]">
+                <Elements stripe={stripePromise}>
+                  <ProductPaymentCheckoutForm
+                    ref={formRef}
+                    onProcassingChange={setIsProcassing}
+                    onSucessCheck={setIsSucessed}
+                    checkoutPageData={checkoutPageData}
+                    clientInformationData={outsideClintInformationDate}
+                  />
+                </Elements>
+              </div>
             </div>
-
-  
           </div>
 
           {/* Order Summary */}
@@ -568,19 +534,19 @@ if(isSusessed){
                     </span>
                   </div>
                 </div>
-      <button
-  onClick={handlePlaceOrder}
-  className="w-full bg-[#0FABCA] text-white py-3 px-4 rounded-lg hover:bg-[#0FABCA]/90 transition-colors outline-none"
->
-  <span className="flex items-center justify-center gap-2">
-    {isProcassing && (
-      <span className="animate-spin text-lg">
-        <AiOutlineLoading />
-      </span>
-    )}
-    PLACE ORDER
-  </span>
-</button>
+                <button
+                  onClick={handlePlaceOrder}
+                  className="w-full bg-[#0FABCA] text-white py-3 px-4 rounded-lg hover:bg-[#0FABCA]/90 transition-colors outline-none"
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    {isProcassing && (
+                      <span className="animate-spin text-lg">
+                        <AiOutlineLoading />
+                      </span>
+                    )}
+                    PLACE ORDER
+                  </span>
+                </button>
               </div>
             </div>
           </div>

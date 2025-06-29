@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const UserAppoinments = () => {
   const { user } = useAuth();
-  // console.log("alhamdulillah user email  is", user?.email);
+  // // $&
 
   const { data: getReserveUser = [], refetch } = useQuery({
     queryKey: ["getReserveUser"],
@@ -16,7 +16,7 @@ const UserAppoinments = () => {
         }
       ),
   });
-  // console.log("alhamdulillah reserve data is", getReserveUser);
+  // // $&
 
   const userAppoinmentDeleteBtn = (id) => {
     Swal.fire({
@@ -29,12 +29,12 @@ const UserAppoinments = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // console.log("alahmdulillah is is", id);
+        // // $&
 
         axios
           .delete(`http://localhost:5000/deleteuserappoinment/${id}`)
           .then((res) => {
-            // console.log(res.data);
+            // // $&
             if (res.data.deletedCount > 0) {
               refetch();
               Swal.fire({

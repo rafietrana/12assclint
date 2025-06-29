@@ -7,32 +7,29 @@ import axios from "axios";
 import { getFromLocalStorage } from "../Utilitis/LocalStorageUtil";
 
 const ProductPaymentCheckoutForm = forwardRef((props, ref) => {
-  const { onProcassingChange, onSucessCheck, checkoutPageData } = props;
+  const {
+    onProcassingChange,
+    onSucessCheck,
+    checkoutPageData,
+    clientInformationData,
+  } = props;
   const userProductByNumebr = getFromLocalStorage("productnumber");
-  console.log('alhamdulillah user By number from ProductPaymentCheckoutForm',  userProductByNumebr);
-
-
-
- 
-  
-  
 
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
 
-
   const handleProductPayment = async () => {
-    if (!stripe || !elements) return; 
-    if(checkoutPageData?.stock <= 0) {
-      toast.error('Product Stock Out')
+    if (!stripe || !elements) return;
+    if (checkoutPageData?.stock <= 0) {
+      toast.error("Product Stock Out");
       return;
     }
 
     onProcassingChange?.(true);
 
     const cardElement = elements.getElement(CardElement);
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
       billing_details: {
@@ -43,35 +40,61 @@ const ProductPaymentCheckoutForm = forwardRef((props, ref) => {
 
     if (error) {
       toast.error(error.message);
-      console.log("Got error after createPaymentMethod");
+      // $&
       onProcassingChange?.(false);
       return;
     }
 
     toast.success("Alhamdulillah! Successfully created payment method");
-    console.log("Payment method is:", paymentMethod);
+    // $&
+    console.log(
+      "alhamdulillah props clint information is",
+      clientInformationData
+    );
 
     //   Update product stock
 
-
-
     try {
-      const {data} = await axios.patch(`http://localhost:5000/updateProductStock`, {
-        productId: checkoutPageData?._id,
-        quantity:  userProductByNumebr,  
-      });
+      const { data } = await axios.patch(
+        `http://localhost:5000/updateProductStock`,
+        {
+          productId: checkoutPageData?._id,
+          quantity: userProductByNumebr,
+        }
+      );
 
-   if (data.acknowledged && data.modifiedCount > 0) {
-  console.log("  Alhamdulillah! Stock updated successfully");
-  toast.success("Stock updated successfully");
-} else {
-  console.warn("  Stock update failed or no change made");
-  toast.warning("No stock updated");
-}
-    
+      if (data.acknowledged && data.modifiedCount > 0) {
+        // $&
+        toast.success("Stock updated successfully");
+      } else {
+        console.warn("  Stock update failed or no change made");
+        toast.warning("No stock updated");
+      }
     } catch (err) {
       console.error("  Error updating stock:", err);
-      toast.error(err)
+      toast.error(err);
+    }
+
+    if (clientInformationData !== null) {
+      try {
+        const { data } = await axios.post(
+          "http://localhost:5000/postPaymentInformation",
+          { clientInformationData }
+        );
+
+        // $&
+
+        if (data.insertedId) {
+          // $&
+          toast.success("Client information posted successfully");
+        } else {
+          // $&
+          toast.warning("Client information not posted");
+        }
+      } catch (err) {
+        console.error("Error posting client information:", err);
+        toast.error("Something went wrong while posting client info.");
+      }
     }
 
     onSucessCheck?.(true);

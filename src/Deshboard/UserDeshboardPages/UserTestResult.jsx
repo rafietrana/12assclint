@@ -17,7 +17,7 @@ const UserTestResult = () => {
         }
       ),
   });
-  // console.log("alhamdulillah user test result is", userTestResult);
+  // // $&
   return (
     <div>
       <div>

@@ -78,7 +78,7 @@ const Navbar = () => {
         // Handle success
       })
       .catch((error) => {
-        console.log(error);
+        // $&
       });
   };
 

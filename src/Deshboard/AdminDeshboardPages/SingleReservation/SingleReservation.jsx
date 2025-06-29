@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 const SingleReservation = () => {
   const { testid } = useParams();
-  console.log("alhamdulillah test id is", testid);
+  // $&
 
   const { data: getsinglereserve = [] } = useQuery({
     queryKey: ["getsinglereserve"],
@@ -14,7 +14,7 @@ const SingleReservation = () => {
       }),
   });
 
-  console.log("alhamdulillah single reserve data is", getsinglereserve);
+  // $&
   return (
     <div>
       <table className="table">

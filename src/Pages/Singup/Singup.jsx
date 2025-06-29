@@ -46,14 +46,14 @@ const Singup = () => {
     //   email,
     //   password,
     //   confirmPassword,
-      
+
     //   bloodGroup,
     //   district,
     //   upozilla,
     //   photo,
     // };
 
-    // console.log("alhamdulillah form data which you have added ", formb);
+    // // $&
 
     if (password !== confirmPassword) {
       setLoading(false);
@@ -85,10 +85,10 @@ const Singup = () => {
           image: res.data.data.display_url,
           userStatus,
         };
-        console.log("alhamdulillah singupinformation is", singupInfo);
+        // $&
 
         const result = await singUpUser(email, password);
-        console.log(result);
+        // $&
 
         await updateUserProfile(name, res.data.data.display_url);
         toast.success("Successfully signed up");
@@ -96,7 +96,7 @@ const Singup = () => {
         axios
           .post("http://localhost:5000/postuserinfo", singupInfo)
           .then((res) => {
-            console.log(res.data);
+            // $&
           });
       } else {
         toast.error("Image upload failed, please try again");

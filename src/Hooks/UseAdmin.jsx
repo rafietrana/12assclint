@@ -17,7 +17,7 @@ const useAdmin = () => {
       return res.data;
     },
   });
-  // console.log("alhamdulillah data is maybbe true", data);
+  // // $&
 
   return [data, adminLoading];
 };

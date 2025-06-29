@@ -18,9 +18,9 @@ const CheckoutForm = ({
   const [clientSecret, setClientSecret] = useState();
   const [error, setError] = useState(null);
   const [procassing, setProcassing] = useState(false);
-  // console.log("alhamdulillah payment colllection id is", paymentCollectionId);
+  // // $&
   const { testName, testId } = testInfo;
-  // console.log("alhamdulillah test id is", testId);
+  // // $&
 
   // Get clientSecret
   const getClientSecret = async (price) => {
@@ -58,11 +58,10 @@ const CheckoutForm = ({
     }
 
     try {
-      const { error: paymentMethodError  } =
-        await stripe.createPaymentMethod({
-          type: "card",
-          card,
-        });
+      const { error: paymentMethodError } = await stripe.createPaymentMethod({
+        type: "card",
+        card,
+      });
 
       if (paymentMethodError) {
         setError(paymentMethodError.message);
@@ -70,7 +69,7 @@ const CheckoutForm = ({
         setProcassing(false);
         return;
       } else {
-        // console.log("i found payment method is ", paymentMethod);
+        // // $&
         setProcassing(true);
       }
 
@@ -94,8 +93,8 @@ const CheckoutForm = ({
 
       if (paymentIntent.status === "succeeded") {
         setProcassing(true);
-        // console.log("PaymentIntent Alhamdulillah", paymentIntent);
-        // console.log("Payment succeeded ");
+        // // $&
+        // // $&
 
         axios.put(`http://localhost:5000/incrementcount/${testId}`).then(() => {
           // console.log(
@@ -133,12 +132,12 @@ const CheckoutForm = ({
               axios
                 .post("http://localhost:5000/reservepost", reserveInfo)
                 .then((res) => {
-                  // console.log(res.data);
+                  // // $&
                   if (res.data.insertedId > 0) {
-                    // console.log("alahmdulillah this is working ");
+                    // // $&
                   }
                 });
-              // console.log("alhamdulillah reserveinfo is", reserveInfo);
+              // // $&
               setProcassing(false);
               refetch();
             }

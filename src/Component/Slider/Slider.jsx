@@ -11,10 +11,7 @@ const Slider = () => {
       axios("http://localhost:5000/getactivebanner").then((res) => res.data),
   });
 
-
-
-  console.log('alhamdulillah active banner data is ', activeBannerData);
-  
+  // $&
 
   const getStyledBannerTitle = (title) => {
     if (!title) return "";
