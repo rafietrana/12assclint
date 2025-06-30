@@ -7,16 +7,12 @@ const UserProfile = () => {
   const { user, updateUserProfile } = useAuth();
   const axiosSecure = useAxiosSecuree();
 
-  const { data: getUserInfo = [], refetch } = useQuery({
+  const { data: getUserInfo = {}, refetch } = useQuery({
     queryKey: ["getUserInfo", user?.email],
     enabled: !!user?.email,
     queryFn: () =>
-      axiosSecure(`/getuserinfo/${user?.email}`).then((res) => {
-        return res?.data;
-      }),
+      axiosSecure(`/getuserinfo/${user?.email}`).then((res) => res.data),
   });
-
-  // $&
 
   const handleUserProfileUpdate = async (e) => {
     e.preventDefault();
@@ -34,151 +30,83 @@ const UserProfile = () => {
       district,
       bloodGroup,
     };
-    // // $&
 
     updateUserProfile(name, image)
       .then(() => {
-        // // $&
-
         axiosSecure
           .put(`/updateuserinfo/${getUserInfo._id}`, updateUserInfo)
           .then((res) => {
-            // // $&
             if (res.data.modifiedCount > 0) {
               refetch();
-              toast.success("sucessfully updated User Information");
-
-              // setTimeout(() => {
-              //   window.location.reload();
-              // }, 1000);
+              toast.success("Successfully updated user information");
             }
           });
       })
       .catch(() => {
-        // console.error(error);
-        // // $&
+        toast.error("Failed to update profile.");
       });
   };
 
   return (
-    <div className="flex justify-center items-center ">
-      <div className="w-7/12 mx-auto">
-        <div className="max-w-md mx-auto my-8 p-6 border border-gray-300 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out bg-white">
-          <div className="flex flex-col items-center sm:flex-row sm:items-start">
-            <div className="mb-4 sm:mb-0 sm:mr-6 relative lg:mt-4">
+    <div className="flex justify-center items-center bg-gray-50 py-10">
+      <div className="w-full max-w-4xl px-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          {/* Profile Overview */}
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <div className="relative">
               <img
-                className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-blue-500"
+                className="w-36 h-36 rounded-full object-cover border-4 border-blue-500"
                 src={getUserInfo?.image}
-                alt="not found"
+                alt="Profile"
               />
-              <div className="absolute top-0 right-0 bg-green-400 w-4 h-4 rounded-full border-2 border-white"></div>
+              <span className="absolute top-0 right-0 bg-green-400 w-4 h-4 rounded-full border-2 border-white"></span>
             </div>
-            <div className="text-center sm:text-left">
-              <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            <div className="flex-1 text-center lg:text-left space-y-2">
+              <h2 className="text-2xl font-semibold text-gray-800">
                 {getUserInfo?.name}
               </h2>
-              <div className="grid grid-cols-1 gap-2">
-                <p>
-                  <strong className="font-semibold text-gray-700">
-                    Password:
-                  </strong>{" "}
-                  <span className="text-gray-600">{getUserInfo?.password}</span>
-                </p>
-                <p>
-                  <strong className="font-semibold text-gray-700">
-                    Email:
-                  </strong>{" "}
-                  <span className="text-gray-600">{getUserInfo?.email}</span>
-                </p>
-                <p>
-                  <strong className="font-semibold text-gray-700">
-                    District:
-                  </strong>{" "}
-                  <span className="text-gray-600">{getUserInfo?.district}</span>
-                </p>
-                <p>
-                  <strong className="font-semibold text-gray-700">
-                    Upazilla:
-                  </strong>{" "}
-                  <span className="text-gray-600">{getUserInfo?.upozilla}</span>
-                </p>
-                <p>
-                  <strong className="font-semibold text-gray-700">
-                    Status:
-                  </strong>{" "}
-                  <span className="text-gray-600">
-                    {getUserInfo?.userStatus}
-                  </span>
-                </p>
-                <p>
-                  <strong className="font-semibold text-gray-700">
-                    Blood Group:
-                  </strong>{" "}
-                  <span className="text-gray-600">
-                    {getUserInfo?.bloodGroup}
-                  </span>
-                </p>
+              <div className="text-sm text-gray-700 space-y-1">
+                <p><strong>Email:</strong> {getUserInfo?.email}</p>
+                <p><strong>District:</strong> {getUserInfo?.district}</p>
+                <p><strong>Upazilla:</strong> {getUserInfo?.upozilla}</p>
+                <p><strong>Blood Group:</strong> {getUserInfo?.bloodGroup}</p>
+                <p><strong>Status:</strong> {getUserInfo?.userStatus}</p>
               </div>
             </div>
           </div>
-          <p className="font-Outfit    my-6">Update Profile</p>
-          <div>
-            <form onSubmit={handleUserProfileUpdate}>
-              <div>
-                <label>Name</label> <br />
-                <input
-                  name="name"
-                  type="text"
-                  defaultValue={getUserInfo?.name}
-                  className="border px-3 py-2 w-full outline-none "
-                />
-              </div>
 
-              <div>
-                <label>Image</label> <br />
+          {/* Update Form */}
+          <hr className="my-6" />
+          <p className="text-lg font-semibold mb-4 text-gray-800">Update Profile</p>
+
+          <form onSubmit={handleUserProfileUpdate} className="space-y-4">
+            {[
+              { label: "Name", name: "name", defaultValue: getUserInfo?.name },
+              { label: "Image URL", name: "image", defaultValue: getUserInfo?.image },
+              { label: "Upazilla", name: "upozilla", defaultValue: getUserInfo?.upozilla },
+              { label: "District", name: "district", defaultValue: getUserInfo?.district },
+              { label: "Blood Group", name: "bloodgroup", defaultValue: getUserInfo?.bloodGroup },
+            ].map((field, idx) => (
+              <div key={idx}>
+                <label className="block mb-1 font-medium text-gray-700">
+                  {field.label}
+                </label>
                 <input
-                  name="image"
+                  name={field.name}
                   type="text"
-                  className="border px-3 py-2 w-full outline-none "
-                  defaultValue={getUserInfo?.image}
+                  defaultValue={field.defaultValue}
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                  style={{ backgroundColor: "#ffffff", colorScheme: "light" }}
                 />
               </div>
-              <div>
-                <label>upozilla</label> <br />
-                <input
-                  name="upozilla"
-                  type="text"
-                  className="border px-3 py-2 w-full outline-none "
-                  defaultValue={getUserInfo?.upozilla}
-                />
-              </div>
-              <div>
-                <label>District</label> <br />
-                <input
-                  name="district"
-                  type="text"
-                  className="border px-3 py-2 w-full outline-none "
-                  defaultValue={getUserInfo?.district}
-                />
-              </div>
-              <div>
-                <label htmlFor="">Blood Group</label> <br />
-                <input
-                  name="bloodgroup"
-                  type="text"
-                  className="border px-3 py-2 w-full outline-none "
-                  defaultValue={getUserInfo?.bloodGroup}
-                />
-              </div>
-              <div className="my-2">
-                <input
-                  className="bg-gray-100 px-3 py-2 cursor-pointer"
-                  type="submit"
-                  value="Update Now"
-                />
-              </div>
-            </form>
-          </div>
+            ))}
+
+            <input
+              type="submit"
+              value="Update Now"
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md cursor-pointer transition"
+            />
+          </form>
         </div>
       </div>
     </div>

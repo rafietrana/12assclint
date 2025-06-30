@@ -31,7 +31,7 @@ const Slider = () => {
 
 
 
-
+  
   return (
     <motion.div
       className="md:h-[600px] py-8 md:py-0 md:pt-10 relative "

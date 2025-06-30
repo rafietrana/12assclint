@@ -37,7 +37,7 @@ const About = () => {
         transition={{ duration: 1, delay: 0.5 }}
       />
 
-      <div className="w-9/12 my-7 py-24 mx-auto">
+      <div className="w-9/12  py-10   mx-auto">
         <div className="md:flex gap-12">
           {/* Left Side - Image Section */}
           <motion.div className="md:w-1/2 relative" variants={fadeIn("left", 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>

@@ -19,7 +19,6 @@ const AllTestPage = () => {
   const itemPerPages = 4;
   const numberOfPages = Math.ceil(count / itemPerPages);
   const axiosSecure = useAxiosSecuree();
-
   const pages = [...Array(numberOfPages).keys()];
 
   const handleNextBtn = () => {
@@ -70,15 +69,15 @@ const AllTestPage = () => {
   };
 
   return (
-    <>
-      <div className="w-11/12 mx-auto my-11">
+    <div className="bg-white text-black">
+      <div className="w-11/12 mx-auto">
         {/* Filter & Print Controls */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div className="flex items-center gap-4">
-            <label className="font-Outfit">Search By Local Date</label>
+            <label className="font-Outfit text-black">Search By Local Date</label>
             <DatePicker
               name="date"
-              className="outline-none border px-2 py-1 rounded"
+              className="outline-none border border-gray-300 text-black placeholder-black px-2 py-1 rounded bg-white"
               selected={startDate ? new Date(startDate) : null}
               onChange={(date) => handleSatDateBtn(date)}
               placeholderText="Select Date"
@@ -88,7 +87,7 @@ const AllTestPage = () => {
           <div className="flex justify-end w-full md:w-auto">
             <ReactToPrint
               trigger={() => (
-                <button className="  text-black py-2 px-4   shadow-sm hover:shadow-lg transition duration-300 ease-in-out">
+                <button className="bg-white border border-gray-300 text-black py-2 px-4 rounded shadow-sm hover:shadow-lg transition duration-300 ease-in-out">
                   Print All Tests
                 </button>
               )}
@@ -100,10 +99,10 @@ const AllTestPage = () => {
         {/* Table View */}
         <div
           ref={componentRef}
-          className="overflow-x-auto border border-gray-200 rounded-lg"
+          className="overflow-x-auto border border-gray-200 rounded-lg bg-white"
         >
-          <table className="min-w-full table-auto text-sm text-center">
-            <thead className="bg-gray-100 text-gray-700 font-medium">
+          <table className="min-w-full table-auto text-sm text-center text-black">
+            <thead className="bg-gray-100 text-gray-800 font-medium">
               <tr>
                 <th className="px-4 py-2 border">Banner</th>
                 <th className="px-4 py-2 border">Test Name</th>
@@ -138,7 +137,7 @@ const AllTestPage = () => {
                   </td>
                   <td className="px-4 py-2 border">
                     <Link to={`/testdetails/${test._id}`}>
-                      <button className="bg-gray-200 hover:bg-gray-300 text-sm px-3 py-1 rounded">
+                      <button className="bg-gray-200 hover:bg-gray-300 text-black text-sm px-3 py-1 rounded">
                         View Details
                       </button>
                     </Link>
@@ -153,7 +152,7 @@ const AllTestPage = () => {
         <div className="my-8 flex flex-wrap justify-center gap-2">
           <button
             onClick={handlePrevBtn}
-            className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+            className="px-4 py-2 bg-gray-100 text-black border border-gray-300 rounded hover:bg-gray-200"
           >
             Prev
           </button>
@@ -161,10 +160,10 @@ const AllTestPage = () => {
             <button
               key={page}
               onClick={() => setCurrentPage(page)}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded border ${
                 currentPage === page
                   ? "bg-green-500 text-white"
-                  : "bg-gray-50 hover:bg-gray-200"
+                  : "bg-white text-black border-gray-300 hover:bg-gray-100"
               }`}
             >
               {page + 1}
@@ -172,7 +171,7 @@ const AllTestPage = () => {
           ))}
           <button
             onClick={handleNextBtn}
-            className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+            className="px-4 py-2 bg-gray-100 text-black border border-gray-300 rounded hover:bg-gray-200"
           >
             Next
           </button>
@@ -180,7 +179,7 @@ const AllTestPage = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

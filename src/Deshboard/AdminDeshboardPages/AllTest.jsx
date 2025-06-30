@@ -36,7 +36,7 @@ const AllTest = () => {
   };
 
   return (
-    <div className="overflow-x-auto p-4">
+    <div className="overflow-x-auto p-4 ">
       <table className="table w-full text-center shadow-md">
         <thead className="bg-gray-200 text-gray-700 font-semibold">
           <tr>

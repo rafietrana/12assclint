@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import { FaSignInAlt } from "react-icons/fa";
 
 const Login = () => {
   const { loginUser } = useAuth();
@@ -14,38 +15,34 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         toast.success("Successfully logged in!");
-
-
         console.log(result);
-        
-
-        // $&
       })
       .catch((error) => {
-        // $&
         console.log(error);
-        
-
         toast.error("Login failed, please try again.");
       });
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100 py-12">
-      <div className="w-full max-w-md bg-white shadow-xl rounded-lg p-8">
-        <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold text-gray-800">Login</h2>
-          <p className="text-sm text-gray-600 mt-3">
+    <div
+      className="min-h-screen flex justify-center items-center bg-white text-black py-12"
+      style={{ colorScheme: "light" }} // dark mode ignore
+    >
+      <div className="w-full max-w-md border border-gray-200 rounded-xl p-8 bg-white">
+        <div className="text-center mb-6 flex flex-col items-center justify-center">
+          <FaSignInAlt className="text-green-600 text-3xl mb-2" />
+          <h2 className="text-2xl font-bold">Login</h2>
+          <p className="text-sm text-gray-600 mt-1">
             Welcome back, please login to continue.
           </p>
         </div>
 
         <form onSubmit={handleLoginBtn} className="space-y-5">
-          {/* Email Input */}
+          {/* Email */}
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 mb-1"
             >
               Email
             </label>
@@ -54,16 +51,16 @@ const Login = () => {
               name="email"
               id="email"
               required
-              className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               placeholder="Enter your email"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </div>
 
-          {/* Password Input */}
+          {/* Password */}
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 mb-1"
             >
               Password
             </label>
@@ -72,30 +69,26 @@ const Login = () => {
               name="password"
               id="password"
               required
-              className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               placeholder="Enter your password"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </div>
 
           {/* Login Button */}
-          <div>
-            <button
-              type="submit"
-              className="w-full py-3 px-4 bg-gradient-to-b from-green-400 to-green-600 text-white font-bold rounded-md hover:from-green-500 hover:to-green-700 transition duration-300 ease-in-out"
-            >
-              Login Now
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="w-full py-3 px-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition duration-300"
+          >
+            Login Now
+          </button>
         </form>
 
         {/* Signup Redirect */}
-        <div className="mt-5 text-center">
-          <p className="text-sm text-gray-600">
-            Dont have an account?{" "}
-            <Link to="/singup" className="text-red-500 font-semibold">
-              Sign Up
-            </Link>
-          </p>
+        <div className="mt-6 text-center text-sm text-gray-600">
+          Dont have an account?{" "}
+          <Link to="/singup" className="text-green-600 font-medium hover:underline">
+            Sign Up
+          </Link>
         </div>
       </div>
     </div>
