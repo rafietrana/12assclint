@@ -16,7 +16,10 @@ const UpdateTestResult = () => {
     // // $&
 
     axios
-      .patch(`http://localhost:5000/updateField/${id}`, resultLink)
+      .patch(
+        `https://my-ass-12-server.vercel.app/updateField/${id}`,
+        resultLink
+      )
       .then((res) => {
         // // $&
         if (res.status === 200) {

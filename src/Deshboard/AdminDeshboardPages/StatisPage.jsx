@@ -16,7 +16,7 @@ const StatisPage = () => {
   const { data: sortBookingData = [] } = useQuery({
     queryKey: ["sortBookingData"],
     queryFn: () =>
-      axios("http://localhost:5000/getalltest").then((res) => {
+      axios("https://my-ass-12-server.vercel.app/getalltest").then((res) => {
         return res.data;
       }),
   });

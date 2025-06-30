@@ -26,7 +26,7 @@ const fadeIn = (direction = "up", delay = 0) => {
 
 const About = () => {
   return (
-    <div className="relative lg:mt-32 mt-0">
+    <div className="relative bg-white   mt-0">
       {/* Floating Image */}
       <motion.img
         className="absolute hidden md:block bottom-0 right-10 animate-bounce [animation-duration:2s] -z-10"
@@ -79,7 +79,7 @@ const About = () => {
             </motion.div>
 
             {/* Title */}
-            <motion.p className="font-Outfit md:leading-[57px] text-xl md:text-[48px] font-[600]" variants={fadeIn("up", 0.4)}>
+            <motion.p className="font-Outfit md:leading-[57px] text-xl md:text-[48px] font-[600] text-[#000D44]" variants={fadeIn("up", 0.4)}>
               Affordable Health Care Solutions
             </motion.p>
 

@@ -23,7 +23,7 @@ const Counter = () => {
   // $&
 
   return (
-    <div className="my-20">
+    <div className=" py-20 bg-white">
       <div className="w-9/12 mx-auto bg-[#000D44] min-h-[250px] rounded-2xl flex items-center">
         <div className="w-11/12 mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-4 my-20 md:my-0  md:grid-cols-2  lg:gap-3 gap-10 ">

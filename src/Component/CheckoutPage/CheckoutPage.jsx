@@ -19,7 +19,6 @@ import { Elements } from "@stripe/react-stripe-js";
 import ProductPaymentCheckoutForm from "./ProductPaymentCheckoutForm.jsx";
 
 const CheckoutPage = () => {
-
   const [isChecked, setIsChecked] = useState(false);
 
   const localStoreageFinalPayment = getFromLocalStorage("totalmony");
@@ -28,7 +27,7 @@ const CheckoutPage = () => {
   const [countrySelectValue, setCountrySelectValue] = useState("");
   const [regionsSelectedValue, setRegionsSelectedValue] = useState("");
   const [citiesSelectedValue, setCitiesSelectedValue] = useState("");
- 
+
   // $&
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -42,8 +41,6 @@ const CheckoutPage = () => {
 
   // $&
   console.log(isSusessed);
- 
-  
 
   const checkoutPageData = useLoaderData();
 
@@ -123,12 +120,10 @@ const CheckoutPage = () => {
     // stripe functionality
 
     try {
-     await axios.post(
-        "http://localhost:5000/create-payment-intent",
+      await axios.post(
+        "https://my-ass-12-server.vercel.app/create-payment-intent",
         finalStripeAddPayemnt
       );
-
-     
     } catch (error) {
       console.error("so sadly we have got error error is", error);
     }

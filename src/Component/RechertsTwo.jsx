@@ -1,6 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 const COLORS = ["#FF8042", "#0088FE"];
 
@@ -8,7 +15,9 @@ const RechertsTwo = () => {
   const { data: reserve = [] } = useQuery({
     queryKey: ["reserve"],
     queryFn: () =>
-      axios("http://localhost:5000/getreserve").then((res) => res.data),
+      axios("https://my-ass-12-server.vercel.app/getreserve").then(
+        (res) => res.data
+      ),
   });
 
   const data = [
@@ -34,10 +43,15 @@ const RechertsTwo = () => {
             outerRadius="80%"
             fill="#8884d8"
             dataKey="value"
-            label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+            label={({ name, percent }) =>
+              `${name}: ${(percent * 100).toFixed(0)}%`
+            }
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
             ))}
           </Pie>
           <Tooltip />

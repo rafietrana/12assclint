@@ -56,7 +56,7 @@ const router = createBrowserRouter([
         path: "/blog",
         element: <Blog></Blog>,
       },
- 
+
       {
         path: "/singup",
         element: <Singup></Singup>,
@@ -72,25 +72,29 @@ const router = createBrowserRouter([
             <AllTestPage></AllTestPage>
           </PrivetRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/productscount"),
+        loader: () =>
+          fetch("https://my-ass-12-server.vercel.app/productscount"),
       },
       {
         path: "/testdetails/:id",
         element: <TestDetails></TestDetails>,
       },
       {
-       path: "/checkoutPage/:id",
-       element: <CheckoutPage></CheckoutPage>,
-            loader: ({params}) =>
-          fetch(`http://localhost:5000/getOneProduct/${params?.id}`),
+        path: "/checkoutPage/:id",
+        element: <CheckoutPage></CheckoutPage>,
+        loader: ({ params }) =>
+          fetch(
+            `https://my-ass-12-server.vercel.app/getOneProduct/${params?.id}`
+          ),
       },
 
- 
       {
         path: "/productDetails/:id",
         element: <ProductDetails></ProductDetails>,
-        loader: ({params}) =>
-          fetch(`http://localhost:5000/getOneProduct/${params?.id}`),
+        loader: ({ params }) =>
+          fetch(
+            `https://my-ass-12-server.vercel.app/getOneProduct/${params?.id}`
+          ),
       },
     ],
   },

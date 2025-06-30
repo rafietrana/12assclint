@@ -1,7 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { ImSpinner9 } from "react-icons/im";
-import { FaTag, FaImage, FaInfoCircle, FaBarcode, FaPercentage } from "react-icons/fa";
+import {
+  FaTag,
+  FaImage,
+  FaInfoCircle,
+  FaBarcode,
+  FaPercentage,
+} from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -50,7 +56,10 @@ const AddBanner = () => {
           isActive: false, // corrected from parseInt("false")
         };
 
-        const response = await axios.post("http://localhost:5000/setbanner", bannerInfo);
+        const response = await axios.post(
+          "https://my-ass-12-server.vercel.app/setbanner",
+          bannerInfo
+        );
         if (response.data.insertedId) {
           toast.success("Banner added successfully!");
           form.reset();
@@ -70,7 +79,6 @@ const AddBanner = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
- 
       <form
         onSubmit={handleAddBannerBtn}
         className="bg-white rounded-lg p-6 sm:p-10 border border-gray-200"

@@ -38,7 +38,7 @@ const AddTest = () => {
     };
 
     axios
-      .post("http://localhost:5000/posttestdata", addTestData)
+      .post("https://my-ass-12-server.vercel.app/posttestdata", addTestData)
       .then((res) => {
         if (res.status === 200) {
           toast.success("Successfully added test!");
@@ -82,7 +82,9 @@ const AddTest = () => {
 
             {/* Banner Image */}
             <div>
-              <label className="block text-gray-700 mb-2">Banner Image URL</label>
+              <label className="block text-gray-700 mb-2">
+                Banner Image URL
+              </label>
               <input
                 name="bannerimg"
                 type="text"
@@ -94,7 +96,9 @@ const AddTest = () => {
 
             {/* Slots Number */}
             <div>
-              <label className="block text-gray-700 mb-2">Number of Slots</label>
+              <label className="block text-gray-700 mb-2">
+                Number of Slots
+              </label>
               <input
                 name="slotsnumber"
                 type="number"

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 const AppoinmentContact = () => {
   return (
+  <div className="bg-white">
     <div id="book-appoinment" className="w-11/12 mx-auto py-20 px-5">
       <div className="flex flex-col lg:flex-row gap-5">
         {/* Left Side - Working Hours */}
@@ -164,6 +165,8 @@ const AppoinmentContact = () => {
         </motion.div>
       </div>
     </div>
+  </div>
+
   );
 };
 

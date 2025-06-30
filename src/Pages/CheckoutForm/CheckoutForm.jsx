@@ -26,7 +26,7 @@ const CheckoutForm = ({
   const getClientSecret = async (price) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/create-payment-intent`,
+        `https://my-ass-12-server.vercel.app/create-payment-intent`,
         price
       );
       setClientSecret(data.clientSecret);
@@ -96,15 +96,19 @@ const CheckoutForm = ({
         // // $&
         // // $&
 
-        axios.put(`http://localhost:5000/incrementcount/${testId}`).then(() => {
-          // console.log(
-          //   "alhamdulillah updated count issssssssssssssssssssssssss",
-          //   res.data
-          // );
-        });
+        axios
+          .put(`https://my-ass-12-server.vercel.app/incrementcount/${testId}`)
+          .then(() => {
+            // console.log(
+            //   "alhamdulillah updated count issssssssssssssssssssssssss",
+            //   res.data
+            // );
+          });
 
         axios
-          .put(`http://localhost:5000/decrementslots/${paymentCollectionId}`)
+          .put(
+            `https://my-ass-12-server.vercel.app/decrementslots/${paymentCollectionId}`
+          )
           .then((res) => {
             // console.log(
             //   "alhamdulillah response data is from decrement  component",
@@ -130,7 +134,10 @@ const CheckoutForm = ({
                 testId,
               };
               axios
-                .post("http://localhost:5000/reservepost", reserveInfo)
+                .post(
+                  "https://my-ass-12-server.vercel.app/reservepost",
+                  reserveInfo
+                )
                 .then((res) => {
                   // // $&
                   if (res.data.insertedId > 0) {

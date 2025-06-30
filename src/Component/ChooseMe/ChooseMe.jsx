@@ -21,13 +21,14 @@ const ChooseMe = () => {
       description:
         "Our emergency services are available around the clock to provide immediate assistance and ensure patient safety at all times.",
     },
-  ];
+];
 
   return (
-    <div className="my-48 px-4 md:px-8 lg:px-16">
-      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-10">
+    <div className=" px-4 py-10   bg-white">
+      <div className="w-full  md:w-11/12 max-w-6xl mx-auto flex flex-col lg:flex-row gap-10">
         
         {/* Left Section */}
+
         <div className="lg:w-1/2 w-full">
           <div>
             {/* Section Title */}

@@ -15,7 +15,9 @@ import CheckoutForm from "../Pages/CheckoutForm/CheckoutForm";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const fetchActiveBanner = async () => {
-  const response = await axios("http://localhost:5000/getactivebanner");
+  const response = await axios(
+    "https://my-ass-12-server.vercel.app/getactivebanner"
+  );
   return response.data;
 };
 

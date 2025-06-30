@@ -7,7 +7,9 @@ const AllTest = () => {
   const { data: alltestdata = [], refetch } = useQuery({
     queryKey: ["alltest"],
     queryFn: () =>
-      axios.get("http://localhost:5000/getalltest").then((res) => res.data),
+      axios
+        .get("https://my-ass-12-server.vercel.app/getalltest")
+        .then((res) => res.data),
   });
 
   const handleDeleteTestBtn = (id) => {
@@ -21,12 +23,14 @@ const AllTest = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/deletetest/${id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire("Deleted!", "Test has been deleted.", "success");
-          }
-        });
+        axios
+          .delete(`https://my-ass-12-server.vercel.app/deletetest/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Deleted!", "Test has been deleted.", "success");
+            }
+          });
       }
     });
   };

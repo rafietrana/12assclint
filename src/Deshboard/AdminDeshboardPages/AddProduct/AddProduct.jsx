@@ -1,19 +1,19 @@
-import { useRef, useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { toast } from 'react-toastify';
+import { useRef, useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { toast } from "react-toastify";
 
 const AddProduct = () => {
-  const [medicineName, setMedicineName] = useState('');
-  const [brand, setBrand] = useState('');
-  const [price, setPrice] = useState('');
-  const [category, setCategory] = useState('');
-  const [stock, setStock] = useState('');
+  const [medicineName, setMedicineName] = useState("");
+  const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
+  const [stock, setStock] = useState("");
   const [imageFile, setImageFile] = useState(null);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
 
   const imageHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-  const fileInputRef = useRef('null')
+  const fileInputRef = useRef("null");
 
   const handleSubmitButton = async (e) => {
     e.preventDefault();
@@ -24,14 +24,17 @@ const AddProduct = () => {
     }
 
     const formData = new FormData();
-    formData.append('image', imageFile);
+    formData.append("image", imageFile);
 
     try {
       // Upload to imgbb
-      const res = await fetch(`https://api.imgbb.com/1/upload?key=${imageHostingKey}`, {
-        method: 'POST',
-        body: formData,
-      });
+      const res = await fetch(
+        `https://api.imgbb.com/1/upload?key=${imageHostingKey}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       const data = await res.json();
 
       if (!data.success) {
@@ -51,32 +54,33 @@ const AddProduct = () => {
         description,
       };
 
-      const result = await fetch('http://localhost:5000/postProducts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newProduct),
-      });
+      const result = await fetch(
+        "https://my-ass-12-server.vercel.app/postProducts",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newProduct),
+        }
+      );
 
       const responseData = await result.json();
 
       if (responseData.insertedId) {
-        toast.success('  Product has been added.');
+        toast.success("  Product has been added.");
       }
 
       // Reset form
-      setMedicineName('');
-      setBrand('');
-      setPrice('');
-      setCategory('');
-      setStock('');
+      setMedicineName("");
+      setBrand("");
+      setPrice("");
+      setCategory("");
+      setStock("");
       setImageFile(null);
-      setDescription('');
+      setDescription("");
 
-      if(fileInputRef.current){
-          fileInputRef.current.value = null;
+      if (fileInputRef.current) {
+        fileInputRef.current.value = null;
       }
-
-
     } catch (err) {
       toast.error("❌ Something went wrong!");
       console.error(err);
@@ -87,7 +91,9 @@ const AddProduct = () => {
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl mt-10">
       <form onSubmit={handleSubmitButton} className="space-y-5">
         <div>
-          <label className="block text-sm font-medium mb-1 text-gray-700">Medicine Name</label>
+          <label className="block text-sm font-medium mb-1 text-gray-700">
+            Medicine Name
+          </label>
           <input
             type="text"
             value={medicineName}
@@ -100,7 +106,9 @@ const AddProduct = () => {
 
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">Brand</label>
+            <label className="block text-sm font-medium mb-1 text-gray-700">
+              Brand
+            </label>
             <input
               type="text"
               value={brand}
@@ -112,7 +120,9 @@ const AddProduct = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">Price ($)</label>
+            <label className="block text-sm font-medium mb-1 text-gray-700">
+              Price ($)
+            </label>
             <input
               type="number"
               value={price}
@@ -126,7 +136,9 @@ const AddProduct = () => {
 
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">Category</label>
+            <label className="block text-sm font-medium mb-1 text-gray-700">
+              Category
+            </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -144,7 +156,9 @@ const AddProduct = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">Stock Quantity</label>
+            <label className="block text-sm font-medium mb-1 text-gray-700">
+              Stock Quantity
+            </label>
             <input
               type="number"
               value={stock}
@@ -157,7 +171,9 @@ const AddProduct = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1 text-gray-700">Upload Image</label>
+          <label className="block text-sm font-medium mb-1 text-gray-700">
+            Upload Image
+          </label>
           <input
             type="file"
             accept="image/*"
@@ -169,7 +185,9 @@ const AddProduct = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1 text-gray-700">Description</label>
+          <label className="block text-sm font-medium mb-1 text-gray-700">
+            Description
+          </label>
           <div className="h-52 mb-8">
             <ReactQuill
               theme="snow"

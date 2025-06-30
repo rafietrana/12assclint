@@ -38,7 +38,7 @@ const AllTestPage = () => {
     queryKey: ["getTestPage", currentPage],
     queryFn: () =>
       axiosSecure(
-        `http://localhost:5000/gettestall?page=${currentPage}&size=${itemPerPages}&email=${user?.email}`
+        `https://my-ass-12-server.vercel.app/gettestall?page=${currentPage}&size=${itemPerPages}&email=${user?.email}`
       ).then((res) => res.data.tests),
   });
 
@@ -46,7 +46,7 @@ const AllTestPage = () => {
     queryKey: ["getQueryDate", startDate],
     queryFn: () =>
       axios
-        .get("http://localhost:5000/datequery", {
+        .get("https://my-ass-12-server.vercel.app/datequery", {
           params: { date: startDate },
         })
         .then((res) => res.data),
@@ -98,7 +98,10 @@ const AllTestPage = () => {
         </div>
 
         {/* Table View */}
-        <div ref={componentRef} className="overflow-x-auto border border-gray-200 rounded-lg">
+        <div
+          ref={componentRef}
+          className="overflow-x-auto border border-gray-200 rounded-lg"
+        >
           <table className="min-w-full table-auto text-sm text-center">
             <thead className="bg-gray-100 text-gray-700 font-medium">
               <tr>
@@ -113,12 +116,21 @@ const AllTestPage = () => {
             </thead>
             <tbody>
               {finalFilterDate.map((test) => (
-                <tr key={test._id} className="border-b hover:bg-gray-50 transition">
+                <tr
+                  key={test._id}
+                  className="border-b hover:bg-gray-50 transition"
+                >
                   <td className="px-4 py-2 border">
-                    <img src={test.bannerimg} alt="Banner" className="h-16 mx-auto rounded" />
+                    <img
+                      src={test.bannerimg}
+                      alt="Banner"
+                      className="h-16 mx-auto rounded"
+                    />
                   </td>
                   <td className="px-4 py-2 border">{test.testname}</td>
-                  <td className="px-4 py-2 border">{test.date.split("T")[0]}</td>
+                  <td className="px-4 py-2 border">
+                    {test.date.split("T")[0]}
+                  </td>
                   <td className="px-4 py-2 border">{test.slotsnumber}</td>
                   <td className="px-4 py-2 border">{test.localDate}</td>
                   <td className="px-4 py-2 border">

@@ -56,7 +56,7 @@ const ProductPaymentCheckoutForm = forwardRef((props, ref) => {
 
     try {
       const { data } = await axios.patch(
-        `http://localhost:5000/updateProductStock`,
+        `https://my-ass-12-server.vercel.app/updateProductStock`,
         {
           productId: checkoutPageData?._id,
           quantity: userProductByNumebr,
@@ -78,7 +78,7 @@ const ProductPaymentCheckoutForm = forwardRef((props, ref) => {
     if (clientInformationData !== null) {
       try {
         const { data } = await axios.post(
-          "http://localhost:5000/postPaymentInformation",
+          "https://my-ass-12-server.vercel.app/postPaymentInformation",
           { clientInformationData }
         );
 

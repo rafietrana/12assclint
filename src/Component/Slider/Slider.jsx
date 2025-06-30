@@ -8,7 +8,9 @@ const Slider = () => {
   const { data: activeBannerData = [] } = useQuery({
     queryKey: ["activeBanner"],
     queryFn: () =>
-      axios("http://localhost:5000/getactivebanner").then((res) => res.data),
+      axios("https://my-ass-12-server.vercel.app/getactivebanner").then(
+        (res) => res.data
+      ),
   });
 
   // $&
@@ -27,13 +29,13 @@ const Slider = () => {
     );
   };
 
+
+
+
   return (
     <motion.div
       className="md:h-[600px] py-8 md:py-0 md:pt-10 relative "
-      variants={fadeIn("up", 0.1)}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: false, amount: 0.2 }}
+   
     >
       {/* Background Images with Animation */}
       <motion.img
@@ -102,7 +104,7 @@ const Slider = () => {
 
           {/* Title Section */}
           <motion.div
-            className="lg:text-7xl md:text-4xl text-2xl font-bold font-Outfit"
+            className="lg:text-7xl  text-[#000D44]  md:text-4xl text-2xl font-bold font-Outfit"
             variants={fadeIn("up", 0.4)}
           >
             {getStyledBannerTitle(activeBannerData?.bannertitle)}

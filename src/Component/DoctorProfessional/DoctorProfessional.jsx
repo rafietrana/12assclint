@@ -60,8 +60,8 @@ const DoctorProfessional = () => {
   // $&
 
   return (
-    <div>
-      <div className="w-9/12  mt-32 mx-auto">
+    <div className="bg-white py-10">
+      <div className="w-9/12     mx-auto">
         {/* title section start */}
         <div>
           <div className="flex flex-col justify-center items-center">
@@ -105,7 +105,7 @@ const DoctorProfessional = () => {
         </div>
         {/* title section end */}
         {/* slider option start  */}
-        <div className="my-10">
+        <div  >
           <Swiper
             spaceBetween={30}
             slidesPerView={4}

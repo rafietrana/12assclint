@@ -10,7 +10,10 @@ const AllUser = () => {
   const [isOpens, setIsOpens] = useState(false);
   const { data: getalluser = [], refetch } = useQuery({
     queryKey: ["getalluser"],
-    queryFn: () => axios("http://localhost:5000/getalluser").then((res) => res?.data),
+    queryFn: () =>
+      axios("https://my-ass-12-server.vercel.app/getalluser").then(
+        (res) => res?.data
+      ),
   });
 
   const closeModals = () => setIsOpens(false);
@@ -26,12 +29,14 @@ const AllUser = () => {
       confirmButtonText: "Yes, Block User!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.put(`http://localhost:5000/blockuser/${id}`).then((res) => {
-          if (res.data.modifiedCount > 0) {
-            refetch();
-            Swal.fire("Blocked!", "The user has been blocked.", "success");
-          }
-        });
+        axios
+          .put(`https://my-ass-12-server.vercel.app/blockuser/${id}`)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              Swal.fire("Blocked!", "The user has been blocked.", "success");
+            }
+          });
       }
     });
   };
@@ -47,21 +52,31 @@ const AllUser = () => {
       confirmButtonText: "Yes, Unblock User!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.put(`http://localhost:5000/unBlockuser/${id}`).then((res) => {
-          if (res.data.modifiedCount > 0) {
-            refetch();
-            Swal.fire("Unblocked!", "The user has been unblocked.", "success");
-          }
-        });
+        axios
+          .put(`https://my-ass-12-server.vercel.app/unBlockuser/${id}`)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              Swal.fire(
+                "Unblocked!",
+                "The user has been unblocked.",
+                "success"
+              );
+            }
+          });
       }
     });
   };
 
   const handleDownloadUserDetails = async (userId) => {
     try {
-      const userDetails = await axios.get(`http://localhost:5000/userdetails/${userId}`);
+      const userDetails = await axios.get(
+        `https://my-ass-12-server.vercel.app/userdetails/${userId}`
+      );
       const user = userDetails.data;
-      const testDetailsResponse = await axios.get(`http://localhost:5000/testdetails/${user?.email}`);
+      const testDetailsResponse = await axios.get(
+        `https://my-ass-12-server.vercel.app/testdetails/${user?.email}`
+      );
       const testDetails = testDetailsResponse.data;
 
       const doc = new jsPDF();
@@ -77,7 +92,11 @@ const AllUser = () => {
         testDetails.forEach((test, index) => {
           doc.text(`Test ${index + 1}: ${test?.testname || "N/A"}`, 10, yPos);
           yPos += 10;
-          doc.text(`Test ${index + 1} Delivery Status: ${test.reportStatus || "N/A"}`, 10, yPos);
+          doc.text(
+            `Test ${index + 1} Delivery Status: ${test.reportStatus || "N/A"}`,
+            10,
+            yPos
+          );
           yPos += 10;
         });
       } else {
@@ -86,12 +105,18 @@ const AllUser = () => {
 
       doc.save(`user_${user.name || "unknown"}_details.pdf`);
     } catch (error) {
-      Swal.fire("Error", "Failed to fetch user details. Please try again later.", "error");
+      Swal.fire(
+        "Error",
+        "Failed to fetch user details. Please try again later.",
+        "error"
+      );
     }
   };
 
   const handleMakeAdmin = async (ids) => {
-    const res = await axios.patch(`http://localhost:5000/makeadmin/${ids}`);
+    const res = await axios.patch(
+      `https://my-ass-12-server.vercel.app/makeadmin/${ids}`
+    );
     if (res.data.modifiedCount > 0) {
       refetch();
       toast.success("Made admin successfully");
@@ -122,7 +147,11 @@ const AllUser = () => {
                 <td>
                   <div className="avatar mx-auto">
                     <div className="w-16 h-16 rounded-full overflow-hidden">
-                      <img src={usergetall?.image} alt="User Avatar" className="object-cover w-full h-full" />
+                      <img
+                        src={usergetall?.image}
+                        alt="User Avatar"
+                        className="object-cover w-full h-full"
+                      />
                     </div>
                   </div>
                 </td>

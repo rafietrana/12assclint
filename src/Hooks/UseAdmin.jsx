@@ -12,7 +12,7 @@ const useAdmin = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axios(
-        `http://localhost:5000/users/admin/${user.email}`
+        `https://my-ass-12-server.vercel.app/users/admin/${user.email}`
       );
       return res.data;
     },

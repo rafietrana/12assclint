@@ -85,10 +85,11 @@ const Services = () => {
   }
 
   return (
-    <div className="bg-[#F5F7FA] min-h-[600px] py-10">
+    <div className="bg-[#F5F7FA] min-h-[600px]  -mt-7 py-10 ">
       {/* Section Title */}
       <motion.div
         className="text-center"
+        
         variants={fadeIn("up", 0.2)}
         initial="hidden"
         whileInView="show"
@@ -111,7 +112,7 @@ const Services = () => {
             OUR SERVICES
           </motion.div>
         </div>
-        <motion.p className="text-xl font-Outfit md:text-[30px] font-semibold text-[#000D44] mt-4"
+        <motion.p className="text-xl mb-5 font-Outfit md:text-[30px] font-semibold text-[#000D44] mt-4"
            variants={fadeIn("down", 0.3)}
                          initial="hidden"
                          whileInView="show"
@@ -123,7 +124,7 @@ const Services = () => {
       {/* Services Cards */}
       <div className="mx-auto w-10/12">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-11"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  "
           variants={fadeIn("up", 0.3)}
           initial="hidden"
           whileInView="show"

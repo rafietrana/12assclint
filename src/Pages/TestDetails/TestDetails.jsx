@@ -14,20 +14,25 @@ const TestDetails = () => {
     queryKey: ["testDetails"],
     enabled: !!id,
     queryFn: () =>
-      axios(`http://localhost:5000/gettest/${id}`).then((res) => res.data),
+      axios(`https://my-ass-12-server.vercel.app/gettest/${id}`).then(
+        (res) => res.data
+      ),
   });
 
   const closeModal = () => setIsOpen(false);
 
   return (
     <div className="font-Outfit">
-    
       {/* Banner Section */}
       <div className="bg-[#F1F5F9] h-[300px] flex flex-col justify-center items-center text-center space-y-3">
         <h1 className="text-4xl md:text-5xl font-semibold">Test Details</h1>
         <div className="text-sm breadcrumbs">
           <ul className="flex space-x-2">
-            <li><a href="/" className="text-gray-600 hover:text-green-600">Home</a></li>
+            <li>
+              <a href="/" className="text-gray-600 hover:text-green-600">
+                Home
+              </a>
+            </li>
             <li className="text-green-600 font-medium">Details</li>
           </ul>
         </div>
@@ -63,9 +68,14 @@ const TestDetails = () => {
           <div className="bg-white shadow-md p-6 rounded-lg space-y-4">
             <h2 className="text-xl font-semibold text-gray-800">Category</h2>
             {["Exray", "Blood", "Neurology"].map((item, i) => (
-              <div key={i} className="collapse collapse-arrow bg-gray-100 rounded-md">
+              <div
+                key={i}
+                className="collapse collapse-arrow bg-gray-100 rounded-md"
+              >
                 <input type="radio" name="accordion" />
-                <div className="collapse-title text-base font-medium">{item}</div>
+                <div className="collapse-title text-base font-medium">
+                  {item}
+                </div>
               </div>
             ))}
           </div>
@@ -84,12 +94,19 @@ const TestDetails = () => {
 
           {/* Test Info */}
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">{testDetails?.testname}</h2>
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed">{testDetails?.testdetails}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+              {testDetails?.testname}
+            </h2>
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+              {testDetails?.testdetails}
+            </p>
 
             <div className="space-y-2 mt-5">
               <p className="text-lg text-gray-700 font-semibold">
-                Test Price: <span className="text-green-600">${testDetails?.testprice}</span>
+                Test Price:{" "}
+                <span className="text-green-600">
+                  ${testDetails?.testprice}
+                </span>
               </p>
               <p className="text-lg text-gray-700 font-semibold">
                 Date:{" "}
@@ -99,7 +116,9 @@ const TestDetails = () => {
               </p>
               <p className="text-lg text-gray-700 font-semibold">
                 Slots Available:{" "}
-                <span className="text-green-600">{testDetails?.slotsnumber}</span>
+                <span className="text-green-600">
+                  {testDetails?.slotsnumber}
+                </span>
               </p>
             </div>
 

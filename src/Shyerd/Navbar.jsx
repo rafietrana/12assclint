@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAdmin from "../Hooks/UseAdmin";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -79,13 +80,15 @@ const Navbar = () => {
       })
       .catch((error) => {
         // $&
+     toast.error(error)
+        
       });
   };
 
   return (
     <div>
       {/* Top Navbar */}
-      <div className="bg-[#1F5FFF] p-3 hidden lg:block">
+      <div className="bg-[#1F5FFF]  p-3 hidden lg:block">
         <div className="flex justify-between">
           <div className="flex gap-5">
             <p className="flex items-center gap-3 text-white font-medium">
@@ -134,7 +137,7 @@ const Navbar = () => {
       </div>
 
       {/* Bottom Navbar */}
-      <div className="relative">
+      <div className="relative bg-white">
         <div className="w-full mx-auto items-center">
           <div className="navbar mx-auto">
             <div className="navbar-start">

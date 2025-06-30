@@ -94,7 +94,7 @@ const Singup = () => {
         toast.success("Successfully signed up");
 
         axios
-          .post("http://localhost:5000/postuserinfo", singupInfo)
+          .post("https://my-ass-12-server.vercel.app/postuserinfo", singupInfo)
           .then((res) => {
             // $&
           });
