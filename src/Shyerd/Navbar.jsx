@@ -186,7 +186,7 @@ const Navbar = () => {
                   Sign Up
                 </button>
               </Link>
-
+<div className="hidden md:flex">
               {user ? (
                 <button
                   onClick={handleLogoutBtn}
@@ -201,6 +201,8 @@ const Navbar = () => {
                   </button>
                 </Link>
               )}
+</div>
+
             </div>
           </div>
         </div>

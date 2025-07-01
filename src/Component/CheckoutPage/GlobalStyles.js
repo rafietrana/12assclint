@@ -1,4 +1,4 @@
 export const globalStyles = {
-        inputStyles: "border border-gray-200 dark:text-[#abc2d3] dark:bg-slate-900 dark:border-slate-700 dark:placeholder:text-slate-500 w-full py-2 px-4 rounded-md mt-1 outline-none focus:border-[#0FABCA]",
-        labelStyles: "text-[14px] font-[400] dark:text-[#abc2d3] text-gray-700"
-    }
+  inputStyles: `w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0FABCA] bg-white text-gray-900 placeholder-gray-400 dark:bg-white dark:text-gray-900 dark:placeholder-gray-400`,
+  labelStyles: `block mb-2 text-sm font-medium text-gray-700 dark:text-gray-700`,
+};

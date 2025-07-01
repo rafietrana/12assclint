@@ -102,11 +102,11 @@ const FeturedTest = () => {
                     className="w-24 h-16 object-cover rounded-md"
                   />
                 </td>
-                <td className="px-4 py-3 font-medium">{test.testname}</td>
-                <td className="px-4 py-3">{test.date?.split("T")[0]}</td>
-                <td className="px-4 py-3">{test.slotsnumber}</td>
-                <td className="px-4 py-3">{test.count}</td>
-                <td className="px-4 py-3 text-gray-600">
+                <td className="px-4 py-3 font-medium text-black">{test.testname}</td>
+                <td className="px-4 py-3 text-black">{test.date?.split("T")[0]}</td>
+                <td className="px-4 py-3 text-black">{test.slotsnumber}</td>
+                <td className="px-4 py-3 text-black">{test.count}</td>
+                <td className="px-4 py-3 text-black  ">
                   {test.testdetails?.slice(0, 30)}...
                 </td>
                 <td className="px-4 py-3 text-center">

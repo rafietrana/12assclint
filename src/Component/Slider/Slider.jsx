@@ -149,8 +149,7 @@ const Slider = () => {
             className="h-auto hidden md:block md:h-[600px] object-cover overflow-hidden"
             src={activeBannerData?.bannerimg}
             alt="Banner"
-            animate={{ opacity: [0, 1], scale: [0.8, 1] }}
-            transition={{ duration: 1.2 }}
+             
           />
         </motion.div>
       </motion.div>
