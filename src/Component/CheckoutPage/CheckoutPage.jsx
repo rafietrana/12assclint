@@ -22,7 +22,7 @@ const CheckoutPage = () => {
   const shippingPayment = isChecked ? 70 : 0;
   const finalStripeAddPayemnt = shippingPayment + localStoreageFinalPayment;
   const [isProcassing, setIsProcassing] = useState(false);
-  const [isSusessed, setIsSucessed] = useState(false);
+ 
   const [outsideClintInformationDate, setOutsideClintInformationData] = useState(null);
   const checkoutPageData = useLoaderData();
   const formRef = useRef(null);
