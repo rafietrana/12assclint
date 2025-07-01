@@ -22,8 +22,9 @@ const CheckoutPage = () => {
   const shippingPayment = isChecked ? 70 : 0;
   const finalStripeAddPayemnt = shippingPayment + localStoreageFinalPayment;
   const [isProcassing, setIsProcassing] = useState(false);
- 
-  const [outsideClintInformationDate, setOutsideClintInformationData] = useState(null);
+
+  const [outsideClintInformationDate, setOutsideClintInformationData] =
+    useState(null);
   const checkoutPageData = useLoaderData();
   const formRef = useRef(null);
   const productDatas = useLoaderData();
@@ -94,11 +95,15 @@ const CheckoutPage = () => {
     <div className="bg-white text-gray-900 dark:bg-white dark:text-gray-900">
       {/* Banner */}
       <div className="bg-[#F1F5F9] h-[300px] flex flex-col justify-center items-center text-center space-y-3">
-        <h1 className="text-4xl md:text-5xl font-semibold font-Outfit text-[#000D44]">View Product</h1>
+        <h1 className="text-4xl md:text-5xl font-semibold font-Outfit text-[#000D44]">
+          View Product
+        </h1>
         <div className="text-sm breadcrumbs">
           <ul className="flex space-x-2">
             <li>
-              <a href="/" className="text-gray-600 hover:text-green-600">Home</a>
+              <a href="/" className="text-gray-600 hover:text-green-600">
+                Home
+              </a>
             </li>
             <li className="text-green-600 font-medium">Products</li>
           </ul>
@@ -112,31 +117,75 @@ const CheckoutPage = () => {
           <div className="md:col-span-2 space-y-8 w-full">
             {/* Billing Info */}
             <div className="w-full">
-              <h2 className="text-[1.5rem] font-medium text-gray-700 mb-6">Billing Information</h2>
+              <h2 className="text-[1.5rem] font-medium text-gray-700 mb-6">
+                Billing Information
+              </h2>
 
               <div className="grid gap-4">
                 {/* First & Last Name */}
                 <div className="flex flex-col md:flex-row gap-4">
                   <div className="w-full">
-                    <label htmlFor="firstName" className={globalStyles.labelStyles}>First name</label>
-                    <input required name="firstName" id="firstName" type="text" placeholder="First name" className={globalStyles.inputStyles} />
+                    <label
+                      htmlFor="firstName"
+                      className={globalStyles.labelStyles}
+                    >
+                      First name
+                    </label>
+                    <input
+                      required
+                      name="firstName"
+                      id="firstName"
+                      type="text"
+                      placeholder="First name"
+                      className={globalStyles.inputStyles}
+                    />
                   </div>
                   <div className="w-full">
-                    <label htmlFor="lastName" className={globalStyles.labelStyles}>Last name</label>
-                    <input required name="lastName" id="lastName" type="text" placeholder="Last name" className={globalStyles.inputStyles} />
+                    <label
+                      htmlFor="lastName"
+                      className={globalStyles.labelStyles}
+                    >
+                      Last name
+                    </label>
+                    <input
+                      required
+                      name="lastName"
+                      id="lastName"
+                      type="text"
+                      placeholder="Last name"
+                      className={globalStyles.inputStyles}
+                    />
                   </div>
                 </div>
 
                 {/* Company */}
                 <div>
-                  <label htmlFor="company" className={globalStyles.labelStyles}>Company (Optional)</label>
-                  <input required name="company" id="company" type="text" placeholder="Company name" className={globalStyles.inputStyles} />
+                  <label htmlFor="company" className={globalStyles.labelStyles}>
+                    Company (Optional)
+                  </label>
+                  <input
+                    required
+                    name="company"
+                    id="company"
+                    type="text"
+                    placeholder="Company name"
+                    className={globalStyles.inputStyles}
+                  />
                 </div>
 
                 {/* Address */}
                 <div>
-                  <label htmlFor="Address" className={globalStyles.labelStyles}>Address</label>
-                  <input required name="Address" id="Address" type="text" placeholder="Address" className={globalStyles.inputStyles} />
+                  <label htmlFor="Address" className={globalStyles.labelStyles}>
+                    Address
+                  </label>
+                  <input
+                    required
+                    name="Address"
+                    id="Address"
+                    type="text"
+                    placeholder="Address"
+                    className={globalStyles.inputStyles}
+                  />
                 </div>
 
                 {/* Country, Region, City */}
@@ -146,7 +195,9 @@ const CheckoutPage = () => {
                     <Select onChange={handleSelectChange} items={countries} />
                   </div>
                   <div className="w-full">
-                    <label className={globalStyles.labelStyles}>Region/State</label>
+                    <label className={globalStyles.labelStyles}>
+                      Region/State
+                    </label>
                     <Select onChange={handleSelectChange} items={regions} />
                   </div>
                 </div>
@@ -157,27 +208,70 @@ const CheckoutPage = () => {
                     <Select onChange={handleSelectChange} items={cities} />
                   </div>
                   <div className="w-full">
-                    <label htmlFor="zipCode" className={globalStyles.labelStyles}>Zip Code</label>
-                    <input required name="zipCode" id="zipCode" type="text" placeholder="Zip code" className={globalStyles.inputStyles} />
+                    <label
+                      htmlFor="zipCode"
+                      className={globalStyles.labelStyles}
+                    >
+                      Zip Code
+                    </label>
+                    <input
+                      required
+                      name="zipCode"
+                      id="zipCode"
+                      type="text"
+                      placeholder="Zip code"
+                      className={globalStyles.inputStyles}
+                    />
                   </div>
                 </div>
 
                 {/* Email & Phone */}
                 <div className="flex flex-col md:flex-row gap-4">
                   <div className="w-full">
-                    <label htmlFor="email" className={globalStyles.labelStyles}>Email</label>
-                    <input required name="email" id="email" type="email" placeholder="Email address" className={globalStyles.inputStyles} />
+                    <label htmlFor="email" className={globalStyles.labelStyles}>
+                      Email
+                    </label>
+                    <input
+                      required
+                      name="email"
+                      id="email"
+                      type="email"
+                      placeholder="Email address"
+                      className={globalStyles.inputStyles}
+                    />
                   </div>
                   <div className="w-full">
-                    <label htmlFor="phoneNumber" className={globalStyles.labelStyles}>Phone Number</label>
-                    <input required name="phoneNumber" id="phoneNumber" type="tel" placeholder="Phone number" className={globalStyles.inputStyles} />
+                    <label
+                      htmlFor="phoneNumber"
+                      className={globalStyles.labelStyles}
+                    >
+                      Phone Number
+                    </label>
+                    <input
+                      required
+                      name="phoneNumber"
+                      id="phoneNumber"
+                      type="tel"
+                      placeholder="Phone number"
+                      className={globalStyles.inputStyles}
+                    />
                   </div>
                 </div>
 
                 {/* Checkbox */}
                 <label className="flex items-center gap-2 mt-4">
-                  <input type="checkbox" className="hidden" onChange={handleCheckboxChange} />
-                  <div className={`w-5 h-5 border rounded ${isChecked ? "bg-[#0FABCA]" : "bg-transparent border-gray-400"}`}></div>
+                  <input
+                    type="checkbox"
+                    className="hidden"
+                    onChange={handleCheckboxChange}
+                  />
+                  <div
+                    className={`w-5 h-5 border rounded ${
+                      isChecked
+                        ? "bg-[#0FABCA]"
+                        : "bg-transparent border-gray-400"
+                    }`}
+                  ></div>
                   <span className="text-gray-700">Ship Outside Bangladesh</span>
                 </label>
               </div>
@@ -185,13 +279,14 @@ const CheckoutPage = () => {
 
             {/* Payment Section */}
             <div className="border border-gray-200 rounded-md">
-              <h2 className="text-lg font-medium text-gray-700 border-b px-5 py-3">Payment Option</h2>
+              <h2 className="text-lg font-medium text-gray-700 border-b px-5 py-3">
+                Payment Option
+              </h2>
               <div className="px-5 pb-5">
                 <Elements stripe={stripePromise}>
                   <ProductPaymentCheckoutForm
                     ref={formRef}
                     onProcassingChange={setIsProcassing}
-                    onSucessCheck={setIsSucessed}
                     checkoutPageData={checkoutPageData}
                     clientInformationData={outsideClintInformationDate}
                   />
@@ -203,21 +298,44 @@ const CheckoutPage = () => {
           {/* Order Summary */}
           <div className="w-full">
             <div className="bg-white border border-gray-200 rounded-md p-6">
-              <h2 className="text-lg font-medium text-gray-700 mb-6">Order Summary</h2>
+              <h2 className="text-lg font-medium text-gray-700 mb-6">
+                Order Summary
+              </h2>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                  <img src={imageUrl} alt="product" className="w-12 h-12 object-cover" />
+                  <img
+                    src={imageUrl}
+                    alt="product"
+                    className="w-12 h-12 object-cover"
+                  />
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{medicineName}</p>
-                    <p className="text-sm text-gray-500">{localStoreageFinalPaymentNumber} x ${localStoreageFinalPayment}</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {medicineName}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      {localStoreageFinalPaymentNumber} x $
+                      {localStoreageFinalPayment}
+                    </p>
                   </div>
                 </div>
 
                 <div className="space-y-2 pt-4 text-sm text-gray-700">
-                  <div className="flex justify-between"><span>Sub-total</span><span>${localStoreageFinalPayment}</span></div>
-                  <div className="flex justify-between"><span>Shipping</span><span>{isChecked ? "$70" : "Free"}</span></div>
-                  <div className="flex justify-between"><span>Discount</span><span>$0</span></div>
-                  <div className="flex justify-between"><span>Tax</span><span>$0</span></div>
+                  <div className="flex justify-between">
+                    <span>Sub-total</span>
+                    <span>${localStoreageFinalPayment}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Shipping</span>
+                    <span>{isChecked ? "$70" : "Free"}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Discount</span>
+                    <span>$0</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Tax</span>
+                    <span>$0</span>
+                  </div>
                 </div>
 
                 <div className="border-t border-gray-200 pt-4 flex justify-between text-base font-medium text-gray-800">
@@ -230,7 +348,9 @@ const CheckoutPage = () => {
                   className="w-full bg-[#0FABCA] text-white py-3 px-4 rounded-lg hover:bg-[#0FABCA]/90 transition-colors"
                 >
                   <span className="flex items-center justify-center gap-2">
-                    {isProcassing && <AiOutlineLoading className="animate-spin text-lg" />}
+                    {isProcassing && (
+                      <AiOutlineLoading className="animate-spin text-lg" />
+                    )}
                     PLACE ORDER
                   </span>
                 </button>
