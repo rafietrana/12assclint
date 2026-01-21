@@ -62,10 +62,10 @@ const AllTest = () => {
                   </div>
                 </div>
               </td>
-              <td>{data.testname}</td>
-              <td>${data.testprice}</td>
-              <td>{data.date?.split("T")[0]}</td>
-              <td>{data.slotsnumber}</td>
+              <td className="text-black">{data.testname}</td>
+              <td className="text-black">${data.testprice}</td>
+              <td className="text-black">{data.date?.split("T")[0]}</td>
+              <td className="text-black">{data.slotsnumber}</td>
               <td>
                 <Link to={`/deshboard/singlereservation/${data._id}`}>
                   <button className="bg-gradient-to-b from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">

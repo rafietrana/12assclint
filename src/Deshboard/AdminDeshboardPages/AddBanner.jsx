@@ -86,14 +86,14 @@ const AddBanner = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Banner Name */}
           <div className="flex flex-col">
-            <label className="flex items-center gap-2 font-DM font-medium text-gray-700 mb-2">
+            <label className="flex items-center gap-2 font-DM font-medium text-black mb-2">
               <FaTag /> Banner Name
             </label>
             <input
               name="bannername"
               type="text"
               placeholder="Enter banner name"
-              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="px-3 py-2 rounded-md border border-gray-300 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-green-400"
               required
             />
           </div>
@@ -107,7 +107,7 @@ const AddBanner = () => {
               name="bannertitle"
               type="text"
               placeholder="Enter banner title"
-              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 bg-gray-200 focus:ring-green-400"
               required
             />
           </div>
@@ -121,7 +121,7 @@ const AddBanner = () => {
               name="description"
               placeholder="Enter description"
               rows={3}
-              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 resize-none"
+              className="px-3 py-2 rounded-md border border-gray-300 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-green-400 resize-none"
               required
             />
           </div>
@@ -135,7 +135,7 @@ const AddBanner = () => {
               name="couponcode"
               type="text"
               placeholder="Enter coupon code"
-              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="px-3 py-2 rounded-md border border-gray-300 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
 
@@ -150,7 +150,7 @@ const AddBanner = () => {
               min="0"
               max="100"
               placeholder="Enter coupon rate"
-              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="px-3 py-2 rounded-md border border-gray-300 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-green-400"
             />
           </div>
 
@@ -163,7 +163,7 @@ const AddBanner = () => {
               type="file"
               name="bannerimg"
               accept="image/*"
-              className="file-input file-input-bordered bg-white border-gray-300"
+              className="file-input file-input-bordered bg-white bg-gray-200 border-gray-300"
               required
             />
           </div>

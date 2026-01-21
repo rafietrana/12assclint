@@ -63,7 +63,7 @@ const AddTest = () => {
                 name="testname"
                 type="text"
                 placeholder="Enter test name"
-                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 bg-gray-200 focus:ring-green-400"
                 required
               />
             </div>
@@ -75,7 +75,7 @@ const AddTest = () => {
                 name="testprice"
                 type="number"
                 placeholder="Enter price (e.g., 500)"
-                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 bg-gray-200 focus:ring-green-400"
                 required
               />
             </div>
@@ -89,7 +89,7 @@ const AddTest = () => {
                 name="bannerimg"
                 type="text"
                 placeholder="Enter image URL"
-                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 bg-gray-200 focus:ring-green-400"
                 required
               />
             </div>
@@ -103,7 +103,7 @@ const AddTest = () => {
                 name="slotsnumber"
                 type="number"
                 placeholder="Enter total slots"
-                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 bg-gray-200 focus:ring-green-400"
                 required
               />
             </div>
@@ -115,7 +115,7 @@ const AddTest = () => {
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 dateFormat="yyyy-MM-dd"
-                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 bg-gray-200 focus:ring-green-400"
                 placeholderText="Select date"
                 required
               />
@@ -127,7 +127,7 @@ const AddTest = () => {
               <textarea
                 name="testdetails"
                 placeholder="Enter test details"
-                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 focus:ring-green-400 resize-none"
+                className="w-full px-4 py-2 border rounded-md outline-none focus:ring-2 bg-gray-200 focus:ring-green-400 resize-none"
                 rows="4"
                 required
               ></textarea>

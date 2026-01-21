@@ -76,16 +76,16 @@ const Reservation = () => {
     <div className="overflow-x-auto p-4">
       <form onSubmit={handleEmailSearch}>
         <div className="flex gap-3 items-center my-7">
-          <label htmlFor="email">Search By Email</label>
+          <label className="text-black" htmlFor="email">Search By Email</label>
           <input
             id="email"
             name="email"
             type="email"
             placeholder="Enter email"
-            className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 bg-gray-200 focus:ring-blue-400"
           />
           <input
-            className="btn btn-info text-white cursor-pointer px-4 py-2 rounded"
+            className="btn btn-info t text-white cursor-pointer px-4 py-2 rounded"
             type="submit"
             value="Search"
           />
@@ -94,15 +94,15 @@ const Reservation = () => {
       <table className="table-auto w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">
-            <th className="border border-gray-300 p-2"></th>
-            <th className="border border-gray-300 p-2"> Image</th>
-            <th className="border border-gray-300 p-2"> Name</th>
-            <th className="border border-gray-300 p-2"> Email</th>
-            <th className="border border-gray-300 p-2">Reserve Test</th>
-            <th className="border border-gray-300 p-2">Transaction ID</th>
-            <th className="border border-gray-300 p-2"> Status</th>
-            <th className="border border-gray-300 p-2">Submit </th>
-            <th className="border border-gray-300 p-2">Cancel</th>
+            <th className="border border-gray-300 p-2 text-black"></th>
+            <th className="border border-gray-300 p-2 text-black"> Name</th>
+            <th className="border border-gray-300 p-2 text-black"> Image</th>
+            <th className="border border-gray-300 p-2 text-black"> Email</th>
+            <th className="border border-gray-300 p-2 text-black">Reserve Test</th>
+            <th className="border border-gray-300 p-2 text-black">Transaction ID</th>
+            <th className="border border-gray-300 p-2 text-black"> Status</th>
+            <th className="border border-gray-300 p-2 text-black">Submit </th>
+            <th className="border border-gray-300 p-2 text-black">Cancel</th>
           </tr>
         </thead>
         <tbody>
@@ -133,22 +133,22 @@ const Reservation = () => {
                     </div>
                   </div>
                 </td>
-                <td className="border border-gray-300 p-2">
+                <td className="border border-gray-300 p-2 text-black">
                   {reserveget?.userName}
                 </td>
-                <td className="border border-gray-300 p-2">
+                <td className="border border-gray-300 p-2 text-black">
                   {reserveget?.userEmail}
                 </td>
-                <td className="border border-gray-300 p-2">
+                <td className="border border-gray-300 p-2 text-black">
                   {reserveget?.testname}
                 </td>
-                <td className="border border-gray-300 p-2">
+                <td className="border border-gray-300 p-2 text-black">
                   {reserveget?.transictionId}
                 </td>
-                <td className="border border-gray-300 p-2">
+                <td className="border border-gray-300 p-2 text-black">
                   {reserveget?.reportStatus}
                 </td>
-                <td className="border border-gray-300 p-2">
+                <td className="border border-gray-300 p-2 text-black">
                   {reserveget?.reportStatus === "Pending" ? (
                     <Link to={`updatetestresult/${reserveget?._id}`}>
                       <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-bold py-2 px-3 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out">

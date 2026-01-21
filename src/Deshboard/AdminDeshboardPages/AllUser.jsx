@@ -155,9 +155,9 @@ const AllUser = () => {
                     </div>
                   </div>
                 </td>
-                <td>{usergetall?.name}</td>
-                <td>{usergetall?.email}</td>
-                <td>{usergetall?.userStatus}</td>
+                <td className="text-black">{usergetall?.name}</td>
+                <td className="text-black">{usergetall?.email}</td>
+                <td className="text-black">{usergetall?.userStatus}</td>
                 <td>
                   {usergetall.userStatus === "active" ? (
                     <button

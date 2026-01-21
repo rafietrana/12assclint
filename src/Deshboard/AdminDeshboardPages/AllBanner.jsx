@@ -69,27 +69,27 @@ const AllBanner = () => {
                     />
                   </td>
                   <td
-                    className="p-3 max-w-[120px] truncate"
+                    className="p-3 max-w-[120px] truncate text-black"
                     title={banner.bannername}
                   >
                     {banner.bannername}
                   </td>
                   <td
-                    className="p-3 max-w-[150px] truncate"
+                    className="p-3 max-w-[150px] truncate text-black"
                     title={banner.bannertitle}
                   >
                     {banner.bannertitle}
                   </td>
                   <td
-                    className="p-3 hidden md:table-cell max-w-[120px] truncate"
+                    className="p-3 hidden md:table-cell max-w-[120px] truncate text-black"
                     title={banner.couponcode || "-"}
                   >
                     {banner.couponcode || "-"}
                   </td>
-                  <td className="p-3 hidden md:table-cell whitespace-nowrap">
+                  <td className="p-3 hidden md:table-cell whitespace-nowrap text-black">
                     {banner.couponrate || "-"}
                   </td>
-                  <td className="p-3 text-center whitespace-nowrap">
+                  <td className="p-3 text-center whitespace-nowrap text-black">
                     {!banner.isActive ? (
                       <button
                         onClick={() => handleActiveBtn(banner)}

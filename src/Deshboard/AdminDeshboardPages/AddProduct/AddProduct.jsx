@@ -99,7 +99,7 @@ const AddProduct = () => {
             value={medicineName}
             onChange={(e) => setMedicineName(e.target.value)}
             placeholder="Enter medicine name"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
+            className="w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
             required
           />
         </div>
@@ -114,7 +114,7 @@ const AddProduct = () => {
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
               placeholder="Enter brand name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-200 focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
               required
             />
           </div>
@@ -128,7 +128,7 @@ const AddProduct = () => {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               placeholder="Enter price"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
+              className="w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
               required
             />
           </div>
@@ -142,10 +142,10 @@ const AddProduct = () => {
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
+              className="w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
               required
             >
-              <option value="">Select category</option>
+              <option className="bg-gray-200" value="">Select category</option>
               <option value="tablet">Tablet</option>
               <option value="medicaldevice">Medical Device</option>
               <option value="syrup">Syrup</option>
@@ -164,7 +164,7 @@ const AddProduct = () => {
               value={stock}
               onChange={(e) => setStock(e.target.value)}
               placeholder="Enter stock quantity"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
+              className="w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3695EB]"
               required
             />
           </div>
