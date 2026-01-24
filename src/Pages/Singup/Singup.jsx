@@ -13,7 +13,7 @@ const Signup = () => {
   const [upzilas, setUpzillas] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const { updateUserProfile } = useContext(AuthContext);
+  const { updateUserProfile, user ,singUpUser} = useContext(AuthContext);
 
   useEffect(() => {
     fetch("/District.json")
@@ -49,8 +49,12 @@ const Signup = () => {
 
     const formData = new FormData();
     formData.append("image", photo);
+    
+    
 
     try {
+ 
+      
       const res = await axios.post(
         `https://api.imgbb.com/1/upload?key=${image_hosting_key}`,
         formData,
@@ -60,8 +64,20 @@ const Signup = () => {
           },
         }
       );
+       console.log('alhamdulillah image uploading status is  ', res);
 
       if (res.data.success) {
+
+        singUpUser(email, password)
+         .then((result) => {
+        toast.success("Successfully singed in!");
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Sing in failed, please try again.");
+      });
+
         const signupInfo = {
           name,
           email,
@@ -73,19 +89,33 @@ const Signup = () => {
           userStatus,
         };
 
-        await updateUserProfile(name, res.data.data.display_url);
-        toast.success("Successfully signed up");
-
-        axios
+        if (user){
+      await updateUserProfile(name, res.data.data.display_url);
+              toast.success("Successfully signed up");
+                  axios
           .post("https://my-ass-12-server.vercel.app/postuserinfo", signupInfo)
           .then((res) => {
-            console.log(res);
+            console.log('alhamdulillah post userInfo response is', res);
           });
+        }
+        else{
+        console.log('no user found ');
+        
+        }
+       
+        
+
+  
+
+
+    
       } else {
         toast.error("Image upload failed, please try again");
       }
     } catch (error) {
       console.error(error);
+      console.log('error is', error);
+      
       toast.error("Error during signup process");
     } finally {
       setLoading(false);
