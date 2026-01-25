@@ -6,6 +6,8 @@ import useAxiosSecuree from "../../Hooks/useAxiosSecuree";
 const UserProfile = () => {
   const { user, updateUserProfile } = useAuth();
   const axiosSecure = useAxiosSecuree();
+  
+  
 
   const { data: getUserInfo = {}, refetch } = useQuery({
     queryKey: ["getUserInfo", user?.email],
@@ -13,6 +15,10 @@ const UserProfile = () => {
     queryFn: () =>
       axiosSecure(`/getuserinfo/${user?.email}`).then((res) => res.data),
   });
+  
+
+  console.log('alhamdulillah get user info is', getUserInfo);
+  
 
   const handleUserProfileUpdate = async (e) => {
     e.preventDefault();

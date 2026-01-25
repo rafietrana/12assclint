@@ -92,16 +92,18 @@ const Signup = () => {
         if (user){
       await updateUserProfile(name, res.data.data.display_url);
               toast.success("Successfully signed up");
-                  axios
-          .post("https://my-ass-12-server.vercel.app/postuserinfo", signupInfo)
-          .then((res) => {
-            console.log('alhamdulillah post userInfo response is', res);
-          });
+            
         }
         else{
         console.log('no user found ');
         
         }
+
+              axios
+          .post("https://my-ass-12-server.vercel.app/postuserinfo", signupInfo)
+          .then((res) => {
+            console.log('alhamdulillah post userInfo response is', res);
+          });
        
         
 
