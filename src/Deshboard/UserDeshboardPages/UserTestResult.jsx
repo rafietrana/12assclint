@@ -23,7 +23,7 @@ const UserTestResult = () => {
       <div>
         <ReactToPrint
           trigger={() => (
-            <button className="bg-gradient-to-b from-gray-100 to-gray-200 text-black py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
+            <button className="bg-gradient-to-b text-black from-gray-100 to-gray-200 text-black py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
               Download Result
             </button>
           )}
@@ -36,10 +36,10 @@ const UserTestResult = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Test Name</th>
-              <th>Test Date</th>
-              <th>Status</th>
-              <th>Result</th>
+              <th className="text-black">Test Name</th>
+              <th className="text-black">Test Date</th>
+              <th className="text-black">Status</th>
+              <th className="text-black">Result</th>
               <th></th>
             </tr>
           </thead>

@@ -22,10 +22,10 @@ const TestDetails = () => {
   const closeModal = () => setIsOpen(false);
 
   return (
-    <div className="font-Outfit">
+    <div className="font-Outfit bg-white">
       {/* Banner Section */}
       <div className="bg-[#F1F5F9] h-[300px] flex flex-col justify-center items-center text-center space-y-3">
-        <h1 className="text-4xl md:text-5xl font-semibold">Test Details</h1>
+        <h1 className="text-4xl md:text-5xl font-semibold text-black">Test Details</h1>
         <div className="text-sm breadcrumbs">
           <ul className="flex space-x-2">
             <li>
@@ -39,16 +39,16 @@ const TestDetails = () => {
       </div>
 
       {/* Main Section */}
-      <div className="my-10 w-11/12 md:w-10/12 mx-auto flex flex-col md:flex-row gap-8">
+      <div className="my-10 w-11/12 md:w-10/12 mx-auto flex flex-col md:flex-row gap-8 ">
         {/* Left Sidebar */}
-        <div className="md:w-1/3 space-y-8">
+        <div className="md:w-1/3 space-y-8 ">
           {/* Search */}
           <div className="bg-white shadow-md p-5 rounded-lg">
             <form className="flex items-center">
               <div className="relative w-full">
                 <input
                   type="text"
-                  className="w-full border border-gray-300 rounded-lg py-2 px-4 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full border border-gray-300 bg-gray-100 rounded-lg py-2 px-4 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   placeholder="Search"
                 />
                 <div className="absolute left-3 top-2.5 text-gray-400">

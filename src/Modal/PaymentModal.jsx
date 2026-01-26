@@ -96,20 +96,20 @@ const PaymentModal = ({
                 <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <DialogTitle
                     as="h3"
-                    className="text-lg font-medium text-center leading-6 text-gray-900 my-5"
+                    className="text-lg font-medium text-center leading-6 text-black  my-5"
                   >
                     Payment For Test
                   </DialogTitle>
                   <div className="mt-2">
                     <form onSubmit={handleApplyCouponBtn}>
-                      <label className="mb-5 font-Outfit font-medium">
+                      <label className="mb-5 text-black font-Outfit font-medium">
                         Have Any Coupon?
                       </label>
                       <input
                         type="text"
                         placeholder="Apply Coupon"
                         name="couponname"
-                        className="w-full p-3 my-3 font-outfit font-medium border outline-none"
+                        className="w-full p-3 bg-gray-100 rounded-lg my-3 font-outfit font-medium border outline-none"
                       />
 
                       <input
@@ -133,7 +133,7 @@ const PaymentModal = ({
 
                   {finalPaymentPrice !== null && (
                     <div className="mt-4 text-center">
-                      <p className="text-lg font-medium">
+                      <p className="text-lg font-medium text-black">
                         Final Payment Price: {finalPaymentPrice ?? price} Taka
                       </p>
                     </div>

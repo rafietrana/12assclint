@@ -58,10 +58,10 @@ const UserAppoinments = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Test Name</th>
-              <th>Appoinment Data</th>
-              <th>Appoinment Time</th>
-              <th>Cancal Appoinment</th>
+              <th className="text-black">Test Name</th>
+              <th className="text-black">Appoinment Data</th>
+              <th className="text-black">Appoinment Time</th>
+              <th className="text-black">Cancal Appoinment</th>
             </tr>
           </thead>
           <tbody>
