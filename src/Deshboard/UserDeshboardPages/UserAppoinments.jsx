@@ -67,15 +67,15 @@ const UserAppoinments = () => {
           <tbody>
             {getReserveUser.map((userReserveGet, idx) => (
               <tr key={userReserveGet?._id}>
-                <th>{idx + 1}</th>
-                <td>{userReserveGet?.testname}</td>
-                <td>{userReserveGet?.bookingDate.split("T")[0]}</td>
-                <td>{userReserveGet?.bookingTime}</td>
+                <th className="text-black">{idx + 1}</th>
+                <td className="text-black">{userReserveGet?.testname}</td>
+                <td className="text-black">{userReserveGet?.bookingDate.split("T")[0]}</td>
+                <td className="text-black">{userReserveGet?.bookingTime}</td>
 
                 <td>
                   <button
                     onClick={() => userAppoinmentDeleteBtn(userReserveGet._id)}
-                    className="px-3 py-2 bg-gray-300 rounded-lg"
+                    className="px-3 py-2 text-black bg-gray-300 rounded-lg"
                   >
                     Cancal Appoinment{" "}
                   </button>

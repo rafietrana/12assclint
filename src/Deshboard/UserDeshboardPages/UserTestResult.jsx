@@ -23,7 +23,7 @@ const UserTestResult = () => {
       <div>
         <ReactToPrint
           trigger={() => (
-            <button className="bg-gradient-to-b text-black from-gray-100 to-gray-200 text-black py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
+            <button className="bg-gradient-to-b  from-gray-100 to-gray-200 text-black py-3 px-4 rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out mb-5">
               Download Result
             </button>
           )}
@@ -31,7 +31,7 @@ const UserTestResult = () => {
         />
       </div>
       <div className="overflow-x-auto">
-        <table ref={componentRef} className="table">
+        <table ref={componentRef} className="table border-none">
           {/* head */}
           <thead>
             <tr>
@@ -46,11 +46,11 @@ const UserTestResult = () => {
           <tbody>
             {userTestResult.map((resutlTestUser, idx) => (
               <tr key={resutlTestUser?._id}>
-                <th>{idx + 1}</th>
-                <td>{resutlTestUser?.testname}</td>
-                <td>{resutlTestUser?.bookingDate}</td>
-                <td>{resutlTestUser?.reportStatus}</td>
-                <td>
+                <th className="text-black">{idx + 1}</th>
+                <td className="text-black">{resutlTestUser?.testname}</td>
+                <td className="text-black">{resutlTestUser?.bookingDate}</td>
+                <td className="text-black">{resutlTestUser?.reportStatus}</td>
+                <td className="text-black">
                   {resutlTestUser?.testResult ? (
                     resutlTestUser?.testResult
                   ) : (
